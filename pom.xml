@@ -8,8 +8,9 @@
 		<version>2.4.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>demo</artifactId>
+	<groupId>com.accenture.bootcamp</groupId>
+	<artifactId>online-shop</artifactId>
+
 	<version>0.0.1-SNAPSHOT</version>
 	<name>OnlineShop</name>
 	<description>Demo project for Spring Boot</description>
