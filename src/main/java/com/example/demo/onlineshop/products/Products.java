@@ -1,0 +1,81 @@
+package com.example.demo.onlineshop.products;
+
+import java.util.Objects;
+
+public class Products {
+
+    private long id;
+    private String name;
+    private String description;
+    private double price;
+    private int quantity;
+
+    public Products () {
+
+    }
+
+    public Products(long id, String name, String description, double price, int quantity) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Products products = (Products) o;
+        return id == products.id &&
+                Double.compare(products.price, price) == 0 &&
+                quantity == products.quantity &&
+                Objects.equals(name, products.name) &&
+                Objects.equals(description, products.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, description, price, quantity);
+    }
+}
