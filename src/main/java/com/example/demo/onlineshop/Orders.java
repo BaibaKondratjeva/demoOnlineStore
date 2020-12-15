@@ -8,17 +8,15 @@ public class Orders {
     private long id;
     private LocalDateTime time;
     private long customer_id;
-    private long order_products_id;
 
     public Orders(){
 
     }
 
-    public Orders(long id, LocalDateTime time, long customer_id, long order_products_id) {
+    public Orders(long id, LocalDateTime time, long customer_id) {
         this.id = id;
         this.time = time;
         this.customer_id = customer_id;
-        this.order_products_id = order_products_id;
     }
 
     public long getId() {
@@ -45,13 +43,6 @@ public class Orders {
         this.customer_id = customer_id;
     }
 
-    public long getOrder_products_id() {
-        return order_products_id;
-    }
-
-    public void setOrder_products_id(long order_products_id) {
-        this.order_products_id = order_products_id;
-    }
 
     @Override
     public boolean equals(Object o) {

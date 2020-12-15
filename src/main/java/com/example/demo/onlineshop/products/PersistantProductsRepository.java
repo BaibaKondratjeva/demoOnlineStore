@@ -1,8 +1,19 @@
 package com.example.demo.onlineshop.products;
 
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 
+@Primary
+@Component
 public class PersistantProductsRepository implements ProductsRepository {
+
+    private final ProductsMapper mapper;
+
+    public PersistantProductsRepository(Products mapper) {
+        this.mapper = mapper;
+    }
 
     @Override
     public Products findOne(long id) {
@@ -11,7 +22,7 @@ public class PersistantProductsRepository implements ProductsRepository {
 
     @Override
     public List<Products> findAll() {
-        return null;
+        return mapper.findAll();
     }
 
     @Override
