@@ -17,6 +17,7 @@
 
 	<properties>
 		<java.version>11</java.version>
+		<flyway.version>6.3.3</flyway.version>
 	</properties>
 
 	<dependencies>
@@ -28,6 +29,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+			<version>${flyway.version}</version>
 		</dependency>
 
 		<dependency>
