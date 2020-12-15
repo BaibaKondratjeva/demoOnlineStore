@@ -7,23 +7,31 @@ import java.util.List;
 
 @Component
 public class PersistentCategoriesRepository implements CategoriesRepository{
+
+    private final CategoriesMapper categoriesMapper;
+
+    public PersistentCategoriesRepository(CategoriesMapper categoriesMapper) {
+        this.categoriesMapper = categoriesMapper;
+    }
+
+
     @Override
-    public Products findOne(long id) {
+    public Categories findOne(long id) {
         return null;
     }
 
     @Override
-    public List<Products> findAll() {
+    public List<Categories> findAll() {
         return null;
     }
 
     @Override
-    public Products insert(Products product) {
+    public Categories insert(Categories categories) {
         return null;
     }
 
     @Override
-    public Products update(long id, Products product) {
+    public Categories update(long id, Categories categories) {
         return null;
     }
 
