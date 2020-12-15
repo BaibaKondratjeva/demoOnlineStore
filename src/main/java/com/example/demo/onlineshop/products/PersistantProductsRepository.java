@@ -1,5 +1,6 @@
 package com.example.demo.onlineshop.products;
 
+import com.example.demo.onlineshop.NotFoundException;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
@@ -11,13 +12,17 @@ public class PersistantProductsRepository implements ProductsRepository {
 
     private final ProductsMapper mapper;
 
-    public PersistantProductsRepository(Products mapper) {
+    public PersistantProductsRepository(ProductsMapper mapper) {
         this.mapper = mapper;
     }
 
     @Override
     public Products findOne(long id) {
-        return null;
+        Products product = mapper.findById(id);
+        if (product == null) {
+            throw new NotFoundException("Product with id " + id + " doesn't exist");
+        }
+        return product;
     }
 
     @Override
@@ -26,13 +31,20 @@ public class PersistantProductsRepository implements ProductsRepository {
     }
 
     @Override
-    public Products insert(Products products) {
-        return null;
+    public Products insert(Products product) {
+        mapper.insert(product);
+        return product;
     }
 
     @Override
-    public Products update(long id, Products products) {
-        return null;
+    public Products update(long id, Products product) {
+        Products existing = findOne(id);
+        existing.setName(product.getName());
+        existing.setDescription(product.getDescription());
+        existing.setPrice(product.getPrice());
+        existing.setQuantity(product.getQuantity());
+        mapper.update(existing);
+        return existing;
     }
 
     @Override

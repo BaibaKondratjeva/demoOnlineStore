@@ -51,12 +51,11 @@ public class Orders {
         Orders orders = (Orders) o;
         return id == orders.id &&
                 customer_id == orders.customer_id &&
-                order_products_id == orders.order_products_id &&
                 Objects.equals(time, orders.time);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, time, customer_id, order_products_id);
+        return Objects.hash(id, time, customer_id);
     }
 }
