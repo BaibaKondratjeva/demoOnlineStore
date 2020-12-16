@@ -13,6 +13,11 @@ public class InMemoryProductsRepository implements ProductsRepository {
     }
 
     @Override
+    public Products findByName(String name) {
+        return null;
+    }
+
+    @Override
     public List<Products> findAll() {
         return null;
     }

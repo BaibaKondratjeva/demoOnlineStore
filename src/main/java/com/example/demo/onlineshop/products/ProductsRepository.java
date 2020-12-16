@@ -6,7 +6,9 @@ import java.util.List;
 
 public interface ProductsRepository {
 
-    Products findOne(long id);
+    Products findOne (long id);
+
+    Products findByName(String name);
 
     List<Products> findAll();
 

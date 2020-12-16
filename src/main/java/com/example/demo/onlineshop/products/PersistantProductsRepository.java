@@ -18,9 +18,18 @@ public class PersistantProductsRepository implements ProductsRepository {
 
     @Override
     public Products findOne(long id) {
-        Products product = mapper.findById(id);
+        Products product = mapper.findOne(id);
         if (product == null) {
             throw new NotFoundException("Product with id " + id + " doesn't exist");
+        }
+        return product;
+    }
+
+    @Override
+    public Products findByName(String name) {
+        Products product = mapper.findByName(name);
+        if (product == null) {
+            throw new NotFoundException("Product with name " + name + " doesn't exist");
         }
         return product;
     }

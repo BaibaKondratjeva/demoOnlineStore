@@ -14,9 +14,9 @@ public class ProductsController {
         this.repository = repository;
     }
 
-    @GetMapping("/{id}")
-    public Products findOne(@PathVariable long id) {
-        return repository.findOne(id);
+    @GetMapping("/{name}")
+    public Products findByName (@PathVariable String name) {
+        return repository.findByName(name);
     }
 
     @GetMapping

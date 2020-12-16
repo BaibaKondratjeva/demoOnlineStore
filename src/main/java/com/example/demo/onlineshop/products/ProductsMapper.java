@@ -10,8 +10,11 @@ public interface ProductsMapper {
     @Select("select id, name, description, price, quantity from products")
     List<Products> findAll();
 
+    @Select("select id, name, description, price, quantity from products where name = #{name}")
+    Products findByName(String name);
+
     @Select("select id, name, description, price, quantity from products where id = #{id}")
-    Products findById(long id);
+    Products findOne(long id);
 
     @Options(useGeneratedKeys = true,
             keyProperty = "id",
