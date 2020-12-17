@@ -8,7 +8,7 @@ public interface CategoriesRepository {
 
     Categories findOne(long id);
 
-    Categories findByName(String name)
+    Categories findByName(String name);
 
     List<Categories> findAll();
 
