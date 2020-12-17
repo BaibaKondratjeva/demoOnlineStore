@@ -7,26 +7,27 @@ import java.util.List;
 @Mapper
 public interface ProductsMapper {
 
-    @Select("select id, name, description, price, quantity from products")
+    @Select("select id, name, description, price, quantity, imageUri from products")
     List<Products> findAll();
 
-    @Select("select id, name, description, price, quantity from products where name = #{name}")
+    @Select("select id, name, description, price, quantity, imageUri from products where name = #{name}")
     Products findByName(String name);
 
-    @Select("select id, name, description, price, quantity from products where id = #{id}")
+    @Select("select id, name, description, price, quantity, imageUri from products where id = #{id}")
     Products findOne(long id);
 
     @Options(useGeneratedKeys = true,
             keyProperty = "id",
             keyColumn = "id")
-    @Insert("insert into products (name, description, price, quantity) values (#{name}, #{description}, #{price}, #{quantity})")
+    @Insert("insert into products (name, description, price, quantity, imageUri) values (#{name}, #{description}, #{price}, #{quantity}, #{imageUri})")
     void insert(Products product);
 
     @Update("update products set " +
             "name = #{name}, " +
             "description = #{description}, " +
             "price = #{price}, " +
-            "quantity = #{quantoty} " +
+            "quantity = #{quantity}, " +
+            "imageURI = #{imageUri} " +
             "where id = #{id}")
     boolean update(Products product);
 

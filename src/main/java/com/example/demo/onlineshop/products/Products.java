@@ -9,17 +9,19 @@ public class Products {
     private String description;
     private double price;
     private int quantity;
+    private String imageUri;
 
     public Products () {
 
     }
 
-    public Products(long id, String name, String description, double price, int quantity) {
+    public Products(long id, String name, String description, double price, int quantity, String imageUri) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.quantity = quantity;
+        this.imageUri = imageUri;
     }
 
     public long getId() {
@@ -62,6 +64,14 @@ public class Products {
         this.quantity = quantity;
     }
 
+    public String getImageUri() {
+        return imageUri;
+    }
+
+    public void setImageUri(String imageUri) {
+        this.imageUri = imageUri;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -71,11 +81,12 @@ public class Products {
                 Double.compare(products.price, price) == 0 &&
                 quantity == products.quantity &&
                 Objects.equals(name, products.name) &&
-                Objects.equals(description, products.description);
+                Objects.equals(description, products.description) &&
+                Objects.equals(imageUri, products.imageUri);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, price, quantity);
+        return Objects.hash(id, name, description, price, quantity, imageUri);
     }
 }

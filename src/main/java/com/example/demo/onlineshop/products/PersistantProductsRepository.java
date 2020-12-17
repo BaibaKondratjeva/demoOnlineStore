@@ -52,6 +52,7 @@ public class PersistantProductsRepository implements ProductsRepository {
         existing.setDescription(product.getDescription());
         existing.setPrice(product.getPrice());
         existing.setQuantity(product.getQuantity());
+        existing.setImageUri(product.getImageUri());
         mapper.update(existing);
         return existing;
     }
