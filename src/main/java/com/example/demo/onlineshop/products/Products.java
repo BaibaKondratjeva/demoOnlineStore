@@ -1,5 +1,6 @@
 package com.example.demo.onlineshop.products;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Products {
@@ -7,7 +8,7 @@ public class Products {
     private long id;
     private String name;
     private String description;
-    private double price;
+    private BigDecimal price;
     private int quantity;
     private String imageUri;
 
@@ -15,7 +16,7 @@ public class Products {
 
     }
 
-    public Products(long id, String name, String description, double price, int quantity, String imageUri) {
+    public Products(long id, String name, String description, BigDecimal price, int quantity, String imageUri) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -52,7 +53,7 @@ public class Products {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -78,10 +79,10 @@ public class Products {
         if (o == null || getClass() != o.getClass()) return false;
         Products products = (Products) o;
         return id == products.id &&
-                Double.compare(products.price, price) == 0 &&
                 quantity == products.quantity &&
                 Objects.equals(name, products.name) &&
                 Objects.equals(description, products.description) &&
+                Objects.equals(price, products.price) &&
                 Objects.equals(imageUri, products.imageUri);
     }
 

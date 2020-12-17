@@ -6,16 +6,16 @@ public class Categories {
 
     private long id;
     private String name;
-    private String icon;
+    private String imageUri;
 
     public Categories() {
 
     }
 
-    public Categories(long id, String name, String icon) {
+    public Categories(long id, String name, String imageUri) {
         this.id = id;
         this.name = name;
-        this.icon = icon;
+        this.imageUri = imageUri;
     }
 
     public long getId() {
@@ -34,12 +34,12 @@ public class Categories {
         this.name = name;
     }
 
-    public String getIcon() {
-        return icon;
+    public String getImageUri() {
+        return imageUri;
     }
 
-    public void setIcon(String icon) {
-        this.icon = icon;
+    public void setImageUri(String imageUri) {
+        this.imageUri = imageUri;
     }
 
     @Override
@@ -49,11 +49,11 @@ public class Categories {
         Categories that = (Categories) o;
         return id == that.id &&
                 Objects.equals(name, that.name) &&
-                Objects.equals(icon, that.icon);
+                Objects.equals(imageUri, that.imageUri);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, icon);
+        return Objects.hash(id, name, imageUri);
     }
 }

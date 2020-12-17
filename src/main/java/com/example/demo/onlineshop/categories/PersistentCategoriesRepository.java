@@ -1,5 +1,6 @@
 package com.example.demo.onlineshop.categories;
 
+import com.example.demo.onlineshop.NotFoundException;
 import com.example.demo.onlineshop.products.Products;
 import org.springframework.stereotype.Component;
 
@@ -17,26 +18,44 @@ public class PersistentCategoriesRepository implements CategoriesRepository{
 
     @Override
     public Categories findOne(long id) {
-        return null;
+        Categories category = categoriesMapper.findOne(id);
+        if (category == null) {
+            throw new NotFoundException("Product with id " + id + " doesn't exist");
+        }
+        return category;
+
+    }
+
+    @Override
+    public Categories findByName(String name) {
+        Categories category = categoriesMapper.findByName(name);
+        if (category == null) {
+            throw new NotFoundException("Product with name " + name + " doesn't exist");
+        }
+        return category;
     }
 
     @Override
     public List<Categories> findAll() {
-        return null;
+        return categoriesMapper.findAll();
     }
 
     @Override
-    public Categories insert(Categories categories) {
-        return null;
+    public Categories insert(Categories category) {
+        categoriesMapper.insert(category);
+        return category;
     }
 
     @Override
-    public Categories update(long id, Categories categories) {
-        return null;
+    public Categories update(long id, Categories category) {
+        Categories existing = findOne(id);
+        existing.setName(category.getName());
+        existing.setImageUri(category.getImageUri());
+        categoriesMapper.update(existing);
+        return existing;
     }
 
     @Override
     public void delete(long id) {
-
     }
 }

@@ -8,11 +8,13 @@ public interface CategoriesRepository {
 
     Categories findOne(long id);
 
+    Categories findByName(String name)
+
     List<Categories> findAll();
 
-    Categories insert(Categories categories);
+    Categories insert(Categories category);
 
-    Categories update(long id, Categories categories);
+    Categories update(long id, Categories category);
 
     void delete(long id);
 }
