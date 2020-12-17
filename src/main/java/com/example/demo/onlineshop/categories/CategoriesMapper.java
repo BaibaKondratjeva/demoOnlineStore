@@ -11,7 +11,7 @@ public interface CategoriesMapper {
     @Select("select id, name, imageUri from categories")
     List<Categories> findAll();
 
-    @Select("select id, name, imageUri from categories where name = #{name}")
+    @Select("select id, name, imageUri from categories where name like #{name}")
     Categories findByName(String name);
 
     @Select("select id, name, imageUri from categories where id = #{id}")

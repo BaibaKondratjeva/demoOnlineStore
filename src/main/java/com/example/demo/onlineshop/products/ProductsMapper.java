@@ -10,7 +10,7 @@ public interface ProductsMapper {
     @Select("select id, name, description, price, quantity, imageUri from products")
     List<Products> findAll();
 
-    @Select("select id, name, description, price, quantity, imageUri from products where name = #{name}")
+    @Select("select id, name, description, price, quantity, imageUri from products where name like #{name}")
     Products findByName(String name);
 
     @Select("select id, name, description, price, quantity, imageUri from products where id = #{id}")
