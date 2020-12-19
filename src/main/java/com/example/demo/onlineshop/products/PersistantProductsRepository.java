@@ -2,6 +2,7 @@ package com.example.demo.onlineshop.products;
 
 import com.example.demo.onlineshop.NotFoundException;
 import com.example.demo.onlineshop.categories.Categories;
+import com.example.demo.onlineshop.categories.CategoriesRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
