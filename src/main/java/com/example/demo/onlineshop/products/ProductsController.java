@@ -19,6 +19,11 @@ public class ProductsController {
         return repository.findByName(name);
     }
 
+//    @GetMapping("/{id}")
+//    public Products findById (@PathVariable long id) {
+//        return repository.findOne(id);
+//    }
+
     @GetMapping
     public List<Products> getProducts() {
         return repository.findAll();
@@ -28,6 +33,8 @@ public class ProductsController {
     public Products create(@RequestBody ProductRequest product) {
         return repository.insert(product);
     }
+
+
 
     @PutMapping("/{id}")
     public Products update(@PathVariable long id,

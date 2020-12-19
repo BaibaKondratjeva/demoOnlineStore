@@ -1,5 +1,6 @@
 package com.example.demo.onlineshop.products;
 
+import com.example.demo.onlineshop.CategoriesValidation;
 import com.example.demo.onlineshop.NotFoundException;
 import com.example.demo.onlineshop.categories.Categories;
 import com.example.demo.onlineshop.categories.CategoriesRepository;
@@ -67,19 +68,14 @@ public class PersistantProductsRepository implements ProductsRepository {
 
     }
 
-    public  List<Categories> categoriesValidation ( List<Integer> idList){
-        List<Categories> categories = new ArrayList<>();
-        List<Categories> categoriesById = new ArrayList<>();
-        for (Categories category:categories ) {
-            for (Integer id:idList ) {
-               if (category.getId() == id) {
-                   categoriesById.add(category);
-               } else {
-                   throw new NotFoundException("No category with such ID found");
-               }
-            }
-        }
-
-        return categoriesById;
+    public Products categoriesValidation ( List<Integer> idList){
+       return mapper.categoriesValidation(idList);
     }
+
+//    public List<Categories> categoriesValidation() {
+//        List<Categories> categoriesList = new ArrayList<>();
+//        Categories categories;
+//        categoriesList.add(categories.getId());
+//
+//    }
 }

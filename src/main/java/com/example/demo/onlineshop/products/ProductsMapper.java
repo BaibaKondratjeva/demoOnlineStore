@@ -1,5 +1,6 @@
 package com.example.demo.onlineshop.products;
 
+import com.example.demo.onlineshop.categories.Categories;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -15,6 +16,9 @@ public interface ProductsMapper {
 
     @Select("select id, name, description, price, quantity, imageUri from products where id = #{id}")
     Products findOne(long id);
+
+    @Select("select id from categories id IN (#{id})")
+    Products categoriesValidation(List<Integer> categoryIds);
 
     @Options(useGeneratedKeys = true,
             keyProperty = "id",
