@@ -34,6 +34,10 @@ public class ProductsController {
         return repository.insert(product);
     }
 
+    @GetMapping ("/{id}, {id}")
+    public Products categoryValidation (@PathVariable long id1, long id2) {
+        return repository.categoriesValidation(id1, id2);
+    }
 
 
     @PutMapping("/{id}")

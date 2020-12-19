@@ -1,9 +1,7 @@
 package com.example.demo.onlineshop.products;
 
-import com.example.demo.onlineshop.CategoriesValidation;
 import com.example.demo.onlineshop.NotFoundException;
 import com.example.demo.onlineshop.categories.Categories;
-import com.example.demo.onlineshop.categories.CategoriesRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -65,17 +63,19 @@ public class PersistantProductsRepository implements ProductsRepository {
 
     @Override
     public void delete(long id) {
-
+        mapper.deleteById(id);
     }
 
-    public Products categoriesValidation ( List<Integer> idList){
-       return mapper.categoriesValidation(idList);
+    public Products categoriesValidation (long id1, long id2){
+        List<Integer> categoryIds = new ArrayList<>();
+        if (categoryIds == null) {
+            throw new NotFoundException("Such id not found");
+        }
+       return mapper.categoriesValidation(categoryIds);
     }
 
-//    public List<Categories> categoriesValidation() {
-//        List<Categories> categoriesList = new ArrayList<>();
-//        Categories categories;
-//        categoriesList.add(categories.getId());
-//
-//    }
+    public void insertProductCategories (long productId, long categoryId) {
+        mapper.insertProductCategories(productId, categoryId);
+    }
+
 }

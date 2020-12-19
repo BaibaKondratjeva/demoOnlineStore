@@ -18,4 +18,8 @@ public interface ProductsRepository {
 
     void delete(long id);
 
+    Products categoriesValidation (long id1, long id2);
+
+    void insertProductCategories (long productId, long categoryId);
+
 }

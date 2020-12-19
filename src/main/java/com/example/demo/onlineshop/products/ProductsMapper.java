@@ -17,7 +17,7 @@ public interface ProductsMapper {
     @Select("select id, name, description, price, quantity, imageUri from products where id = #{id}")
     Products findOne(long id);
 
-    @Select("select id from categories id IN (#{id})")
+    @Select("select id from categories id IN (#{id}, #{id})")
     Products categoriesValidation(List<Integer> categoryIds);
 
     @Options(useGeneratedKeys = true,
@@ -25,6 +25,10 @@ public interface ProductsMapper {
             keyColumn = "id")
     @Insert("insert into products (name, description, price, quantity, imageUri, category_id) values (#{name}, #{description}, #{price}, #{quantity}, #{imageUri}, #{category_id})")
     void insert(Products product);
+
+    @Insert("insert into products_categories (category_id, product_id) values (#{category_id}, #{[product_id]})")
+    void insertProductCategories (long category_id, long product_id);
+
 
     @Update("update products set " +
             "name = #{name}, " +
