@@ -49,7 +49,7 @@ public class PersistantProductsRepository implements ProductsRepository {
     }
 
     @Override
-    public Products update(long id, Products product) {
+    public Products update(long id, ProductRequest product) {
         Products existing = findOne(id);
         existing.setName(product.getName());
         existing.setDescription(product.getDescription());
