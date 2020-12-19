@@ -25,8 +25,8 @@ public class ProductsController {
     }
 
     @PostMapping
-    public Products create(@RequestBody Products product, long category_id) {
-        return repository.insert(product, category_id);
+    public Products create(@RequestBody ProductRequest product) {
+        return repository.insert(product);
     }
 
     @PutMapping("/{id}")

@@ -20,7 +20,7 @@ public interface ProductsMapper {
             keyProperty = "id",
             keyColumn = "id")
     @Insert("insert into products (name, description, price, quantity, imageUri, category_id) values (#{name}, #{description}, #{price}, #{quantity}, #{imageUri}, #{category_id})")
-    void insert(Products product, long category_id);
+    void insert(Products product);
 
     @Update("update products set " +
             "name = #{name}, " +
