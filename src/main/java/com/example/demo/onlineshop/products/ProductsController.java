@@ -31,7 +31,7 @@ public class ProductsController {
 
     @PutMapping("/{id}")
     public Products update(@PathVariable long id,
-                           @RequestBody Products product) {
+                           @RequestBody ProductRequest product) {
         return repository.update(id, product);
     }
 
