@@ -4,6 +4,7 @@ import com.example.demo.onlineshop.NotFoundException;
 import com.example.demo.onlineshop.categories.Categories;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,5 +64,21 @@ public class PersistantProductsRepository implements ProductsRepository {
     @Override
     public void delete(long id) {
 
+    }
+
+    public  List<Categories> categoriesValidation ( List<Integer> idList){
+        List<Categories> categories = new ArrayList<>();
+        List<Categories> categoriesById = new ArrayList<>();
+        for (Categories category:categories ) {
+            for (Integer id:idList ) {
+               if (category.getId() == id) {
+                   categoriesById.add(category);
+               } else {
+                   throw new NotFoundException("No category with such ID found");
+               }
+            }
+        }
+
+        return categoriesById;
     }
 }
