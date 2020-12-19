@@ -25,6 +25,14 @@ public class Products {
         this.imageUri = imageUri;
     }
 
+    public Products (ProductRequest request) {
+        this.name = request.getName();
+        this.description = request.getDescription();
+        this.price = request.getPrice();
+        this.quantity = request.getQuantity();
+        this.imageUri = request.getImageUri();
+    }
+
     public long getId() {
         return id;
     }

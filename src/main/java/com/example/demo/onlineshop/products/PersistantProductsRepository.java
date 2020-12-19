@@ -42,15 +42,14 @@ public class PersistantProductsRepository implements ProductsRepository {
     }
 
     @Override
-    public Products insert(Products product, long category_id) {
-        List<Categories> categories = new ArrayList<>();
-
-        mapper.insert(product, category_id);
+    public Products insert(ProductRequest request) {
+        Products product = new Products(request);
+        mapper.insert(product);
         return product;
     }
 
     @Override
-    public Products update(long id, Products product) {
+    public Products update(long id, ProductRequest product) {
         Products existing = findOne(id);
         existing.setName(product.getName());
         existing.setDescription(product.getDescription());
