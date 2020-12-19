@@ -19,8 +19,8 @@ public interface ProductsMapper {
     @Options(useGeneratedKeys = true,
             keyProperty = "id",
             keyColumn = "id")
-    @Insert("insert into products (name, description, price, quantity, imageUri) values (#{name}, #{description}, #{price}, #{quantity}, #{imageUri})")
-    void insert(Products product);
+    @Insert("insert into products (name, description, price, quantity, imageUri, category_id) values (#{name}, #{description}, #{price}, #{quantity}, #{imageUri}, #{category_id})")
+    void insert(Products product, long category_id);
 
     @Update("update products set " +
             "name = #{name}, " +

@@ -1,9 +1,11 @@
 package com.example.demo.onlineshop.products;
 
 import com.example.demo.onlineshop.NotFoundException;
+import com.example.demo.onlineshop.categories.Categories;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Primary
@@ -40,8 +42,10 @@ public class PersistantProductsRepository implements ProductsRepository {
     }
 
     @Override
-    public Products insert(Products product) {
-        mapper.insert(product);
+    public Products insert(Products product, long category_id) {
+        List<Categories> categories = new ArrayList<>();
+
+        mapper.insert(product, category_id);
         return product;
     }
 

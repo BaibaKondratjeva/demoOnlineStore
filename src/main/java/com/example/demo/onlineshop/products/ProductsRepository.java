@@ -12,7 +12,7 @@ public interface ProductsRepository {
 
     List<Products> findAll();
 
-    Products insert(Products product);
+    Products insert(Products product, long category_id);
 
     Products update(long id, Products product);
 
