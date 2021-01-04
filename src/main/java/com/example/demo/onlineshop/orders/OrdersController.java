@@ -1,12 +1,13 @@
 package com.example.demo.onlineshop.orders;
 
 import com.example.demo.onlineshop.categories.Categories;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
     @RequestMapping("/orders")
-    @RestController
+    @Controller
     public class OrdersController {
 
         private final OrdersRepository ordersRepository;
@@ -17,30 +18,31 @@ import java.util.List;
         }
 
         @GetMapping
-        public List<Categories> getOrders(){
+        public List<Orders> getOrders(){
             return ordersRepository.findAll();
         }
 
         @GetMapping ("/{id}")
-        public Categories findOne(@PathVariable long id){
+        public Orders findOne(@PathVariable long id){
             return ordersRepository.findOne(id);
         }
 
         @GetMapping("/{name}")
-        public Categories findByName (@PathVariable String name) {
+        public Orders findByName (@PathVariable String name) {
             return ordersRepository.findByName(name);
         }
 
         @PostMapping
-        public Categories create(@RequestBody Orders orders) {
+        public Orders create(@RequestBody Orders order) {
 
-            return ordersRepository.insert(orders);
+            return ordersRepository.insert(order);
         }
 
         @PutMapping("/{id}")
         public Orders update(@PathVariable long id,
-                             @RequestBody Orders orders) {
-            return OrdersRepository.update(id, orders);
+                             @RequestBody Orders order) {
+//            return OrdersRepository.update(id, order);
+            return null;
         }
 
         @DeleteMapping("/{id}")

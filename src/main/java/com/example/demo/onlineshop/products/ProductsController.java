@@ -1,11 +1,13 @@
 package com.example.demo.onlineshop.products;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/products")
-@RestController
+//@RequestMapping("/products")
+@Controller
 public class ProductsController {
 
     private final ProductsRepository repository;
@@ -24,9 +26,11 @@ public class ProductsController {
 //        return repository.findOne(id);
 //    }
 
-    @GetMapping
-    public List<Products> getProducts() {
-        return repository.findAll();
+    @GetMapping (path = {"/admin/products"})
+    public String getProducts(Model model) {
+        List<Products> allProducts = repository.findAll();
+        model.addAttribute("allProducts", allProducts);
+        return "cms/products/products";
     }
 
     @PostMapping
