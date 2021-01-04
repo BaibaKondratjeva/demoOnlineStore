@@ -41,8 +41,8 @@ public class CategoriesController {
     }
 
     @GetMapping ("/admin/categories/new")
-    public String create(@RequestBody Categories category) {
-        return "categories/create-edit-category.html";
+    public String create(Categories category) {
+        return "cms/categories/create-edit-category.html";
     }
 
     @PutMapping("/{id}")
