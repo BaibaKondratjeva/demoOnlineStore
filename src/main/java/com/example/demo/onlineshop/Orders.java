@@ -5,9 +5,9 @@ import java.util.Objects;
 
 public class Orders {
 
-    private long id;
-    private LocalDateTime time;
-    private long customer_id;
+    public long id;
+    public LocalDateTime time;
+    public long customer_id;
 
     public Orders(){
 
