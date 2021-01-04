@@ -22,12 +22,12 @@ import java.util.List;
             return ordersRepository.findAll();
         }
 
-        @GetMapping ("/{id}")
+        @GetMapping ("/admin/orders/{id}")
         public Orders findOne(@PathVariable long id){
             return ordersRepository.findOne(id);
         }
 
-        @GetMapping("/{name}")
+        @GetMapping("/admin/orders/{name}")
         public Orders findByName (@PathVariable String name) {
             return ordersRepository.findByName(name);
         }
@@ -38,14 +38,14 @@ import java.util.List;
             return ordersRepository.insert(order);
         }
 
-        @PutMapping("/{id}")
+        @PutMapping("/admin/orders/{id}")
         public Orders update(@PathVariable long id,
                              @RequestBody Orders order) {
 //            return OrdersRepository.update(id, order);
             return null;
         }
 
-        @DeleteMapping("/{id}")
+        @DeleteMapping("/admin/orders/{id}")
         public void delete(@PathVariable long id) {
             ordersRepository.delete(id);
         }

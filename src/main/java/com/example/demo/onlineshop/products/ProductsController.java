@@ -16,7 +16,7 @@ public class ProductsController {
         this.repository = repository;
     }
 
-    @GetMapping("/{name}")
+    @GetMapping("/admin/products/{name}")
     public Products findByName (@PathVariable String name) {
         return repository.findByName(name);
     }
@@ -33,7 +33,7 @@ public class ProductsController {
         return "cms/products/products";
     }
 
-    @PostMapping
+    @PostMapping ("/admin/products/create")
     public Products create(@RequestBody ProductRequest product) {
         return repository.insert(product);
     }
@@ -44,13 +44,13 @@ public class ProductsController {
     }
 
 
-    @PutMapping("/{id}")
+    @PutMapping("/admin/products/update/{id}")
     public Products update(@PathVariable long id,
                            @RequestBody ProductRequest product) {
         return repository.update(id, product);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/admin/products/delete/{id}")
     public void delete(@PathVariable long id) {
         repository.delete(id);
     }
