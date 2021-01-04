@@ -20,7 +20,7 @@ public class CategoriesController {
     }
 
 
-    @GetMapping(path = {"/admin/categories", "/admin"})
+    @GetMapping(path = {"/admin/categories"})
     public String categories(Model model) {
         List<Categories> allCategories = categoriesRepository.findAll();
         model.addAttribute("allCategories",allCategories);
@@ -30,20 +30,19 @@ public class CategoriesController {
         return categoriesRepository.findAll();
     }*/
 
-    @GetMapping ("/{id}")
+    @GetMapping
     public Categories findOne(@PathVariable long id){
         return categoriesRepository.findOne(id);
     }
 
-    @GetMapping("/{name}")
-    public Categories findByName (@PathVariable String name) {
-        return categoriesRepository.findByName(name);
+    @GetMapping("/admin/categories/{name}")
+    public String findByName (@PathVariable String name) {
+        return "categoriesRepository.findByName(name)";
     }
 
-    @PostMapping
-    public Categories create(@RequestBody Categories category) {
-
-        return categoriesRepository.insert(category);
+    @GetMapping ("/admin/categories/new")
+    public String create(@RequestBody Categories category) {
+        return "categories/create-edit-category.html";
     }
 
     @PutMapping("/{id}")
