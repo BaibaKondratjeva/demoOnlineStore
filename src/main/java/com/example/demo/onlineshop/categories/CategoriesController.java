@@ -1,13 +1,15 @@
 package com.example.demo.onlineshop.categories;
 
 import com.example.demo.onlineshop.products.Products;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
-@RequestMapping ("/categories")
-@RestController
+
+@Controller
 public class CategoriesController {
 
     private final CategoriesRepository categoriesRepository;
@@ -17,10 +19,16 @@ public class CategoriesController {
         this.categoriesRepository = repository;
     }
 
-    @GetMapping
-    public List<Categories> getCategories(){
-        return categoriesRepository.findAll();
+
+    @GetMapping(path = {"/admin/categories", "/admin"})
+    public String categories(Model model) {
+        List<Categories> allCategories = categoriesRepository.findAll();
+        model.addAttribute("allCategories",allCategories);
+        return "cms/categories/categories";
     }
+/*    public List<Categories> getCategories(){
+        return categoriesRepository.findAll();
+    }*/
 
     @GetMapping ("/{id}")
     public Categories findOne(@PathVariable long id){
