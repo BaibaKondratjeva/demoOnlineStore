@@ -12,7 +12,7 @@ public interface CategoriesRepository {
 
     List<Categories> findAll();
 
-    Categories insert(Categories category);
+    Categories create(Categories category);
 
     Categories update(long id, Categories category);
 

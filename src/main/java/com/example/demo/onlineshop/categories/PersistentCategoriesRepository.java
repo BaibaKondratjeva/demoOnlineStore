@@ -41,8 +41,8 @@ public class PersistentCategoriesRepository implements CategoriesRepository{
     }
 
     @Override
-    public Categories insert(Categories category) {
-        categoriesMapper.insert(category);
+    public Categories create(Categories category) {
+        categoriesMapper.create(category);
         return category;
     }
 

@@ -40,9 +40,17 @@ public class CategoriesController {
         return "categoriesRepository.findByName(name)";
     }
 
+
+
     @GetMapping ("/admin/categories/new")
-    public String create(Categories category) {
+    public String showCreateCategoryForm(Categories category) {
         return "cms/categories/create-edit-category.html";
+    }
+
+    @PostMapping ("/admin/categories/new")
+    public String createCategory (Categories category){
+        categoriesRepository.create(category);
+        return "redirect:/admin/categories";
     }
 
     @PutMapping("/{id}")

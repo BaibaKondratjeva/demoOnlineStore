@@ -20,8 +20,8 @@ public interface CategoriesMapper {
     @Options(useGeneratedKeys = true,
             keyProperty = "id",
             keyColumn = "id")
-    @Insert("insert into products (name, imageUri) values (#{name}, #{imageUri})")
-    void insert(Categories category);
+    @Insert("insert into categories (name, imageUri) values (#{name}, #{imageUri})")
+    void create(Categories category);
 
     @Update("update categories set " +
             "name = #{name}, " +
