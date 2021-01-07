@@ -57,5 +57,6 @@ public class PersistentCategoriesRepository implements CategoriesRepository{
 
     @Override
     public void delete(Long id) {
+        categoriesMapper.deleteById(id);
     }
 }

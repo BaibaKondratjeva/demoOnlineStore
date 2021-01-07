@@ -63,13 +63,13 @@ public class CategoriesController {
     @PostMapping("/admin/categories/update/{id}")
     public String update(@PathVariable("id") Long id, Categories category) {
         categoriesRepository.update(id, category);
-        return "redirect:admin/categories";
+        return "redirect:/admin/categories";
     }
 
     @GetMapping("/admin/categories/delete/{id}")
     public String delete(@PathVariable("id") Long id) {
         categoriesRepository.delete(id);
-        return "redirect:admin/categories";
+        return "redirect:/admin/categories";
     }
 
 
