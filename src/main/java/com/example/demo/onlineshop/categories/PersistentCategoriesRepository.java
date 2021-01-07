@@ -17,7 +17,7 @@ public class PersistentCategoriesRepository implements CategoriesRepository{
 
 
     @Override
-    public Categories findOne(long id) {
+    public Categories findOne(Long id) {
         Categories category = categoriesMapper.findOne(id);
         if (category == null) {
             throw new NotFoundException("Product with id " + id + " doesn't exist");
@@ -47,7 +47,7 @@ public class PersistentCategoriesRepository implements CategoriesRepository{
     }
 
     @Override
-    public Categories update(long id, Categories category) {
+    public Categories update(Long id, Categories category) {
         Categories existing = findOne(id);
         existing.setName(category.getName());
         existing.setImageUri(category.getImageUri());
@@ -56,6 +56,6 @@ public class PersistentCategoriesRepository implements CategoriesRepository{
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(Long id) {
     }
 }

@@ -15,7 +15,7 @@ public interface CategoriesMapper {
     Categories findByName(String name);
 
     @Select("select id, name, imageUri from categories where id = #{id}")
-    Categories findOne(long id);
+    Categories findOne(Long id);
 
     @Options(useGeneratedKeys = true,
             keyProperty = "id",
@@ -30,6 +30,6 @@ public interface CategoriesMapper {
     boolean update(Categories category);
 
     @Delete("delete from categories where id = #{id}")
-    boolean deleteById(long id);
+    boolean deleteById(Long id);
 
 }

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CategoriesRepository {
 
-    Categories findOne(long id);
+    Categories findOne(Long id);
 
     Categories findByName(String name);
 
@@ -14,7 +14,7 @@ public interface CategoriesRepository {
 
     Categories create(Categories category);
 
-    Categories update(long id, Categories category);
+    Categories update(Long id, Categories category);
 
-    void delete(long id);
+    void delete(Long id);
 }

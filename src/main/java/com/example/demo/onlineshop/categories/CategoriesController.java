@@ -31,14 +31,14 @@ public class CategoriesController {
     }*/
 
     @GetMapping
-    public Categories findOne(@PathVariable long id){
+    public Categories findOne(@PathVariable Long id){
         return categoriesRepository.findOne(id);
     }
 
-    @GetMapping("/admin/categories/{name}")
+/*    @GetMapping("/admin/categories/{name}")
     public String findByName (@PathVariable String name) {
         return "categoriesRepository.findByName(name)";
-    }
+    }*/
 
 
 
@@ -53,15 +53,23 @@ public class CategoriesController {
         return "redirect:/admin/categories";
     }
 
-    @PutMapping("/{id}")
-    public Categories update(@PathVariable long id,
-                           @RequestBody Categories category) {
-        return categoriesRepository.update(id, category);
+    @GetMapping("/admin/categories/update/{id}")
+    public String showUpdateForm (@PathVariable("id") Long id, Model model) {
+        Categories category = categoriesRepository.findOne(id);
+        model.addAttribute("categories",category);
+        return "cms/categories/update-categories";
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable long id) {
+    @PostMapping("/admin/categories/update/{id}")
+    public String update(@PathVariable("id") Long id, Categories category) {
+        categoriesRepository.update(id, category);
+        return "redirect:admin/categories";
+    }
+
+    @GetMapping("/admin/categories/delete/{id}")
+    public String delete(@PathVariable("id") Long id) {
         categoriesRepository.delete(id);
+        return "redirect:admin/categories";
     }
 
 

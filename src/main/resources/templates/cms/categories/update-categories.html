@@ -8,11 +8,17 @@
 <main class="container">
     <div class="starter-template py-5 px-3">
         <h1 class="main-heading">Create / Edit category</h1>
-        <form action="#" th:action="@{/admin/categories/new}"
+        <form th:action="@{/admin/categories/update/{id}(id=${id})}"
               th:object="${categories}" method="post">
             <div class="form-group">
                 <label for="id">ID</label>
-                <input readonly type="number" class="form-control" id="id" placeholder="id" value="1"/>
+                <input readonly id="id"
+                       placeholder="id"
+                       class="form-control"
+                       type="number"
+                       th:field="${categories.id}"
+                       th:value="${categories.id}"
+                       />
             </div>
             <div class="form-group">
                 <label for="name">Name</label>
@@ -23,8 +29,8 @@
                 <input type="text" th:field="*{imageUri}" class="form-control" id="imageUri" placeholder="Image URI"></input>
             </div>
 
-            <button type="submit" class="btn btn-primary category-create-btn" >Save</button>
-            <button type="submit" class="btn btn-secondary" >Cancel</button>
+            <button type="submit" class="btn btn-primary category-create-btn" onclick="location.href = '/admin/categories'">Update category</button>
+            <button type="button" class="btn btn-secondary" onclick="location.href ='/admin/categories'">Cancel</button>
         </form>
     </div>
 </main>

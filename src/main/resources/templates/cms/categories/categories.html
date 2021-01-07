@@ -26,8 +26,8 @@
                 <td th:text="${category.name}"></td>
 
                 <td>
-                    <a href="create-edit-category.html">Edit</a>
-                    <a href="#delete">Delete</a>
+                    <a th:href="@{/admin/categories/update/{id}(id=${category.id})}">Edit</a>
+                    <a th:href="@{/admin/categories/delete/{id}(id=${category.id})}">Delete</a>
                 </td>
 
             </tr>
