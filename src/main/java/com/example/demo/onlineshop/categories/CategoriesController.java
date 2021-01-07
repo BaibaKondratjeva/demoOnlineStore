@@ -44,7 +44,7 @@ public class CategoriesController {
 
     @GetMapping ("/admin/categories/new")
     public String showCreateCategoryForm(Categories category) {
-        return "cms/categories/create-edit-category.html";
+        return "cms/categories/create-category.html";
     }
 
     @PostMapping ("/admin/categories/new")
