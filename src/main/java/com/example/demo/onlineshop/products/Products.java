@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Products {
 
-    private long id;
+    private Long id;
     private String name;
     private String description;
     private BigDecimal price;
@@ -16,7 +16,7 @@ public class Products {
 
     }
 
-    public Products(long id, String name, String description, BigDecimal price, int quantity, String imageUri) {
+    public Products(Long id, String name, String description, BigDecimal price, int quantity, String imageUri) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -33,11 +33,11 @@ public class Products {
         this.imageUri = request.getImageUri();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -4,15 +4,29 @@ import com.example.demo.onlineshop.categories.Categories;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 
 public class ProductRequest {
 
+    protected Long id;
     private String name;
     private String description;
     private BigDecimal price;
     private int quantity;
     private String imageUri;
-    private List<Categories> categoryIds;
+    private Set<Long> categoryIds;
+
+    ProductRequest() {
+
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -54,11 +68,24 @@ public class ProductRequest {
         this.imageUri = imageUri;
     }
 
-    public List<Categories> getCategoryIds() {
+    public Set<Long> getCategoryIds() {
         return categoryIds;
     }
 
-    public void setCategoryIds(List<Categories> categoryIds) {
+    public void setCategoryIds(Set<Long> categoryIds) {
         this.categoryIds = categoryIds;
+    }
+
+    public boolean isNew() {
+        return this.id == null;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductForm{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", categoryIds=" + categoryIds +
+                '}';
     }
 }

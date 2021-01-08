@@ -2,13 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:replace="~{cms/layout/head :: head}"></div>
 <body>
+
 <div th:replace="~{cms/layout/navigation :: navigation}"></div>
-<body>
+
 <main class="container">
     <div class="starter-template py-5 px-3">
         <h1 class="main-heading">Products</h1>
         <button type="button" class="btn btn-primary category-create-btn"
-                onclick="location.href = 'create-edit-product.html'">Create product</button>
+                onclick="location.href = '/admin/products/new'">Create product</button>
         <table class="table table-striped table-bordered table-hover table-responsive">
             <tr>
                 <th>ID</th>
@@ -25,16 +26,22 @@
                 <td th:text = "${product.price}"></td>
                 <td th:text = "${product.name}"></td>
                 <td>
-                    <ul>
-                        <li>Category 1</li>
-                        <li>Category 2</li>
-                        <li>Category 3</li>
+                    <ul >
+                        <li th:each="category : ${categories}"
+                            th:text="${category.name}"
+                            th:value="${{category.id}}"></li>
+<!--                        <li>Category 2</li>-->
+<!--                        <li>Category 3</li>-->
                     </ul>
                 </td>
                 <td th:text = "${product.quantity}"></td>
                 <td>
-                    <a href="create-edit-product.html">Edit</a>
-                    <a href="#delete">Delete</a>
+                    <!--
+                   th:href="@{/admin/products/{productId}(productId=${product.id})}"
+                   -->
+                    <!-- this is a hardcoded link, you will have to use dynamic value -->
+                    <a th:href="@{/admin/products/update/{id}(id=${product.id})}">Edit</a>
+                    <a th:href="@{/admin/products/delete/{id}(id=${product.id})}">Delete</a>
                 </td>
             </tr>
         </table>

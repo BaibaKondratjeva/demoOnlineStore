@@ -5,21 +5,20 @@
 
 <div th:replace="~{cms/layout/navigation :: navigation}"></div>
 
-<!--th:action="@{/admin/products/${productForm.new ? 'create' : 'edit'}}"-->
-
 <main class="container">
-    <div class="py-5 px-3">
-        <h1 class="main-heading">Create product</h1>
-        <form action="#" th:action="@{/admin/products/new}"
-              th:object="${productRequest}" method="post">
+    <div class="starter-template py-5 px-3">
+        <h1 class="main-heading">Update product</h1>
+        <form th:action="@{/admin/products/update/{id}(id=${id})}"
+              th:object="${products}" method="post">
             <div class="form-group">
                 <label for="id">ID</label>
                 <input readonly id="id"
-                       class="form-control"
                        placeholder="id"
+                       class="form-control"
                        type="number"
-                       th:field="${productRequest.id}"
-                       th:value="${productRequest.id}"/>
+                       th:field="${products.id}"
+                       th:value="${products.id}"
+                />
             </div>
             <div class="form-group">
                 <label for="imageUri">Image URL</label>
@@ -37,15 +36,15 @@
                 <label for="description">Description</label>
                 <textarea class="form-control" id="description" rows="3"></textarea>
             </div>
-            <div class="form-group">
-                <label for="categories">Categories</label>
-                <select id="categories" class="form-control" multiple th:field="${productRequest.categoryIds}">
-                    <option th:each="category : ${categories}"
-                            th:text="${category.name}"
-                            th:value="${{category.id}}">
-                    </option>
-                </select>
-            </div>
+<!--            <div class="form-group">-->
+<!--                <label for="categories">Categories</label>-->
+<!--                <select id="categories" class="form-control" multiple th:field="${productRequest.categoryIds}">-->
+<!--                    <option th:each="category : ${categories}"-->
+<!--                            th:text="${category.name}"-->
+<!--                            th:value="${{category.id}}">-->
+<!--                    </option>-->
+<!--                </select>-->
+<!--            </div>-->
             <div class="form-group">
                 <label for="price">Price</label>
                 <input type="number" th:field="*{price}" class="form-control" id="price" placeholder="Price">

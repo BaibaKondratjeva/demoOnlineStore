@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Primary
 @Component
@@ -20,7 +21,7 @@ public class PersistantProductsRepository implements ProductsRepository {
     }
 
     @Override
-    public Products findOne(long id) {
+    public Products findOne(Long id) {
         Products product = mapper.findOne(id);
         if (product == null) {
             throw new NotFoundException("Product with id " + id + " doesn't exist");
@@ -43,14 +44,14 @@ public class PersistantProductsRepository implements ProductsRepository {
     }
 
     @Override
-    public Products insert(ProductRequest request) {
+    public Products create(ProductRequest request) {
         Products product = new Products(request);
-        mapper.insert(product);
+        mapper.create(product);
         return product;
     }
 
     @Override
-    public Products update(long id, ProductRequest product) {
+    public Products update(Long id, ProductRequest product) {
         Products existing = findOne(id);
         existing.setName(product.getName());
         existing.setDescription(product.getDescription());
@@ -62,7 +63,7 @@ public class PersistantProductsRepository implements ProductsRepository {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(Long id) {
         mapper.deleteById(id);
     }
 
@@ -74,7 +75,7 @@ public class PersistantProductsRepository implements ProductsRepository {
        return mapper.categoriesValidation(categoryIds);
     }
 
-    public void insertProductCategories (long productId, long categoryId) {
+    public void insertProductCategories (Long productId, Set<Long> categoryId) {
         mapper.insertProductCategories(productId, categoryId);
     }
 

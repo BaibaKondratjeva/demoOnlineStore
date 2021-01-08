@@ -4,6 +4,7 @@ import com.example.demo.onlineshop.categories.Categories;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Mapper
 public interface ProductsMapper {
@@ -15,7 +16,7 @@ public interface ProductsMapper {
     Products findByName(String name);
 
     @Select("select id, name, description, price, quantity, imageUri from products where id = #{id}")
-    Products findOne(long id);
+    Products findOne(Long id);
 
     @Select("select id from categories id IN (#{id}, #{id})")
     Products categoriesValidation(List<Integer> categoryIds);
@@ -23,11 +24,14 @@ public interface ProductsMapper {
     @Options(useGeneratedKeys = true,
             keyProperty = "id",
             keyColumn = "id")
-    @Insert("insert into products (name, description, price, quantity, imageUri, category_id) values (#{name}, #{description}, #{price}, #{quantity}, #{imageUri}, #{category_id})")
-    void insert(Products product);
+    @Insert("insert into products (name, description, price, quantity, imageUri) values (#{name}, #{description}, #{price}, #{quantity}, #{imageUri})")
+    void create(Products product);
 
-    @Insert("insert into products_categories (category_id, product_id) values (#{category_id}, #{[product_id]})")
-    void insertProductCategories (long category_id, long product_id);
+    @Insert("insert into products_categories_set (product_id, category_id) values (#{product_id}, #{[category_id]})")
+    void insertProductCategories (Long product_id, Set<Long> category_id);
+
+//    INSERT INTO Customers (CustomerName, City, Country)
+//    SELECT SupplierName, City, Country FROM Suppliers;
 
 
     @Update("update products set " +
@@ -40,6 +44,6 @@ public interface ProductsMapper {
     boolean update(Products product);
 
     @Delete("delete from products where id = #{id}")
-    boolean deleteById(long id);
+    boolean deleteById(Long id);
 
 }
