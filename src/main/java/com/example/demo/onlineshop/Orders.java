@@ -1,19 +1,20 @@
 package com.example.demo.onlineshop;
 
+import java.security.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Orders {
 
     public long id;
-    public LocalDateTime time;
+    public Timestamp time;
     public long customer_id;
 
     public Orders(){
 
     }
 
-    public Orders(long id, LocalDateTime time, long customer_id) {
+    public Orders(long id, Timestamp time, long customer_id) {
         this.id = id;
         this.time = time;
         this.customer_id = customer_id;
@@ -27,11 +28,11 @@ public class Orders {
         this.id = id;
     }
 
-    public LocalDateTime getTime() {
+    public Timestamp getTime() {
         return time;
     }
 
-    public void setTime(LocalDateTime time) {
+    public void setTime(Timestamp time) {
         this.time = time;
     }
 

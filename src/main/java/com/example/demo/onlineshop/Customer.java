@@ -7,7 +7,7 @@ public class Customer {
     private long id;
     private String name;
     private String surname;
-    private String e_mail;
+    private String eMail;
     private String address;
     private String phone;
 
@@ -19,7 +19,7 @@ public class Customer {
         this.id = id;
         this.name = name;
         this.surname = surname;
-        this.e_mail = e_mail;
+        this.eMail = e_mail;
         this.address = address;
         this.phone = phone;
     }
@@ -48,12 +48,12 @@ public class Customer {
         this.surname = surname;
     }
 
-    public String getE_mail() {
-        return e_mail;
+    public String geteMail() {
+        return eMail;
     }
 
-    public void setE_mail(String e_mail) {
-        this.e_mail = e_mail;
+    public void seteMail(String eMail) {
+        this.eMail = eMail;
     }
 
     public String getAddress() {
@@ -80,13 +80,13 @@ public class Customer {
         return id == customer.id &&
                 Objects.equals(name, customer.name) &&
                 Objects.equals(surname, customer.surname) &&
-                Objects.equals(e_mail, customer.e_mail) &&
+                Objects.equals(eMail, customer.eMail) &&
                 Objects.equals(address, customer.address) &&
                 Objects.equals(phone, customer.phone);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, surname, e_mail, address, phone);
+        return Objects.hash(id, name, surname, eMail, address, phone);
     }
 }
