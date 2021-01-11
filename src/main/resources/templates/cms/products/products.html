@@ -16,6 +16,7 @@
                 <th>Image</th>
                 <th>Price</th>
                 <th>Name</th>
+                <th>Description</th>
                 <th>Categories</th>
                 <th>In stock</th>
                 <th>Action</th>
@@ -25,21 +26,26 @@
                 <td><img height="100" th:src="${product.imageUri}"/></td>
                 <td th:text = "${product.price}"></td>
                 <td th:text = "${product.name}"></td>
-                <td>
-                    <ul >
-                        <li th:each="category : ${categories}"
-                            th:text="${category.name}"
-                            th:value="${{category.id}}"></li>
+                <td th:text = "${product.description}"></td>
+                <td th:text = "${productCategories}"></td>>
+<!--                        th:text = "${product.categoryIds}">-->
+<!--                    <ul th:each="category : ${productCategories}">-->
+<!--                        <li-->
+<!--                            th:text="${category.name}"-->
+<!--                            th:value="${{category.id}}"></li>-->
 <!--                        <li>Category 2</li>-->
 <!--                        <li>Category 3</li>-->
-                    </ul>
-                </td>
+<!--                    </ul>-->
+
+<!--                    <select id="categories" class="form-control" multiple th:field="${productRequest.categoryIds}">-->
+<!--                        <option th:each="category : ${productCategories}"-->
+<!--                                th:text="${category.name}"-->
+<!--                                th:value="${{category.id}}">-->
+<!--                        </option>-->
+<!--                    </select>-->
+<!--                </td>-->
                 <td th:text = "${product.quantity}"></td>
                 <td>
-                    <!--
-                   th:href="@{/admin/products/{productId}(productId=${product.id})}"
-                   -->
-                    <!-- this is a hardcoded link, you will have to use dynamic value -->
                     <a th:href="@{/admin/products/update/{id}(id=${product.id})}">Edit</a>
                     <a th:href="@{/admin/products/delete/{id}(id=${product.id})}">Delete</a>
                 </td>

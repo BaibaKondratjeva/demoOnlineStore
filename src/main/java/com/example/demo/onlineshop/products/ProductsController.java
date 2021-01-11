@@ -7,10 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
-import static java.util.Arrays.asList;
-
-//@RequestMapping("/products")
 @Controller
 public class ProductsController {
 
@@ -24,23 +22,43 @@ public class ProductsController {
     }
 
     @GetMapping("/admin/products/{name}")
-    public Products findByName (@PathVariable String name) {
+    public ProductRequest findByName (@PathVariable String name) {
         return repository.findByName(name);
     }
 
     @GetMapping("/admin/products/{id}")
-    public Products findById (@PathVariable Long id) {
+    public ProductRequest findById (@PathVariable Long id) {
         return repository.findOne(id);
     }
 
     @GetMapping ("/admin/products")
-    public String getProducts(Model model) {
-        List<Products> allProducts = repository.findAll();
+    public String getProducts(ProductRequest product, Model model) {
+        List<ProductRequest> allProducts = repository.findAll();
         model.addAttribute("allProducts", allProducts);
-        List<Categories> allCategories = categoriesRepository.findAll();
-        model.addAttribute("categories", allCategories);
+//        List<Categories> productCategories = repository.findProductCategories(product.getId());
+//        product.getCategories() = repository.findProductCategories(product.getId());
+//        Set<Long> productCategoryIds = product.getCategoryIds();
+        model.addAttribute("productCategories", repository.findProductCategories(product.getId()));
         return "cms/products/products";
     }
+
+
+//    @GetMapping(path = {"/admin/products", "/admin/products/by-category/{categoryId}"})
+//    public String getProducts(@PathVariable(required = false) Long categoryId, Model model) {
+//        List<Product> products;
+//        Category category;
+//        if (categoryId == null) {
+//            products = productRepository.findAll();
+//            model.addAttribute("products", products);
+//            return "cms/products/products";
+//        } else {
+//            category = categoryRepository.findOne(categoryId);
+//            products = productRepository.getProductsForCategory(categoryId);
+//            model.addAttribute("category", category);
+//            model.addAttribute("products", products);
+//            return "cms/products/products-by-category";
+//        }
+//    }
 
     @GetMapping ("/admin/products/new")
     public String showCreateProductsForm (Model model) {
@@ -50,16 +68,15 @@ public class ProductsController {
     }
 
     @PostMapping ("/admin/products/new")
-    public String createProduct (ProductRequest product, Model model) {
+    public String createProduct (ProductRequest product) {
         repository.create(product);
         repository.insertProductCategories(product.getId(), product.getCategoryIds());
-        model.addAttribute("category", product.getCategoryIds());
         return "redirect:/admin/products";
     }
 
     @GetMapping("/admin/products/update/{id}")
     public String showUpdateProductForm (@PathVariable("id") Long id, Model model) {
-        Products product = repository.findOne(id);
+        ProductRequest product = repository.findOne(id);
         model.addAttribute("products", product);
         model.addAttribute("categories", categoriesRepository.findAll());
         return "cms/products/update-products.html";
@@ -84,6 +101,7 @@ public class ProductsController {
     @PostMapping ("/admin/products/update/{id}")
     public String update(@PathVariable ("id") Long id, ProductRequest product) {
         repository.update(id, product);
+//        repository.updateProductCategories(product.getId(), product.getCategoryIds());
         return "redirect:/admin/products";
     }
 
@@ -110,7 +128,7 @@ public class ProductsController {
 
 
     @GetMapping ("/{id}, {id}")
-    public Products categoryValidation (@PathVariable long id1, long id2) {
+    public ProductRequest categoryValidation (@PathVariable long id1, long id2) {
         return repository.categoriesValidation(id1, id2);
     }
 

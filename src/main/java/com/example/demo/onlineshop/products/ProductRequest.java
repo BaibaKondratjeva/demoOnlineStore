@@ -15,6 +15,7 @@ public class ProductRequest {
     private int quantity;
     private String imageUri;
     private Set<Long> categoryIds;
+    private List<Categories> categories;
 
     ProductRequest() {
 
@@ -74,6 +75,14 @@ public class ProductRequest {
 
     public void setCategoryIds(Set<Long> categoryIds) {
         this.categoryIds = categoryIds;
+    }
+
+    public List<Categories> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Categories> categories) {
+        this.categories = categories;
     }
 
     public boolean isNew() {

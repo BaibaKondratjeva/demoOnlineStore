@@ -10,28 +10,46 @@ import java.util.Set;
 public interface ProductsMapper {
 
     @Select("select id, name, description, price, quantity, imageUri from products")
-    List<Products> findAll();
+    List<ProductRequest> findAll();
+
+//  "select products.id, products.name, description, price, quantity, products.imageUri, categories.name from products " +
+//        "left join products_categories " +
+//        "on products.id = products_categories.product_id " +
+//        "left join categories " +
+//        "on products_categories.category_id = categories.id"
+
+    @Select("select categories.id, categories.name from products\n" +
+            "left join products_categories\n" +
+            "on products.id = products_categories.product_id\n" +
+            "left join categories\n" +
+            "on products_categories.category_id = categories.id " +
+            "where products.id = #{productId}")
+    List<Categories> findProductCategories (Long productId);
 
     @Select("select id, name, description, price, quantity, imageUri from products where name like #{name}")
-    Products findByName(String name);
+    ProductRequest findByName(String name);
 
     @Select("select id, name, description, price, quantity, imageUri from products where id = #{id}")
-    Products findOne(Long id);
+    ProductRequest findOne(Long id);
 
     @Select("select id from categories id IN (#{id}, #{id})")
-    Products categoriesValidation(List<Integer> categoryIds);
+    ProductRequest categoriesValidation(List<Integer> categoryIds);
 
     @Options(useGeneratedKeys = true,
             keyProperty = "id",
             keyColumn = "id")
-    @Insert("insert into products (name, description, price, quantity, imageUri) values (#{name}, #{description}, #{price}, #{quantity}, #{imageUri})")
-    void create(Products product);
+    @Insert("insert into products (name, description, price, quantity, imageUri) values (#{name}, #{description}, " +
+            "#{price}, #{quantity}, #{imageUri})")
+    void create(ProductRequest product);
 
-    @Insert("insert into products_categories_set (product_id, category_id) values (#{product_id}, #{[category_id]})")
-    void insertProductCategories (Long product_id, Set<Long> category_id);
+    @Insert({"<script>" +
+            "insert into products_categories (product_id, category_id) values " +
+            "<foreach item='categoryId' collection='Categories' open='' separator=',' close=''> " +
+            "(#{productId}, #{categoryId}) " +
+            "</foreach>" +
+            "</script>"})
+    void insertProductCategories (Long productId, @Param("Categories") Set<Long> categoryIds);
 
-//    INSERT INTO Customers (CustomerName, City, Country)
-//    SELECT SupplierName, City, Country FROM Suppliers;
 
 
     @Update("update products set " +
@@ -41,7 +59,13 @@ public interface ProductsMapper {
             "quantity = #{quantity}, " +
             "imageURI = #{imageUri} " +
             "where id = #{id}")
-    boolean update(Products product);
+    boolean update(ProductRequest product);
+
+    @Update("update products_categories set " +
+            "product_id = #{product_id}, " +
+            "category_id = #{category_id} " +
+            "where id = #{id}" )
+    boolean updateProductCategory (Long product_id, @Param("Categories") Set<Long> category_id);
 
     @Delete("delete from products where id = #{id}")
     boolean deleteById(Long id);

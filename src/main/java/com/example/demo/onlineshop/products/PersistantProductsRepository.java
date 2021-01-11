@@ -21,8 +21,8 @@ public class PersistantProductsRepository implements ProductsRepository {
     }
 
     @Override
-    public Products findOne(Long id) {
-        Products product = mapper.findOne(id);
+    public ProductRequest findOne(Long id) {
+        ProductRequest product = mapper.findOne(id);
         if (product == null) {
             throw new NotFoundException("Product with id " + id + " doesn't exist");
         }
@@ -30,8 +30,8 @@ public class PersistantProductsRepository implements ProductsRepository {
     }
 
     @Override
-    public Products findByName(String name) {
-        Products product = mapper.findByName(name);
+    public ProductRequest findByName(String name) {
+        ProductRequest product = mapper.findByName(name);
         if (product == null) {
             throw new NotFoundException("Product with name " + name + " doesn't exist");
         }
@@ -39,20 +39,23 @@ public class PersistantProductsRepository implements ProductsRepository {
     }
 
     @Override
-    public List<Products> findAll() {
+    public List<ProductRequest> findAll() {
         return mapper.findAll();
     }
 
+    public List<Categories> findProductCategories(Long productId) {
+        return mapper.findProductCategories(productId);
+    }
+
     @Override
-    public Products create(ProductRequest request) {
-        Products product = new Products(request);
+    public ProductRequest create(ProductRequest product) {
         mapper.create(product);
         return product;
     }
 
     @Override
-    public Products update(Long id, ProductRequest product) {
-        Products existing = findOne(id);
+    public ProductRequest update(Long id, ProductRequest product) {
+        ProductRequest existing = findOne(id);
         existing.setName(product.getName());
         existing.setDescription(product.getDescription());
         existing.setPrice(product.getPrice());
@@ -62,21 +65,27 @@ public class PersistantProductsRepository implements ProductsRepository {
         return existing;
     }
 
+    public void updateProductCategories (Long productId, Set<Long> categoryId) {
+        mapper.updateProductCategory(productId, categoryId);
+    }
+
     @Override
     public void delete(Long id) {
         mapper.deleteById(id);
     }
 
-    public Products categoriesValidation (long id1, long id2){
+
+    public void insertProductCategories (Long productId, Set<Long> categoryId) {
+        mapper.insertProductCategories(productId, categoryId);
+    }
+
+
+    public ProductRequest categoriesValidation (long id1, long id2){
         List<Integer> categoryIds = new ArrayList<>();
         if (categoryIds == null) {
             throw new NotFoundException("Such id not found");
         }
-       return mapper.categoriesValidation(categoryIds);
-    }
-
-    public void insertProductCategories (Long productId, Set<Long> categoryId) {
-        mapper.insertProductCategories(productId, categoryId);
+        return mapper.categoriesValidation(categoryIds);
     }
 
 }
