@@ -1,12 +1,8 @@
 package com.example.demo.onlineshop.orders;
 
-import com.example.demo.onlineshop.NotFoundException;
-import com.example.demo.onlineshop.categories.Categories;
-import com.example.demo.onlineshop.products.Products;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Primary
@@ -40,8 +36,7 @@ public class PersistentOrdersRepository implements OrdersRepository {
     }
 
     @Override
-    public List<Orders> findAll() {
-
+    public List<OrdersTable> findAll() {
         return mapper.findAll();
     }
 
