@@ -12,7 +12,7 @@ public interface OrdersRepository  {
 
     Orders findByName(String name);
 
-    List<Orders> findAll();
+    List<OrdersTable> findAll();
 
     Orders insert(Orders order);
 

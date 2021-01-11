@@ -8,8 +8,17 @@ import java.util.List;
 
 @Mapper
 public interface OrdersMapper {
-    @Select("select id, name, imageUri from orders")
-    List<Orders> findAll();
+
+
+    @Select("select orders.id as Id, orders.order_time as orderTime,customers.name, customers.surname,\n" +
+            " customers.address, customers.phone, order_status.status,\n" +
+            "       SUM(orders_products.quantity * products.price) as totalSum from orders\n" +
+            "left join orders_products on orders_products.order_id = orders.id\n" +
+            "left join products on products.id = orders_products.product_id\n" +
+            "left join customers on orders.customer_id = customers.id\n" +
+            "left join order_status on orders.status_id = order_status.id\n" +
+            "group by orders.id;")
+    List<OrdersTable> findAll();
 
     @Select("select id, name, imageUri from orders where name like #{name}")
     Orders findByName(String name);

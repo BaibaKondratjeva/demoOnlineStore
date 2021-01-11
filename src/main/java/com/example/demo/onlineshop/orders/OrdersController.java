@@ -2,11 +2,12 @@ package com.example.demo.onlineshop.orders;
 
 import com.example.demo.onlineshop.categories.Categories;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-    @RequestMapping("/orders")
+
     @Controller
     public class OrdersController {
 
@@ -17,9 +18,11 @@ import java.util.List;
             this.ordersRepository = repository;
         }
 
-        @GetMapping
-        public List<Orders> getOrders(){
-            return ordersRepository.findAll();
+        @GetMapping ("/admin/orders")
+        public String getOrders(Model model){
+            List <OrdersTable> orders = ordersRepository.findAll();
+            model.addAttribute("orders",orders);
+             return "cms/orders/orders";
         }
 
         @GetMapping ("/admin/orders/{id}")
