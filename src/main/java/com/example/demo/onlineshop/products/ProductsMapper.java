@@ -61,11 +61,14 @@ public interface ProductsMapper {
             "where id = #{id}")
     boolean update(ProductRequest product);
 
-    @Update("update products_categories set " +
-            "product_id = #{product_id}, " +
-            "category_id = #{category_id} " +
-            "where id = #{product_id}")
-    boolean updateProductCategory (Long product_id, @Param("Categories") Set<Long> category_id);
+    @Update({"<script>" +
+            "<foreach item='categoryId' collection='Categories' open='' separator=',' close=''> " +
+            "update products_categories set " +
+            "category_id = #{categoryId} " +
+            "where id = #{productId}" +
+            "</foreach>" +
+            "</script>"})
+    boolean updateProductCategory (Long productId, @Param("Categories") Set<Long> categoryIds);
 
     @Delete("delete from products where id = #{id}")
     boolean deleteById(Long id);

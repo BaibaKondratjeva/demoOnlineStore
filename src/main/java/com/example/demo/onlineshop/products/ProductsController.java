@@ -32,17 +32,12 @@ public class ProductsController {
     }
 
     @GetMapping ("/admin/products")
-    public String getProducts(ProductRequest product, Model model) {
+    public String getProducts(Model model) {
         List<ProductRequest> allProducts = repository.findAll();
         for (ProductRequest item : allProducts) {
             item.setCategories(repository.findProductCategories(item.getId()));
         }
         model.addAttribute("allProducts", allProducts);
-//        List<Categories> productCategories = repository.findProductCategories(product);
-//        product.getCategories() = repository.findProductCategories(product.getId());
-//        Set<Long> productCategoryIds = product.getCategoryIds();
-//        model.addAttribute("productCategories", productCategories);
-
         return "cms/products/products";
     }
 
@@ -68,21 +63,6 @@ public class ProductsController {
         return "cms/products/update-products.html";
     }
 
-//    //Here we will display the form for creating product
-//    @GetMapping("/admin/products/edit/{productId}")
-//    public String showEditForm(@PathVariable Long productId, Model model) {
-//        //TODO search product and it's categories in database
-//        //and create ProductForm object (here you need to set all properties)
-//        ProductForm product = new ProductForm();
-//        product.setId(1L);
-//        product.setName("Test product");
-//
-//
-//        // add product list of categories to model
-//        model.addAttribute("productForm", product);
-//        model.addAttribute("categories", getCategories());
-//        return "cms/products/create-edit-product";
-//    }
 
     @PostMapping ("/admin/products/update/{id}")
     public String update(@PathVariable ("id") Long id, ProductRequest product) {

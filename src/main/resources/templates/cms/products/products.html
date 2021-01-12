@@ -28,25 +28,10 @@
                 <td th:text = "${product.name}"></td>
                 <td th:text = "${product.description}"></td>
                 <td >
-                <li th:each="category : ${product.categories}"
-                    th:text="${category.name}"></li>
-
-<!--                        th:text = "${product.categories}">-->
-<!--                        th:text = "${product.categoryIds}">-->
-<!--                    <ul th:each="category : ${productCategories}">-->
-<!--                        <li-->
-<!--                            th:text="${category.name}"-->
-<!--                            th:value="${{category.id}}"></li>-->
-<!--                        <li>Category 2</li>-->
-<!--                        <li>Category 3</li>-->
-<!--                    </ul>-->
-
-<!--                    <select id="categories" class="form-control" multiple th:field="${productRequest.categoryIds}">-->
-<!--                        <option th:each="category : ${productCategories}"-->
-<!--                                th:text="${category.name}"-->
-<!--                                th:value="${{category.id}}">-->
-<!--                        </option>-->
-<!--                    </select>-->
+                    <ul>
+                        <li th:each="category : ${product.categories}"
+                            th:text="${category.name}"></li>
+                    </ul>
                 </td>
                 <td th:text = "${product.quantity}"></td>
                 <td>
