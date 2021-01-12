@@ -91,10 +91,11 @@ public class ProductRequest {
 
     @Override
     public String toString() {
-        return "ProductForm{" +
+        return "ProductRequest{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", categoryIds=" + categoryIds +
+                ", categories=" + categories +
                 '}';
     }
 }

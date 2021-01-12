@@ -27,7 +27,11 @@
                 <td th:text = "${product.price}"></td>
                 <td th:text = "${product.name}"></td>
                 <td th:text = "${product.description}"></td>
-                <td th:text = "${product.categories}">
+                <td >
+                <li th:each="category : ${product.categories}"
+                    th:text="${category.name}"></li>
+
+<!--                        th:text = "${product.categories}">-->
 <!--                        th:text = "${product.categoryIds}">-->
 <!--                    <ul th:each="category : ${productCategories}">-->
 <!--                        <li-->
