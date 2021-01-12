@@ -19,17 +19,17 @@
                         <li class="nav-item active"><a class="nav-link" href="/">HOME</a></li>
                         <li class="nav-item"><a class="nav-link" href="/about">ABOUT US</a></li>
                         <li class="dropdown megamenu-fw">
-                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">PRODUCTS</a>
+                            <a href="/products" class="nav-link dropdown-toggle arrow">PRODUCTS</a>
                             <ul class="dropdown-menu megamenu-content" role="menu">
                                 <li>
                                     <div class="row">
                                         <div class="col-menu col-md-3">
                                             <h6 class="title">Weapons</h6>
                                             <div class="content">
-                                                <ul th:each="category : ${categories}" class="menu-col">
+                                                <ul th:each="category : ${allCategories}" class="menu-col">
                                                     <li><a  th:text="${category.name}"
-                                                            th:href="@{/admin/categories/{categoryId}(categoryId=${category.categoryId})}">
-                                                    </a></li>
+                                                            th:href="@{/products/{categoryName}(categoryName=${category.categoryName})}">
+                                                    Category</a></li>
 
 <!--                                                    <li><a href="/shop">Shirts</a></li>-->
 <!--                                                    <li><a href="/shop">Sweaters & Cardigans</a></li>-->
@@ -50,10 +50,10 @@
                                             <h6 class="title">Ammunition</h6>
                                             <div class="content">
                                                 <ul class="menu-col">
-                                                    <li><a href="/shop">Swimwear</a></li>
-                                                    <li><a href="/shop">Skirts</a></li>
-                                                    <li><a href="/shop">Jeans</a></li>
-                                                    <li><a href="/shop">Trousers</a></li>
+                                                    <li><a href="/products">Swimwear</a></li>
+                                                    <li><a href="/products">Skirts</a></li>
+                                                    <li><a href="/products">Jeans</a></li>
+                                                    <li><a href="/products">Trousers</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -62,10 +62,10 @@
                                             <h6 class="title">Accessories</h6>
                                             <div class="content">
                                                 <ul class="menu-col">
-                                                    <li><a href="/shop">Top Wear</a></li>
-                                                    <li><a href="/shop">Party wear</a></li>
-                                                    <li><a href="/shop">Bottom Wear</a></li>
-                                                    <li><a href="/shop">Indian Wear</a></li>
+                                                    <li><a href="/products">Top Wear</a></li>
+                                                    <li><a href="/products">Party wear</a></li>
+                                                    <li><a href="/products">Bottom Wear</a></li>
+                                                    <li><a href="/products">Indian Wear</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -73,10 +73,10 @@
                                             <h6 class="title">Optics</h6>
                                             <div class="content">
                                                 <ul class="menu-col">
-                                                    <li><a href="/shop">Bags</a></li>
-                                                    <li><a href="/shop">Sunglasses</a></li>
-                                                    <li><a href="/shop">Fragrances</a></li>
-                                                    <li><a href="/shop">Wallets</a></li>
+                                                    <li><a href="/products">Bags</a></li>
+                                                    <li><a href="/products">Sunglasses</a></li>
+                                                    <li><a href="/products">Fragrances</a></li>
+                                                    <li><a href="/products">Wallets</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -87,12 +87,11 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="/shop" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
+                            <a href="/myaccount" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">MY DETAILS</a>
                             <ul class="dropdown-menu">
                                 <li><a href="/cart">Cart</a></li>
                                 <li><a href="/checkout">Checkout</a></li>
                                 <li><a href="/myaccount">My Account</a></li>
-                                <li><a href="/shopdetails">Shop Details</a></li>
                             </ul>
                         </li>
                     </ul>

@@ -36,20 +36,16 @@ public class HomePageController {
         return "shop/my-account";
     }
 
-    @GetMapping("/service")
-    public String service() {
-        return "shop/service";
+    @GetMapping("/products")
+    public String products() {
+        return "shop/products";
     }
 
-    @GetMapping("/shop")
-    public String shop() {
-        return "shop/shop";
+    @GetMapping("/productdetails")
+    public String productDetails() {
+        return "shop/product-details";
     }
 
-    @GetMapping("/shopdetails")
-    public String shopDetails() {
-        return "shop/shop-detail";
-    }
 }
 
 
