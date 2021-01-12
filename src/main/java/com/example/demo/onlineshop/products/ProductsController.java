@@ -34,31 +34,17 @@ public class ProductsController {
     @GetMapping ("/admin/products")
     public String getProducts(ProductRequest product, Model model) {
         List<ProductRequest> allProducts = repository.findAll();
+        for (ProductRequest item : allProducts) {
+            item.setCategories(repository.findProductCategories(item.getId()));
+        }
         model.addAttribute("allProducts", allProducts);
-//        List<Categories> productCategories = repository.findProductCategories(product.getId());
+//        List<Categories> productCategories = repository.findProductCategories(product);
 //        product.getCategories() = repository.findProductCategories(product.getId());
 //        Set<Long> productCategoryIds = product.getCategoryIds();
-        model.addAttribute("productCategories", repository.findProductCategories(product.getId()));
+//        model.addAttribute("productCategories", productCategories);
+
         return "cms/products/products";
     }
-
-
-//    @GetMapping(path = {"/admin/products", "/admin/products/by-category/{categoryId}"})
-//    public String getProducts(@PathVariable(required = false) Long categoryId, Model model) {
-//        List<Product> products;
-//        Category category;
-//        if (categoryId == null) {
-//            products = productRepository.findAll();
-//            model.addAttribute("products", products);
-//            return "cms/products/products";
-//        } else {
-//            category = categoryRepository.findOne(categoryId);
-//            products = productRepository.getProductsForCategory(categoryId);
-//            model.addAttribute("category", category);
-//            model.addAttribute("products", products);
-//            return "cms/products/products-by-category";
-//        }
-//    }
 
     @GetMapping ("/admin/products/new")
     public String showCreateProductsForm (Model model) {
@@ -104,20 +90,6 @@ public class ProductsController {
 //        repository.updateProductCategories(product.getId(), product.getCategoryIds());
         return "redirect:/admin/products";
     }
-
-
-//    //This method will be called when user fills the form and clicks the submit button
-//    //for editing product
-//    @PostMapping("/admin/products/edit/{productId}")
-//    public String update(@PathVariable Long productId,
-//                         ProductForm form, Model model) {
-//        System.out.println("product update form: " + form);
-//        //TODO here you can run SQL query which will update existing
-//        //product in database
-//        //TODO you also have to update how this product is mapped to categories
-//        return "redirect:/admin/products";
-//    }
-
 
 
     @GetMapping("/admin/products/delete/{id}")

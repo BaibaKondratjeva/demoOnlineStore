@@ -22,8 +22,8 @@ public interface ProductsMapper {
             "left join products_categories\n" +
             "on products.id = products_categories.product_id\n" +
             "left join categories\n" +
-            "on products_categories.category_id = categories.id " +
-            "where products.id = #{productId}")
+            "on products_categories.category_id = categories.id\n" +
+            "where products.id = #{id}")
     List<Categories> findProductCategories (Long productId);
 
     @Select("select id, name, description, price, quantity, imageUri from products where name like #{name}")
@@ -64,7 +64,7 @@ public interface ProductsMapper {
     @Update("update products_categories set " +
             "product_id = #{product_id}, " +
             "category_id = #{category_id} " +
-            "where id = #{id}" )
+            "where id = #{product_id}")
     boolean updateProductCategory (Long product_id, @Param("Categories") Set<Long> category_id);
 
     @Delete("delete from products where id = #{id}")

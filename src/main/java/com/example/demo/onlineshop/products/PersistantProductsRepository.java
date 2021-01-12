@@ -50,6 +50,7 @@ public class PersistantProductsRepository implements ProductsRepository {
     @Override
     public ProductRequest create(ProductRequest product) {
         mapper.create(product);
+        product.setCategories(mapper.findProductCategories(product.getId()));
         return product;
     }
 

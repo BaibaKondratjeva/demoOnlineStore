@@ -27,7 +27,7 @@
                 <td th:text = "${product.price}"></td>
                 <td th:text = "${product.name}"></td>
                 <td th:text = "${product.description}"></td>
-                <td th:text = "${productCategories}"></td>>
+                <td th:text = "${product.categories}">
 <!--                        th:text = "${product.categoryIds}">-->
 <!--                    <ul th:each="category : ${productCategories}">-->
 <!--                        <li-->
@@ -43,7 +43,7 @@
 <!--                                th:value="${{category.id}}">-->
 <!--                        </option>-->
 <!--                    </select>-->
-<!--                </td>-->
+                </td>
                 <td th:text = "${product.quantity}"></td>
                 <td>
                     <a th:href="@{/admin/products/update/{id}(id=${product.id})}">Edit</a>
