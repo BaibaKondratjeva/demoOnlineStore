@@ -58,6 +58,9 @@ public class ProductsController {
     @GetMapping("/admin/products/update/{id}")
     public String showUpdateProductForm (@PathVariable("id") Long id, Model model) {
         ProductRequest product = repository.findOne(id);
+//        List<Long> productCategoryIds =
+//        List<Categories> productCategories = repository.findProductCategories(product.getId());
+//        product.setCategories(productCategories);
         model.addAttribute("products", product);
         model.addAttribute("categories", categoriesRepository.findAll());
         return "cms/products/update-products.html";

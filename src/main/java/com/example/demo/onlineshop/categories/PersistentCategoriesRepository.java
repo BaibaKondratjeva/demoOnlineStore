@@ -1,7 +1,6 @@
 package com.example.demo.onlineshop.categories;
 
 import com.example.demo.onlineshop.NotFoundException;
-import com.example.demo.onlineshop.products.Products;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

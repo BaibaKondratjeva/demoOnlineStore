@@ -62,11 +62,14 @@ public class PersistantProductsRepository implements ProductsRepository {
         existing.setPrice(product.getPrice());
         existing.setQuantity(product.getQuantity());
         existing.setImageUri(product.getImageUri());
+        existing.setCategoryIds(product.getCategoryIds());
         mapper.update(existing);
         return existing;
     }
 
     public void updateProductCategories (Long productId, Set<Long> categoryId) {
+//        ProductRequest existing = findOne(productId);
+//        existing.setCategoryIds(categoryId);
         mapper.updateProductCategory(productId, categoryId);
     }
 

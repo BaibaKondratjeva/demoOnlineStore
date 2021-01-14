@@ -1,8 +1,5 @@
 package com.example.demo.onlineshop.orders;
 
-import com.example.demo.onlineshop.categories.Categories;
-import com.example.demo.onlineshop.products.ProductRequest;
-import com.example.demo.onlineshop.products.Products;
 
 import java.util.List;
 

@@ -1,6 +1,5 @@
 package com.example.demo.onlineshop.categories;
 
-import com.example.demo.onlineshop.products.Products;
 
 import java.util.List;
 

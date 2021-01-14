@@ -1,7 +1,7 @@
 package com.example.demo.onlineshop.orders;
 
 import com.example.demo.onlineshop.categories.Categories;
-import com.example.demo.onlineshop.products.Products;
+import com.example.demo.onlineshop.products.ProductRequest;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -41,7 +41,7 @@ public interface OrdersMapper {
     @Delete("delete from orders where id = #{id}")
     boolean deleteById(long id);
 
-    Products ordersValidation(List<Integer> categoryIds);
+    ProductRequest ordersValidation(List<Integer> categoryIds);
 
     void insertOrdersCategories(long productId, long categoryId);
 }

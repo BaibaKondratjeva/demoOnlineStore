@@ -29,7 +29,13 @@ public interface ProductsMapper {
     @Select("select id, name, description, price, quantity, imageUri from products where name like #{name}")
     ProductRequest findByName(String name);
 
-    @Select("select id, name, description, price, quantity, imageUri from products where id = #{id}")
+//    @Select("select id, name, description, price, quantity, imageUri from products where id = #{id}")
+    @Select("select products.id, products.name, description, price, quantity, products.imageUri, categories.name from products\n" +
+            "left join products_categories\n" +
+            "on products.id = products_categories.product_id\n" +
+            "left join categories\n" +
+            "on products_categories.category_id = categories.id\n" +
+            "where products.id = #{id}")
     ProductRequest findOne(Long id);
 
     @Select("select id from categories id IN (#{id}, #{id})")
