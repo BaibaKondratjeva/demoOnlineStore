@@ -1,6 +1,6 @@
 package com.example.demo.onlineshop.categories;
 
-import com.example.demo.onlineshop.products.Products;
+
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

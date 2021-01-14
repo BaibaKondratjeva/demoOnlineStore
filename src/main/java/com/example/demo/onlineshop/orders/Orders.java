@@ -1,21 +1,22 @@
 package com.example.demo.onlineshop.orders;
 
 import java.security.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Orders {
 
     private long id;
-    private Timestamp orderTime;
+    private LocalDateTime orderTime;
     private long customerId;
     private String statusId;
-
+    private LocalDateTime t;
 
     public Orders() {
 
     }
 
-    public Orders(long id, Timestamp time, long customer_id,String status) {
+    public Orders(long id, LocalDateTime time, long customer_id, String status) {
         this.id = id;
         this.orderTime = time;
         this.customerId = customer_id;
@@ -39,11 +40,11 @@ public class Orders {
         this.statusId = statusId;
     }
 
-    public Timestamp getOrderTime() {
+    public LocalDateTime getOrderTime() {
         return orderTime;
     }
 
-    public void setOrderTime(Timestamp orderTime) {
+    public void setOrderTime(LocalDateTime orderTime) {
         this.orderTime = orderTime;
     }
 

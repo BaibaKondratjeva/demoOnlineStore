@@ -22,7 +22,7 @@ import java.util.List;
         public String getOrders(Model model){
             List <OrdersTable> orders = ordersRepository.findAll();
             model.addAttribute("orders",orders);
-             return "cms/orders/orders";
+            return "cms/orders/orders";
         }
 
         @GetMapping ("/admin/orders/{id}")
@@ -48,9 +48,10 @@ import java.util.List;
             return null;
         }
 
-        @DeleteMapping("/admin/orders/{id}")
-        public void delete(@PathVariable long id) {
+        @GetMapping("/admin/orders/delete/{id}")
+        public String delete(@PathVariable long id) {
             ordersRepository.delete(id);
+            return "redirect:/admin/orders/";
         }
 
 

@@ -19,14 +19,14 @@
             </tr>
             <tr th:each = "order : ${orders}">
                 <td th:text="${order.id}"></td>
-                <td th:text ="${#dates.format( order.orderTime)}"></td>
+                <td th:text ="${order.orderTime}"></td>
                 <td th:text="${order.name + ' ' + order.surname + ', ' +
                 order.address + ', T: ' + order.phone }"></td>
                 <td th:text="${order.status}"></td>
                 <td th:text="${order.totalSum}"></td>
                 <td>
                     <a href="create-edit-product.html">Approve</a>
-                    <a href="#delete">Cancel</a>
+                    <a th:href="@{/admin/orders/delete/{id}(id=${order.id})}">Cancel</a>
                 </td>
             </tr>
             <tr>

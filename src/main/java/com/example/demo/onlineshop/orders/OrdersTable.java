@@ -1,13 +1,11 @@
 package com.example.demo.onlineshop.orders;
 
-import com.example.demo.onlineshop.Customer;
-
-import java.security.Timestamp;
+import java.time.LocalDateTime;
 
 public class OrdersTable {
 
     private long id;
-    private Timestamp orderTime;
+    private LocalDateTime orderTime;
     private String name;
     private String surname;
     private String address;
@@ -31,11 +29,11 @@ public class OrdersTable {
         this.id = id;
     }
 
-    public Timestamp getOrderTime() {
+    public LocalDateTime getOrderTime() {
         return orderTime;
     }
 
-    public void setOrderTime(Timestamp orderTime) {
+    public void setOrderTime(LocalDateTime orderTime) {
         this.orderTime = orderTime;
     }
 
