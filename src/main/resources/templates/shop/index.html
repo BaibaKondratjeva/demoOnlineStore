@@ -12,13 +12,12 @@
     <!-- Start Slider -->
     <div id="slides-shop" class="cover-slides">
         <ul class="slides-container">
-            <li class="text-left">
+            <li class="text-right">
                 <img src="https://cdnb.artstation.com/p/assets/images/images/019/672/541/large/karan-dev-m416-skullcollector.jpg?1564526018" alt="">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
                             <h1 class="m-b-20"><strong>Welcome To <br> CREATIVE GUNS</strong></h1>
-                            <p class="m-b-40">See how your users experience your website in realtime or view <br> trends to see any changes in performance over time.</p>
                             <p><a class="btn hvr-hover" href="/products">SHOP</a></p>
                         </div>
                     </div>
@@ -29,8 +28,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="m-b-20"><strong>Welcome To <br> CREATIVE GUNS</strong></h1>
-                            <p class="m-b-40">See how your users experience your website in realtime or view <br> trends to see any changes in performance over time.</p>
+                            <h1 class="m-b-20"><strong>LET'S BE as CREATIVE <br> as we can</strong></h1>
                             <p><a class="btn hvr-hover" href="/products">SHOP</a></p>
                         </div>
                     </div>
@@ -41,8 +39,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="m-b-20"><strong>Welcome To <br> CREATIVE GUNS</strong></h1>
-                            <p class="m-b-40">See how your users experience your website in realtime or view <br> trends to see any changes in performance over time.</p>
+                            <h1 class="m-b-20"><strong>Shop NOW <br> SHOOT later</strong></h1>
                             <p><a class="btn hvr-hover" href="/products">SHOP</a></p>
                         </div>
                     </div>
@@ -59,45 +56,55 @@
     <!-- Start Categories  -->
     <div class="categories-shop">
         <div class="container">
-            <div class="row">
+            <div class="col">
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <div class="shop-cat-box">
-                        <img class="img-fluid" src="shop/images/t-shirts-img.jpg" alt="" />
-                        <a class="btn hvr-hover" href="#">T-shirts</a>
-                    </div>
-                    <div class="shop-cat-box">
-                        <img class="img-fluid" src="shop/images/shirt-img.jpg" alt="" />
-                        <a class="btn hvr-hover" href="#">Shirt</a>
+                    <div th:each="category : ${allCategories}" class="shop-cat-box">
+                        <img class="img-fluid" th:src="${category.imageUri}" alt="image" />
+                        <a class="btn hvr-hover" th:href="@{/products/{category.name}(category=${category.id})}" th:text="${category.name}"></a>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <div class="shop-cat-box">
-                        <img class="img-fluid" src="shop/images/wallet-img.jpg" alt="" />
-                        <a class="btn hvr-hover" href="#">Wallet</a>
-                    </div>
-                    <div class="shop-cat-box">
-                        <img class="img-fluid" src="shop/images/women-bag-img.jpg" alt="" />
-                        <a class="btn hvr-hover" href="#">Bags</a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <div class="shop-cat-box">
-                        <img class="img-fluid" src="shop/images/shoes-img.jpg" alt="" />
-                        <a class="btn hvr-hover" href="#">Shoes</a>
-                    </div>
-                    <div class="shop-cat-box">
-                        <img class="img-fluid" src="shop/images/women-shoes-img.jpg" alt="" />
-                        <a class="btn hvr-hover" href="#">Women Shoes</a>
-                    </div>
-                </div>
+
+                <!--                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">-->
+                <!--                    <div class="shop-cat-box">-->
+                <!--                        <img class="img-fluid" src="/shop/images/t-shirts-img.jpg" alt="" />-->
+                <!--                        <a class="btn hvr-hover" href="#">T-shirts</a>-->
+                <!--                    </div>-->
+                <!--                    <div class="shop-cat-box">-->
+                <!--                        <img class="img-fluid" src="/shop/images/shirt-img.jpg" alt="" />-->
+                <!--                        <a class="btn hvr-hover" href="#">Shirt</a>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">-->
+                <!--                    <div class="shop-cat-box">-->
+                <!--                        <img class="img-fluid" src="/shop/images/wallet-img.jpg" alt="" />-->
+                <!--                        <a class="btn hvr-hover" href="#">Wallet</a>-->
+                <!--                    </div>-->
+                <!--                    <div class="shop-cat-box">-->
+                <!--                        <img class="img-fluid" src="/shop/images/women-bag-img.jpg" alt="" />-->
+                <!--                        <a class="btn hvr-hover" href="#">Bags</a>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">-->
+                <!--                    <div class="shop-cat-box">-->
+                <!--                        <img class="img-fluid" src="/shop/images/shoes-img.jpg" alt="" />-->
+                <!--                        <a class="btn hvr-hover" href="#">Shoes</a>-->
+                <!--                    </div>-->
+                <!--                    <div class="shop-cat-box">-->
+                <!--                        <img class="img-fluid" src="/shop/images/women-shoes-img.jpg" alt="" />-->
+                <!--                        <a class="btn hvr-hover" href="#">Women Shoes</a>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
             </div>
         </div>
     </div>
+
     <!-- End Categories -->
+
 
     <div class="products-box">
         <div class="container">
-            <div th:replace="~{shop/homepage-layout/featured-products :: featured-products}"></div>
+            <div th:replace="~{shop/homepage-layout/new-products :: new-products}"></div>
         </div>
     </div>
 
