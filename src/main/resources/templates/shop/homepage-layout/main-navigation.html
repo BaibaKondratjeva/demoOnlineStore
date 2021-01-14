@@ -17,7 +17,6 @@
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
                         <li class="nav-item active"><a class="nav-link" href="/">HOME</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/about">ABOUT US</a></li>
                         <li class="dropdown megamenu-fw">
                             <a href="/products" class="nav-link dropdown-toggle arrow">PRODUCTS</a>
                             <ul class="dropdown-menu megamenu-content" role="menu">
@@ -28,20 +27,8 @@
                                             <div class="content">
                                                 <ul th:each="category : ${allCategories}" class="menu-col">
                                                     <li><a  th:text="${category.name}"
-                                                            th:href="@{/products/{categoryName}(categoryName=${category.categoryName})}">
-                                                    Category</a></li>
-
-<!--                                                    <li><a href="/shop">Shirts</a></li>-->
-<!--                                                    <li><a href="/shop">Sweaters & Cardigans</a></li>-->
-<!--                                                    <li><a href="/shop">T-shirts</a></li>-->
-
-<!--                                                    <tr th:each="category : ${allCategories}">-->
-<!--                                                        <td th:text="${category.id}"></td>-->
-<!--                                                        <td><img height="100" th:src="${category.imageUri}"></td>-->
-<!--                                                        <td th:text="${category.name}"></td>-->
-<!--                                                    </tr>-->
-
-
+                                                            th:href="@{/products/{category}(category=${category.name})}">
+                                                    </a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -49,11 +36,9 @@
                                         <div class="col-menu col-md-3">
                                             <h6 class="title">Ammunition</h6>
                                             <div class="content">
-                                                <ul class="menu-col">
-                                                    <li><a href="/products">Swimwear</a></li>
-                                                    <li><a href="/products">Skirts</a></li>
-                                                    <li><a href="/products">Jeans</a></li>
-                                                    <li><a href="/products">Trousers</a></li>
+                                                <ul th:each="category : ${allCategories}" class="menu-col">
+                                                    <li><a th:text="${category.name}"
+                                                           th:href="@{/products/{category}(category=${category.name})}"></a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -61,22 +46,18 @@
                                         <div class="col-menu col-md-3">
                                             <h6 class="title">Accessories</h6>
                                             <div class="content">
-                                                <ul class="menu-col">
-                                                    <li><a href="/products">Top Wear</a></li>
-                                                    <li><a href="/products">Party wear</a></li>
-                                                    <li><a href="/products">Bottom Wear</a></li>
-                                                    <li><a href="/products">Indian Wear</a></li>
+                                                <ul th:each="category : ${allCategories}" class="menu-col">
+                                                    <li><a th:text="${category.name}"
+                                                           th:href="@{/products/{category}(category=${category.name})}"></a></li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="col-menu col-md-3">
                                             <h6 class="title">Optics</h6>
                                             <div class="content">
-                                                <ul class="menu-col">
-                                                    <li><a href="/products">Bags</a></li>
-                                                    <li><a href="/products">Sunglasses</a></li>
-                                                    <li><a href="/products">Fragrances</a></li>
-                                                    <li><a href="/products">Wallets</a></li>
+                                                <ul th:each="category : ${allCategories}" class="menu-col">
+                                                    <li><a th:text="${category.name}"
+                                                           th:href="@{/products/{category}(category=${category.name})}"></a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -86,14 +67,8 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="dropdown">
-                            <a href="/myaccount" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">MY DETAILS</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/cart">Cart</a></li>
-                                <li><a href="/checkout">Checkout</a></li>
-                                <li><a href="/myaccount">My Account</a></li>
-                            </ul>
-                        </li>
+                        <li class="nav-item"><a class="nav-link" href="/cart">CART</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/checkout">CHECKOUT</a></li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
