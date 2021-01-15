@@ -1,5 +1,6 @@
 package com.example.demo.onlineshop.orders;
 
+import com.example.demo.onlineshop.categories.Categories;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +14,18 @@ public class PersistentOrdersRepository implements OrdersRepository {
     public PersistentOrdersRepository(OrdersMapper mapper) {
         this.mapper = mapper;
     }
+
+    @Override
+
+    public void updateStatus (Long id, Orders order){
+         mapper.updateStatus(id,order);
+    }
+
+    @Override
+    public List<OrdersProductsTable> getOrderedProducts (Long id){
+        return mapper.getOrderedProducts(id);
+    }
+
 
 
     @Override
@@ -38,6 +51,7 @@ public class PersistentOrdersRepository implements OrdersRepository {
     @Override
     public List<OrdersTable> findAll() {
         return mapper.findAll();
+
     }
 
     @Override

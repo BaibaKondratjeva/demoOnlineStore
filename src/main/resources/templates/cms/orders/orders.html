@@ -17,86 +17,43 @@
                 <th>Total</th>
                 <th>Action</th>
             </tr>
-            <tr th:each = "order : ${orders}">
+            <tr th:each="order : ${orders}">
                 <td th:text="${order.id}"></td>
-                <td th:text ="${order.orderTime}"></td>
+                <td th:text="${order.orderTime}"></td>
                 <td th:text="${order.name + ' ' + order.surname + ', ' +
                 order.address + ', T: ' + order.phone }"></td>
                 <td th:text="${order.status}"></td>
                 <td th:text="${order.totalSum}"></td>
                 <td>
-                    <a href="create-edit-product.html">Approve</a>
+                    <a th:href="@{/admin/orders/update/{id}(id=${order.id})}">Approve</a>
                     <a th:href="@{/admin/orders/delete/{id}(id=${order.id})}">Cancel</a>
                 </td>
-            </tr>
-            <tr>
-                <td colspan="6">
-                    <table class="table mb-0">
-                        <tr>
-                            <th>Product ID</th>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Count</th>
-                            <th>Price</th>
-                        </tr>
-                        <tr>
-                            <td>102</td>
-                            <td>
-                                <img height="100"
-                                     src="https://assets.adidas.com/images/w_600,f_auto,q_auto/4e894c2b76dd4c8e9013aafc016047af_9366/Superstar_Shoes_White_FV3284_01_standard.jpg"/>
 
+                    <tr th:if="${order.orderedProducts != null and !order.orderedProducts.empty}" >
+
+                            <td colspan="6">
+                                <table class="table mb-0">
+                                    <tr>
+                                        <th>Product ID</th>
+                                        <th>Image</th>
+                                        <th>Name</th>
+                                        <th>Count</th>
+                                        <th>Price</th>
+                                    </tr>
+                                    <tr th:each="product : ${order.orderedProducts}">
+                                        <td th:text="${product.id}"></td>
+                                        <td><img height="100" th:src="${product.imageUri}"></td>
+                                        </td>
+                                        <!--<td th:text="${product.name}"></td>-->
+                                        <!--<td th:text = "${product.quantity}"></td>-->
+                                        <!--<td th:text = "${product.price}"></td>-->
+                                    </tr>
+                                </table>
                             </td>
-                            <td>Name 1</td>
-                            <td>2</td>
-                            <td>20 EUR</td>
-                        </tr>
-                        <tr>
-                            <td>103</td>
-                            <td>
-                                <img height="100"
-                                     src="https://assets.adidas.com/images/w_600,f_auto,q_auto/4e894c2b76dd4c8e9013aafc016047af_9366/Superstar_Shoes_White_FV3284_01_standard.jpg"/>
-                            </td>
-                            <td>Name 2</td>
-                            <td>1</td>
-                            <td>10.23 EUR</td>
-                        </tr>
-                    </table>
-                </td>
+
+                    </tr>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>26-12-2020 12:26:27</td>
-                <td>Ieva Jansone, Brīvības 13-43, Tel. 23873622</td>
-                <td>APPROVED</td>
-                <td>20 EUR</td>
-                <td>
-                    <a href="create-edit-product.html">Approve</a>
-                    <a href="#delete">Cancel</a>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="6">
-                    <table class="table mb-0">
-                        <tr>
-                            <th>Product ID</th>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Count</th>
-                            <th>Price</th>
-                        </tr>
-                        <tr>
-                            <td>103</td>
-                            <td>
-                                <img height="100"
-                                     src="https://assets.adidas.com/images/w_600,f_auto,q_auto/4e894c2b76dd4c8e9013aafc016047af_9366/Superstar_Shoes_White_FV3284_01_standard.jpg"/>
-                            </td>
-                            <td>Name 2</td>
-                            <td>1</td>
-                            <td>20 EUR</td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
+
         </table>
     </div>
 </main>

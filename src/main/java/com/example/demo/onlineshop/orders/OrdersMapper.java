@@ -32,16 +32,22 @@ public interface OrdersMapper {
     @Insert("insert into orders (name, imageUri) values (#{name}, #{imageUri})")
     void insert(Orders orders);
 
-    @Update("update orders set " +
-            "name = #{name}, " +
-            "imageURI = #{imageUri} " +
-            "where id = #{id}")
-    boolean update(Orders orders);
+    @Update("update orders set status_id = 2 where id = #{id}")
+    boolean updateStatus(Long id, Orders order);
 
     @Delete("delete from orders where id = #{id}")
     boolean deleteById(long id);
 
-    ProductRequest ordersValidation(List<Integer> categoryIds);
+    @Select("select products.id, products.imageUri, products.name, orders_products.quantity,\n" +
+            " products.price from orders_products\n" +
+            "left join products on products.id = orders_products.product_id\n" +
+            "left join orders on orders.id = orders_products.order_id\n" +
+            "where orders_products.order_id = #{id}\n" +
+            "group by product_id")
+    List<OrdersProductsTable> getOrderedProducts (Long id);
+
+
+    Orders ordersValidation(List<Integer> categoryIds);
 
     void insertOrdersCategories(long productId, long categoryId);
 }

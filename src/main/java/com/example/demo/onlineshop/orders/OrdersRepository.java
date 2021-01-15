@@ -1,9 +1,13 @@
 package com.example.demo.onlineshop.orders;
 
 
+import com.example.demo.onlineshop.categories.Categories;
+
 import java.util.List;
 
 public interface OrdersRepository  {
+
+   void updateStatus (Long id, Orders order);
 
    Orders findOne(long id);
 
@@ -16,6 +20,8 @@ public interface OrdersRepository  {
     Orders update(long id, Orders order);
 
     void delete(long id);
+
+    List<OrdersProductsTable> getOrderedProducts (Long id);
 
 
 }

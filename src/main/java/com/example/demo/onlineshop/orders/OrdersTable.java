@@ -1,6 +1,7 @@
 package com.example.demo.onlineshop.orders;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class OrdersTable {
 
@@ -12,6 +13,15 @@ public class OrdersTable {
     private String phone;
     private String status;
     private Integer totalSum;
+    private List<OrdersProductsTable> orderedProducts;
+
+    public List<OrdersProductsTable> getOrderedProducts() {
+        return orderedProducts;
+    }
+
+    public void setOrderedProducts(List<OrdersProductsTable> orderedProducts) {
+        this.orderedProducts = orderedProducts;
+    }
 
     public Integer getTotalSum() {
         return totalSum;
@@ -77,6 +87,18 @@ public class OrdersTable {
         this.status = status;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "OrdersTable{" +
+                "id=" + id +
+                ", orderTime=" + orderTime +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", status='" + status + '\'' +
+                ", totalSum=" + totalSum +
+                ", orderedProducts=" + orderedProducts +
+                '}';
+    }
 }
