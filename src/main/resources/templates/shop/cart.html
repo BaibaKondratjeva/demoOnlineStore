@@ -55,10 +55,10 @@
 								</a>
                                     </td>
                                     <td class="price-pr">
-                                        <p th:text="${product.price}"></p>
+                                        <p th:text="${product.price + '€'}"></p>
                                     </td>
                                     <td class="quantity-box" th:text="${product.quantity}"></td>
-                                    <td class="total-pr" th:text="${product.totalSum}"></td>
+                                    <td class="total-pr" th:text="${product.totalSum} + '€'"></td>
                                     <!--<td class="remove-pr">
                                         <a href="#">
 									<i class="fas fa-times"></i>
@@ -150,11 +150,11 @@
                         <hr>
                         <div class="d-flex gr-total">
                             <h5>Grand Total</h5>
-                            <div class="ml-auto h5"> $ 388 </div>
+                            <div class="ml-auto h5"> € 388 </div>
                         </div>
                         <hr> </div>
                 </div>
-                <div class="col-12 d-flex shopping-box"><a href="/checkout" class="ml-auto btn hvr-hover">Checkout</a> </div>
+                <div class="col-12 d-flex shopping-box"><a th:href="@{/checkout}" class="ml-auto btn hvr-hover">Checkout</a> </div>
             </div>
 
         </div>
