@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Primary
@@ -44,7 +45,9 @@ public class PersistantProductsRepository implements ProductsRepository {
     }
 
     public List<Categories> findProductCategories(Long productId) {
-        return mapper.findProductCategories(productId);
+        List<Categories> categories = mapper.findProductCategories(productId);
+        categories.removeIf(Objects::isNull);
+        return categories;
     }
 
     @Override
@@ -53,6 +56,17 @@ public class PersistantProductsRepository implements ProductsRepository {
         product.setCategories(mapper.findProductCategories(product.getId()));
         return product;
     }
+
+
+//    @Override
+//    public ProductRequest create(ProductRequest product) {
+//        mapper.create(product);
+//        product.setCategories(mapper.findProductCategories(product.getId()));
+//        if (product.getName().equals(null) || product.getQuantity() == 0 || product.getPrice().equals(BigDecimal.ZERO)) {
+//            throw new NullPointerException("There should be written product`s name, quantity and price");
+//        }
+//        return product;
+//    }
 
     @Override
     public ProductRequest update(Long id, ProductRequest product) {

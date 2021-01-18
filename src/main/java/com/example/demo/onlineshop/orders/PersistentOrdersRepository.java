@@ -81,4 +81,8 @@ public class PersistentOrdersRepository implements OrdersRepository {
         mapper.deleteById(id);
     }
 
+    @Override
+    public List<OrdersProductsTable> getCartProducts(String userId) {
+        return null;
+    }
 }
