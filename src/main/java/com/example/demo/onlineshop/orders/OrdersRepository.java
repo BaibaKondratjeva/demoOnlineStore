@@ -23,5 +23,7 @@ public interface OrdersRepository  {
 
     List<OrdersProductsTable> getOrderedProducts (Long id);
 
+    List <OrdersProductsTable> getCartProducts(String userId);
+
 
 }

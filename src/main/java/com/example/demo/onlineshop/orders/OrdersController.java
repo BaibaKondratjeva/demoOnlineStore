@@ -15,7 +15,7 @@ import java.util.List;
 public class OrdersController {
 
     private final OrdersRepository ordersRepository;
-    private final Long ORDER_PENDING_STATUS_ID = 1L;
+    private final Integer ORDER_PENDING_STATUS_ID = 1;
     public OrdersController(OrdersRepository repository) {
         this.ordersRepository = repository;
     }

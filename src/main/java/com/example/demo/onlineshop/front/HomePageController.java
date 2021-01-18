@@ -2,6 +2,7 @@ package com.example.demo.onlineshop.front;
 
 import com.example.demo.onlineshop.categories.Categories;
 import com.example.demo.onlineshop.categories.CategoriesRepository;
+import com.example.demo.onlineshop.orders.OrdersRepository;
 import com.example.demo.onlineshop.products.ProductRequest;
 import com.example.demo.onlineshop.products.ProductsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,13 @@ import java.util.List;
 public class HomePageController {
     private final ProductsRepository repository;
     private final CategoriesRepository categoriesRepository;
+    private final OrdersRepository ordersRepository;
 
     @Autowired
-    public HomePageController(CategoriesRepository categoriesRepository, ProductsRepository repository) {
+    public HomePageController(CategoriesRepository categoriesRepository, ProductsRepository repository, OrdersRepository ordersRepository) {
         this.categoriesRepository = categoriesRepository;
         this.repository = repository;
+        this.ordersRepository = ordersRepository;
     }
 
     @GetMapping(path = {"/"})
@@ -42,10 +45,7 @@ public class HomePageController {
         return "shop/about";
     }
 
-    @GetMapping("/cart")
-    public String cart() {
-        return "shop/cart";
-    }
+
 
     @GetMapping("/checkout")
     public String checkout() {

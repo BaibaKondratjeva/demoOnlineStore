@@ -20,11 +20,14 @@ public interface OrdersMapper {
             "group by orders.id;")
     List<OrdersTable> findAll();
 
+
+
     @Select("select id, name, imageUri from orders where name like #{name}")
     Orders findByName(String name);
 
     @Select("select id, name, imageUri from orders where id = #{id}")
     Orders findOne(long id);
+
 
     @Options(useGeneratedKeys = true,
             keyProperty = "id",
@@ -42,9 +45,16 @@ public interface OrdersMapper {
             " products.price from orders_products\n" +
             "left join products on products.id = orders_products.product_id\n" +
             "left join orders on orders.id = orders_products.order_id\n" +
-            "where orders_products.order_id = #{id}\n" +
-            "group by product_id")
+            "where orders_products.order_id = #{id}")
     List<OrdersProductsTable> getOrderedProducts (Long id);
+
+    @Select("select products.imageUri, products.name, products.price, orders_products.quantity,\n" +
+            " (orders_products.quantity * products.price) as totalSum\n" +
+            "  from orders_products\n" +
+            "left join products on products.id = orders_products.product_id\n" +
+            "where orders_products.order_id = 1\n" +
+            "group by product_id")
+    List<OrdersProductsTable> getCartProducts(String userId);
 
 
     Orders ordersValidation(List<Integer> categoryIds);

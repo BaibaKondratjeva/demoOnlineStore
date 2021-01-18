@@ -5,6 +5,8 @@ import java.util.List;
 
 public interface CategoriesRepository {
 
+
+
     Categories findOne(Long id);
 
     Categories findByName(String name);
