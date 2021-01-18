@@ -20,9 +20,9 @@ public class CkeckOutService implements CheckOutRepository {
     }
 
     @Override
-    public Customer createCustomer(Customer customer) {
-        checkOutMapper.createCustomer(customer);
-        return customer;
+    public CheckOutForm createCustomer(CheckOutForm form) {
+        checkOutMapper.createCustomer(form);
+        return form;
     }
 
     @Override
@@ -31,6 +31,8 @@ public class CkeckOutService implements CheckOutRepository {
         checkOutMapper.createOrder(customer.getId(), order);
         return order;
     }
+
+
 
 
 }

@@ -13,7 +13,7 @@ public interface CheckOutMapper {
 
     @Insert("insert into customers (name, surname, e_mail, address, phone) values (#{name}, #{surname}, " +
             "#{e_mail}, #{address}, #{phone})")
-    void createCustomer(Customer customer);
+    void createCustomer(CheckOutForm form);
 
     @Select("select id, name, surname, e_mail, address, phone from customers where id = #{id}")
     Customer findOne(Long id);

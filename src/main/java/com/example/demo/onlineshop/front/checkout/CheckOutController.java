@@ -19,28 +19,31 @@ public class CheckOutController {
         this.checkOutRepository = checkOutRepository;
     }
 
+//    @GetMapping("/checkout")
+//    public String checkoutForm (Model model,
+//                                @CookieValue(name = USER_ID_COOKIE_NAME, required = false) String userId) {
+//        model.addAttribute("customer", new Customer());
+//        model.addAttribute("order", new Orders());
+//        return "shop/checkout/checkout";
+//    }
+
     @GetMapping("/checkout")
-    public String checkoutForm (Model model,
-                                @CookieValue(name = USER_ID_COOKIE_NAME, required = false) String userId) {
-        model.addAttribute("customer", new Customer());
-        model.addAttribute("order", new Orders());
+    public String checkout(Model model,
+                           @CookieValue(name = USER_ID_COOKIE_NAME, required = false) String userId) {
+        model.addAttribute("checkoutForm", new CheckOutForm());
         return "shop/checkout/checkout";
     }
 
     @PostMapping("/checkout")
-    public String submitCheckoutForm (Customer customer, Orders order) {
-        checkOutRepository.createCustomer(customer);
+    public String submitCheckoutForm (@CookieValue(name = USER_ID_COOKIE_NAME, required = false) String userId,
+                                     Model model,
+                                     CheckOutForm form) {
+        checkOutRepository.createCustomer(form);
 //        checkOutRepository.createOrder(customer.getId(), order);
 
-        return "redirect:/";
+        return "shop/checkout/checkout-success";
     }
 
-//    @GetMapping("/checkout")
-//    public String checkout(Model model,
-//                           @CookieValue(name = USER_ID_COOKIE_NAME, required = false) String userId) {
-//        model.addAttribute("checkoutForm", new CheckoutForm());
-//        return "shop/checkout/checkout";
-//    }
 //
 //    @PostMapping("/checkout")
 //    public String submitCheckoutForm(@CookieValue(name = USER_ID_COOKIE_NAME, required = false) String userId,

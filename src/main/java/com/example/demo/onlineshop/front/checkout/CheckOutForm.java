@@ -4,34 +4,34 @@ import java.math.BigDecimal;
 
 public class CheckOutForm {
 
-    private String firstName;
-    private String lastName;
-    private String email;
+    private String name;
+    private String surname;
+    private String e_mail;
     private String address;
-    private String zip;
+    private String phone;
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
-    public String getEmail() {
-        return email;
+    public String getE_mail() {
+        return e_mail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setE_mail(String e_mail) {
+        this.e_mail = e_mail;
     }
 
     public String getAddress() {
@@ -42,21 +42,22 @@ public class CheckOutForm {
         this.address = address;
     }
 
-    public String getZip() {
-        return zip;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setZip(String zip) {
-        this.zip = zip;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     @Override
     public String toString() {
         return "CheckoutForm{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                "firstName='" + name + '\'' +
+                ", lastName='" + surname + '\'' +
+                ", E-mail='" + e_mail + '\'' +
                 ", address='" + address + '\'' +
-                ", zip='" + zip + '\'' +
+                ", phone='" + phone + '\'' +
                 '}';
     }
 }

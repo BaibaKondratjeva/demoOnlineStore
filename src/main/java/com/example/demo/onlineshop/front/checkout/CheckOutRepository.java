@@ -5,7 +5,7 @@ import com.example.demo.onlineshop.Orders;
 
 public interface CheckOutRepository {
 
-    Customer createCustomer (Customer customer);
+    CheckOutForm createCustomer (CheckOutForm form);
 
     Orders createOrder (Long customerId, Orders order);
 
