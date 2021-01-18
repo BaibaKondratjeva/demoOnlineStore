@@ -14,7 +14,7 @@ import static com.example.demo.cookies.Cookies.USER_ID_COOKIE_NAME;
 @Controller
 public class UserProductsController {
 
-    @GetMapping({"/products", "/products/{categoryName}"})
+/*    @GetMapping({"/products", "/products/{categoryName}"})
     public String products(@PathVariable(required = false) String categoryName,
                            @RequestParam(required = false) String sortBy) {
         System.out.println("Category: " + categoryName);
@@ -28,7 +28,7 @@ public class UserProductsController {
         //put them in model
         model.addAttribute("productForm", new AddProductToCartForm());
         return "shop/product-details";
-    }
+    }*/
 
     @PostMapping("/product/{productId}")
     public String addProductToCart(@PathVariable Long productId,
