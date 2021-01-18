@@ -48,14 +48,6 @@ public interface OrdersMapper {
             "where orders_products.order_id = #{id}")
     List<OrdersProductsTable> getOrderedProducts (Long id);
 
-    @Select("select products.imageUri, products.name, products.price, orders_products.quantity,\n" +
-            " (orders_products.quantity * products.price) as totalSum\n" +
-            "  from orders_products\n" +
-            "left join products on products.id = orders_products.product_id\n" +
-            "where orders_products.order_id = 1\n" +
-            "group by product_id")
-    List<OrdersProductsTable> getCartProducts(String userId);
-
 
     Orders ordersValidation(List<Integer> categoryIds);
 

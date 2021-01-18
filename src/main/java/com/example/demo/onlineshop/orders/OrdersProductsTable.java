@@ -10,6 +10,15 @@ public class OrdersProductsTable {
     private String name;
     private Integer quantity;
     private BigDecimal price;
+    private Integer totalSum;
+
+    public Integer getTotalSum() {
+        return totalSum;
+    }
+
+    public void setTotalSum(Integer totalSum) {
+        this.totalSum = totalSum;
+    }
 
     public long getId() {
         return id;

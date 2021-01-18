@@ -47,11 +47,6 @@ public class HomePageController {
 
 
 
-    @GetMapping("/checkout")
-    public String checkout() {
-        return "shop/checkout";
-    }
-
     @GetMapping("/contactus")
     public String contactUs() {
         return "shop/contact-us";

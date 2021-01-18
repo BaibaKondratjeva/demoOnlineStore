@@ -2,6 +2,7 @@ package com.example.demo.onlineshop.orders;
 
 
 import com.example.demo.onlineshop.categories.Categories;
+import com.mysql.cj.x.protobuf.MysqlxCrud;
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ public interface OrdersRepository  {
 
     List<OrdersProductsTable> getOrderedProducts (Long id);
 
-    List <OrdersProductsTable> getCartProducts(String userId);
+
 
 
 }

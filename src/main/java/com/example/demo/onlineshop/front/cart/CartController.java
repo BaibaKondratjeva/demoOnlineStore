@@ -1,4 +1,4 @@
-package com.example.demo.onlineshop.front;
+package com.example.demo.onlineshop.front.cart;
 
 import com.example.demo.onlineshop.orders.OrdersProductsTable;
 import com.example.demo.onlineshop.orders.OrdersRepository;
@@ -16,17 +16,26 @@ import static com.example.demo.cookies.Cookies.USER_ID_COOKIE_NAME;
 @RequestMapping
 public class CartController {
     private final OrdersRepository ordersRepository;
+    private final CartMapper cartMapper;
 
-    public CartController(OrdersRepository ordersRepository) {
+    public CartController(OrdersRepository ordersRepository, CartMapper cartMapper) {
         this.ordersRepository = ordersRepository;
+        this.cartMapper = cartMapper;
     }
 
     @GetMapping("/cart")
     public String cart(@CookieValue(name = USER_ID_COOKIE_NAME, required = false) String userId,
                        Model model) {
-       List <OrdersProductsTable> cartProducts = ordersRepository.getCartProducts(userId);
+      /* if (ordersRepository.orderStatusValidation(userId).getStatusId().equals(3)) {
+           List<OrdersProductsTable> cartProducts = cartMapper.getCartProducts(userId);
 
-       model.addAttribute("cartProducts",cartProducts);
+           model.addAttribute("cartProducts",cartProducts);
+       }*/
+        List<OrdersProductsTable> cartProducts = cartMapper.getCartProducts(userId);
+
+        model.addAttribute("cartProducts",cartProducts);
+
+
         return "shop/cart";
     }
 }

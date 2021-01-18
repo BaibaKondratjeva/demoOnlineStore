@@ -39,7 +39,7 @@
                                     <th>Price</th>
                                     <th>Quantity</th>
                                     <th>Total</th>
-                                    <th>Remove</th>
+                                  <!--  <th>Remove</th>-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -58,14 +58,14 @@
                                         <p th:text="${product.price}"></p>
                                     </td>
                                     <td class="quantity-box" th:text="${product.quantity}"></td>
-                                    <td class="total-pr" <!--th:text="${product.totalSum}"-->></td>
-                                    <td class="remove-pr">
+                                    <td class="total-pr" th:text="${product.totalSum}"></td>
+                                    <!--<td class="remove-pr">
                                         <a href="#">
 									<i class="fas fa-times"></i>
 								</a>
-                                    </td>
+                                    </td>-->
                                 </tr>
-                                <tr>
+                                <!--<tr>
                                     <td class="thumbnail-img">
                                         <a href="#">
 									<img class="img-fluid" src="/shop/images/img-pro-02.jpg" alt="" />
@@ -112,7 +112,7 @@
 									<i class="fas fa-times"></i>
 								</a>
                                     </td>
-                                </tr>
+                                </tr>-->
                             </tbody>
                         </table>
                     </div>
@@ -123,19 +123,19 @@
                 <div class="col-lg-6 col-sm-6">
 <!--                    kaut kas te ir jaamaina!-->
                 </div>
-                <div class="col-lg-6 col-sm-6">
+                <!--<div class="col-lg-6 col-sm-6">
                     <div class="update-box">
                         <input value="Update Cart" type="submit">
                     </div>
-                </div>
+                </div>-->
             </div>
 
             <div class="row my-5">
                 <div class="col-lg-8 col-sm-12"></div>
                 <div class="col-lg-4 col-sm-12">
                     <div class="order-box">
-                        <h3>Order summary</h3>
-                        <div class="d-flex">
+                        <!--<h3>Order summary</h3>-->
+<!--                        <div class="d-flex">
                             <h4>Sub Total</h4>
                             <div class="ml-auto font-weight-bold"> $ 130 </div>
                         </div>
@@ -146,7 +146,7 @@
                         <div class="d-flex">
                             <h4>Shipping Cost</h4>
                             <div class="ml-auto font-weight-bold"> Free </div>
-                        </div>
+                        </div>-->
                         <hr>
                         <div class="d-flex gr-total">
                             <h5>Grand Total</h5>

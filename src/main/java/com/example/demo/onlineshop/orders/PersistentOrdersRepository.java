@@ -28,6 +28,7 @@ public class PersistentOrdersRepository implements OrdersRepository {
 
 
 
+
     @Override
     public Orders findOne(long id) {
 //        Orders orders = mapper.findOne(id);
@@ -81,8 +82,5 @@ public class PersistentOrdersRepository implements OrdersRepository {
         mapper.deleteById(id);
     }
 
-    @Override
-    public List<OrdersProductsTable> getCartProducts(String userId) {
-        return null;
-    }
+
 }
