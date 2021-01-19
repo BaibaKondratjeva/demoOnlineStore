@@ -66,8 +66,10 @@
                                 <h4>Short Description:</h4>
                                 <p>Nam sagittis a augue eget scelerisque. Nullam lacinia consectetur sagittis. Nam sed neque id eros fermentum dignissim quis at tortor. Nullam ultricies urna quis sem sagittis pharetra. Nam erat turpis, cursus in ipsum at,
                                     tempor imperdiet metus. In interdum id nulla tristique accumsan. Ut semper in quam nec pretium. Donec egestas finibus suscipit. Curabitur tincidunt convallis arcu. </p>
+                        <form method="POST" th:object="${productForm}">
                                 <ul>
-                                    <li>
+         <!--                           <li>
+
                                         <div class="form-group size-st">
                                             <label class="size-label">Size</label>
                                             <select id="basic" class="selectpicker show-tick form-control">
@@ -81,11 +83,13 @@
 									<option value="1">4XL</option>
 								</select>
                                         </div>
-                                    </li>
+                                    </li>-->
                                     <li>
                                         <div class="form-group quantity-box">
                                             <label class="control-label">Quantity</label>
-                                            <input class="form-control" value="0" min="0" max="20" type="number">
+                                            <input th:field="${productForm.quantity}"
+                                                   th:value="${productForm.quantity}"
+                                                    class="form-control" value="0" min="0" max="20" type="number">
                                         </div>
                                     </li>
                                 </ul>
@@ -95,6 +99,7 @@
                                         <a class="btn hvr-hover" data-fancybox-close="" th:href="@{/product/{productId}(id=${product.id})}">Add to cart</a>
                                     </div>
                                 </div>
+                        </form>
                     </div>
                 </div>
             </div>
