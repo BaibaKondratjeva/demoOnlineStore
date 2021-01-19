@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface OrdersRepository  {
 
-   void updateStatus (Long id, Orders order);
+   void updateStatus (Long id,Orders order);
 
    Orders findOne(long id);
 

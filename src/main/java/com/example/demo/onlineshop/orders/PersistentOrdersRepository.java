@@ -31,12 +31,12 @@ public class PersistentOrdersRepository implements OrdersRepository {
 
     @Override
     public Orders findOne(long id) {
-//        Orders orders = mapper.findOne(id);
+//       Orders orders = mapper.findOne(id);
 //        if (orders == null) {
 //            throw new NotFoundException("Orders with id " + id + " doesn't exist");
 //        }
 //        return orders;
-        return null;
+        return mapper.findOne(id);
     }
 
     @Override

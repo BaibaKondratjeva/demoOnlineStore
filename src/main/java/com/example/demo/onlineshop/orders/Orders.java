@@ -11,10 +11,6 @@ public class Orders {
     private LocalDateTime orderTime;
     private long customerId;
     private long statusId;
-    private LocalDateTime t;
-
-
-
 
 
     public Orders() {
@@ -28,8 +24,6 @@ public class Orders {
         this.statusId = status;
 
     }
-
-
 
     public long getId() {
         return id;

@@ -2,6 +2,7 @@ package com.example.demo.onlineshop.front.cart;
 
 import com.example.demo.onlineshop.orders.OrdersProductsTable;
 import com.example.demo.onlineshop.orders.OrdersRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -15,11 +16,13 @@ import static com.example.demo.cookies.Cookies.USER_ID_COOKIE_NAME;
 @Controller
 @RequestMapping
 public class CartController {
-    private final OrdersRepository ordersRepository;
+
+    @Autowired
+    private OrdersRepository ordersRepository;
     private final CartMapper cartMapper;
 
-    public CartController(OrdersRepository ordersRepository, CartMapper cartMapper) {
-        this.ordersRepository = ordersRepository;
+    public CartController(/*OrdersRepository ordersRepository, */CartMapper cartMapper) {
+        /*this.ordersRepository = ordersRepository;*/
         this.cartMapper = cartMapper;
     }
 
@@ -31,7 +34,7 @@ public class CartController {
 
            model.addAttribute("cartProducts",cartProducts);
        }*/
-        List<OrdersProductsTable> cartProducts = cartMapper.getCartProducts(userId);
+        List<CartTable> cartProducts = cartMapper.getCartProducts(userId);
 
         model.addAttribute("cartProducts",cartProducts);
 

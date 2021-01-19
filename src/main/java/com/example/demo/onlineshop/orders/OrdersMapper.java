@@ -25,7 +25,7 @@ public interface OrdersMapper {
     @Select("select id, name, imageUri from orders where name like #{name}")
     Orders findByName(String name);
 
-    @Select("select id, name, imageUri from orders where id = #{id}")
+    @Select("select id, order_time, status_id, user_id from orders where id = #{id}")
     Orders findOne(long id);
 
 
