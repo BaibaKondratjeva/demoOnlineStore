@@ -20,13 +20,14 @@ import java.util.List;
 public class HomePageController {
     private final ProductsRepository repository;
     private final CategoriesRepository categoriesRepository;
-    private final OrdersRepository ordersRepository;
+    @Autowired
+    private OrdersRepository ordersRepository;
 
     @Autowired
-    public HomePageController(CategoriesRepository categoriesRepository, ProductsRepository repository, OrdersRepository ordersRepository) {
+    public HomePageController(CategoriesRepository categoriesRepository, ProductsRepository repository /*OrdersRepository ordersRepository*/) {
         this.categoriesRepository = categoriesRepository;
         this.repository = repository;
-        this.ordersRepository = ordersRepository;
+        /*this.ordersRepository = ordersRepository*/;
     }
 
     @GetMapping(path = {"/"})
