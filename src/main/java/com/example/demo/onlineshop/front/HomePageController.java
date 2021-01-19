@@ -58,29 +58,6 @@ public class HomePageController {
         return "shop/my-account";
     }
 
-    @GetMapping(path = {"/products", "/products/{categoryId}"})
-    public String products(@PathVariable(required = false) Long categoryId, Model model) {
-        if (categoryId == null) {
-            List<Categories> allCategories = categoriesRepository.findAll();
-            model.addAttribute("allCategories", allCategories);
-            List<ProductRequest> allProducts = repository.findAll();
-            model.addAttribute("allProducts", allProducts);
-            return "shop/products";
-        } else {
-            List<Categories> allCategories = categoriesRepository.findAll();
-            model.addAttribute("allCategories", allCategories);
-            Categories category = categoriesRepository.findOne(categoryId);
-            model.addAttribute("category", category);
-            List<ProductRequest> allProducts = repository.findAll();
-            model.addAttribute("allProducts", allProducts);
-            return "shop/products";
-        }
-    }
-
-    @GetMapping("/product-details")
-    public String productDetails() {
-        return "shop/product-details";
-    }
 
 }
 
