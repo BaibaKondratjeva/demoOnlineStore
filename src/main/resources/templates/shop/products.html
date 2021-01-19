@@ -169,9 +169,9 @@
                                                     <img th:src="${product.imageUri}" class="img-fluid" alt="Image">
                                                     <div class="mask-icon">
                                                         <ul>
-                                                            <li><a th:href="@{/product-details}" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                                            <li><a th:href="@{/product-name}" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
                                                         </ul>
-                                                        <a class="cart"th:href="@{/cart}">Add to Cart</a>
+                                                        <a class="cart" th:href="@{/product-details}">View details</a>
                                                     </div>
                                                     <div class="why-text">
                                                         <h4 th:text="${product.description}"></h4>
