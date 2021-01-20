@@ -14,37 +14,7 @@
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
                         <li class="nav-item active"><a class="nav-link" href="/">HOME</a></li>
-                        <li class="dropdown megamenu-fw">
-                            <a href="/products" class="nav-link dropdown-toggle">PRODUCTS</a>
-                            <ul class="dropdown-menu megamenu-content" role="menu">
-                                <li>
-                                    <div class="row">
-                                        <div class="col-menu col-md-3">
-                                            <h3 class="nav-item active"><a class="nav-link" href="/product-details">ALL WEAPONS</a></h3>
-                                            <div class="content">
-                                                <ul th:each="category : ${allCategories}" class="menu-col">
-                                                    <li><a  th:text="${category.name}"
-                                                            th:href="@{/products/{category}(category=${category.name})}">
-                                                    </a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-menu col-md-3">
-                                            <h3 class="nav-item active"><a class="nav-link" href="/product-details">DESIGNED GUNS</a></h3>
-                                        </div>
-
-                                        <div class="col-menu col-md-3">
-                                            <h3 class="nav-item active"><a class="nav-link" href="/product-details">AMMUNITION</a></h3>
-                                        </div>
-
-                                        <div class="col-menu col-md-3">
-                                            <h3 class="nav-item active"><a class="nav-link" href="/product-details">OPTICS</a></h3>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
+                        <li class="nav-item"><a class="nav-link" href="/products">PRODUCTS</a></li>
                         <li class="nav-item"><a class="nav-link" href="/cart">CART</a></li>
                         <li class="nav-item"><a class="nav-link" href="/checkout">CHECKOUT</a></li>
                     </ul>
