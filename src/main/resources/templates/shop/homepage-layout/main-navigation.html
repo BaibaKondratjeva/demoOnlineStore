@@ -1,77 +1,24 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="main-navigation">
     <header class="main-header">
-        <!-- Start Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
             <div class="container">
-                <!-- Start Header Navigation -->
                 <div class="navbar-header">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fa fa-bars"></i>
                     </button>
                     <a class="navbar-brand" href="/"><img src="https://live.staticflickr.com/65535/50809320323_d3f9c2d7e9_w.jpg" height="80" class="logo" alt="CREATIVE GUNS"></a>
                 </div>
-                <!-- End Header Navigation -->
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
                         <li class="nav-item active"><a class="nav-link" href="/">HOME</a></li>
-                        <li class="dropdown megamenu-fw">
-                            <a href="/products" class="nav-link dropdown-toggle arrow">PRODUCTS</a>
-                            <ul class="dropdown-menu megamenu-content" role="menu">
-                                <li>
-                                    <div class="row">
-                                        <div class="col-menu col-md-3">
-                                            <h6 class="title">Weapons</h6>
-                                            <div class="content">
-                                                <ul th:each="category : ${allCategories}" class="menu-col">
-                                                    <li><a  th:text="${category.name}"
-                                                            th:href="@{/products/{category}(category=${category.name})}">
-                                                    </a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <!-- end col-3 -->
-                                        <div class="col-menu col-md-3">
-                                            <h6 class="title">Ammunition</h6>
-                                            <div class="content">
-                                                <ul th:each="category : ${allCategories}" class="menu-col">
-                                                    <li><a th:text="${category.name}"
-                                                           th:href="@{/products/{category}(category=${category.name})}"></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <!-- end col-3 -->
-                                        <div class="col-menu col-md-3">
-                                            <h6 class="title">Accessories</h6>
-                                            <div class="content">
-                                                <ul th:each="category : ${allCategories}" class="menu-col">
-                                                    <li><a th:text="${category.name}"
-                                                           th:href="@{/products/{category}(category=${category.name})}"></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-menu col-md-3">
-                                            <h6 class="title">Optics</h6>
-                                            <div class="content">
-                                                <ul th:each="category : ${allCategories}" class="menu-col">
-                                                    <li><a th:text="${category.name}"
-                                                           th:href="@{/products/{category}(category=${category.name})}"></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <!-- end col-3 -->
-                                    </div>
-                                    <!-- end row -->
-                                </li>
-                            </ul>
-                        </li>
+                        <li class="nav-item"><a class="nav-link" href="/products">PRODUCTS</a></li>
                         <li class="nav-item"><a class="nav-link" href="/cart">CART</a></li>
                         <li class="nav-item"><a class="nav-link" href="/checkout">CHECKOUT</a></li>
                     </ul>
                 </div>
-                <!-- /.navbar-collapse -->
 
                 <!-- Start Atribute Navigation -->
                 <div class="attr-nav">
@@ -85,6 +32,7 @@
                 </div>
                 <!-- End Atribute Navigation -->
             </div>
+
             <!-- Start Side Menu -->
             <div class="side">
                 <a href="#" class="close-side"><i class="fa fa-times"></i></a>
@@ -114,9 +62,7 @@
             </div>
             <!-- End Side Menu -->
         </nav>
-        <!-- End Navigation -->
     </header>
-    <!-- End Main Top -->
 
     <!-- Start Top Search -->
     <div class="top-search">

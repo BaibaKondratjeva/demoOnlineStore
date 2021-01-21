@@ -8,19 +8,16 @@
                 <p>Check out the latest products in our store.</p>
             </div>
             <div class="featured-products-box owl-carousel owl-theme">
-                <div class="item">
-                    <div class="products-single fix">
-                        <div th:each="product : ${allProducts}"class="box-img-hover">
+                <div th:each="product : ${allProducts}" class="item">
+                    <div  class="products-single fix">
+                        <div class="box-img-hover">
                             <img th:src="${product.imageUri}" class="img-fluid" alt="Image">
-                            <div class="mask-icon">
-                                <ul>
-                                    <li><a th:href="@{/product-details}" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                </ul>
-                                <a class="cart" th:href="@{/cart}">Add to Cart</a>
-                            </div>
                             <div class="why-text">
-                                <h4 th:text="${product.description}"></h4>
+                                <h4 th:text="${product.name}"></h4>
                                 <h5 th:text="${product.price} + €"></h5>
+                            </div>
+                            <div class="mask-icon">
+                                <a class="cart" th:href="@{/products/{product.id}}">Show details</a>
                             </div>
                         </div>
                     </div>
