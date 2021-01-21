@@ -9,6 +9,8 @@ public interface ProductsRepository {
 
     ProductRequest findOne (Long id);
 
+    Products findProduct (Long id);
+
     ProductRequest findByName(String name);
 
     List<ProductRequest> findAll();

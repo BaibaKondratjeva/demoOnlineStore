@@ -38,6 +38,9 @@ public interface ProductsMapper {
             "where products.id = #{id}")
     ProductRequest findOne(Long id);
 
+    @Select("select id, name, description, price, quantity, imageUri from products where id = #{id}")
+    Products findProduct (Long id);
+
     @Select("select id from categories id IN (#{id}, #{id})")
     ProductRequest categoriesValidation(List<Integer> categoryIds);
 
