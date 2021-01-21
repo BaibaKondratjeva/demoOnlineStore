@@ -35,6 +35,8 @@ public class UserProductsController {
 
     @Autowired
     ProductsRepository productsRepository;
+    @Autowired
+    UserProductsService service;
 
 /*    @GetMapping({"/products", "/products/{categoryName}"})
     public String products(@PathVariable(required = false) String categoryName,
@@ -92,15 +94,20 @@ public class UserProductsController {
 
         if (userId == null){
             userId = UUID.randomUUID().toString();
-            addShoppingCartCookieToResponse(response, userId);
+            service.addShoppingCartCookieToResponse(response, userId);
             Orders order = new Orders();
-            ordersRepository.insertNewOrder(ORDER_SHOPPING_STATUS_ID,userId);
-            order = ordersRepository.findByUserId(userId);
-            ordersRepository.insertInOrdersProducts(order.getId(),product.getId(),form.getQuantity());
+            service.insertNewUserOrder(userId,product,form,order);
+
         }
 
         if (userId != null){
             Orders order = ordersRepository.findByUserId(userId);
+            if (order.getStatusId().equals(ORDER_SHOPPING_STATUS_ID)) {
+                ordersRepository.insertInOrdersProducts(order.getId(), product.getId(), form.getQuantity());
+            } else {
+                Orders newOrder = new Orders();
+                service.insertNewUserOrder(userId,product,form,newOrder);
+            }
 
         }
 
@@ -115,15 +122,7 @@ public class UserProductsController {
         model.addAttribute("productForm", new AddProductToCartForm());
         model.addAttribute("isSuccess", true);
 
-        //String userIdentifier = UUID.randomUUID().toString(); // example how we can create unique identifier
-
-        //Example of how we can generate unique ID and set cookie for user
-
         return "redirect:/products";
     }
 
-    private void addShoppingCartCookieToResponse(HttpServletResponse response, String cookieValue) {
-        Cookie cookie = CookieUtils.createCookie(USER_ID_COOKIE_NAME, cookieValue);
-        response.addCookie(cookie);
-    }
 }
