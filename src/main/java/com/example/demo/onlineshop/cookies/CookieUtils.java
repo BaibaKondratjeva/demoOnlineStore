@@ -1,4 +1,4 @@
-package com.example.demo.cookies;
+package com.example.demo.onlineshop.cookies;
 
 import javax.servlet.http.Cookie;
 
