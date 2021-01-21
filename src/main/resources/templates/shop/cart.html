@@ -148,9 +148,9 @@
                             <div class="ml-auto font-weight-bold"> Free </div>
                         </div>-->
                         <hr>
-                        <div  th:each = "product : ${cartProducts}" class="d-flex gr-total">
+                        <div  class="d-flex gr-total">
                             <h5>Grand Total</h5>
-                            <div class="ml-auto h5"th:text="${product.grandTotal}" ></div>
+                            <div class="ml-auto h5"th:text="${grandTotal +'€'}" ></div>
                         </div>
                         <hr> </div>
                 </div>

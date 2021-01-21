@@ -32,7 +32,7 @@ public class OrdersController {
         return "cms/orders/orders";
     }
     @GetMapping ("/admin/orders/update/{id}")
-    public String updateStatus(@PathVariable("id") Long id /*Orders orderToUpdate*/){
+    public String updateStatus(@PathVariable("id") Long id ){
         Orders order =ordersRepository.findOne(id);
             if (ORDER_PENDING_STATUS_ID.equals(order.getStatusId())) {
                 ordersRepository.updateStatus(id, order);
@@ -52,11 +52,11 @@ public class OrdersController {
     }
 
 
-    @GetMapping("/admin/orders/name/{name}")
+/*    @GetMapping("/admin/orders/name/{name}")
     public Orders findByName (@PathVariable String name) {
         System.out.println(ordersRepository.findByName(name));
         return ordersRepository.findByName(name);
-    }
+    }*/
 
     @PostMapping
 

@@ -12,7 +12,7 @@ public interface OrdersRepository  {
 
    Orders findOne(long id);
 
-    Orders findByName(String name);
+   Orders findByUserId(String userId);
 
     List<OrdersTable> findAll();
 

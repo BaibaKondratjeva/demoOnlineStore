@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import static com.example.demo.cookies.Cookies.USER_ID_COOKIE_NAME;
+/*import static com.example.demo.cookies.Cookies.USER_ID_COOKIE_NAME;*/
+import static com.example.demo.onlineshop.cookies.Cookies.USER_ID_COOKIE_NAME;
 
 @Controller
 public class CheckOutController {

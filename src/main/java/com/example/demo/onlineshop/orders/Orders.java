@@ -11,7 +11,19 @@ public class Orders {
     private LocalDateTime orderTime;
     private long customerId;
     private long statusId;
+    private String userId;
 
+    public void setStatusId(long statusId) {
+        this.statusId = statusId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public Orders() {
 
@@ -22,6 +34,7 @@ public class Orders {
         this.orderTime = time;
         this.customerId = customer_id;
         this.statusId = status;
+
 
     }
 
