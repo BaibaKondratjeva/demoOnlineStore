@@ -4,7 +4,6 @@ import com.example.demo.onlineshop.NotFoundException;
 import com.example.demo.onlineshop.categories.Categories;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,14 +19,20 @@ public class PersistantProductsRepository implements ProductsRepository {
     public PersistantProductsRepository(ProductsMapper mapper) {
         this.mapper = mapper;
     }
-
+    
     @Override
     public ProductRequest findOne(Long id) {
-        ProductRequest product = mapper.findOne(id);
+        // FIXME its a hack, should fix it in a nice way haha
+        List<ProductRequest> product = mapper.findAll();
+        ProductRequest productRequest = product.stream()
+                .filter(p -> p.id.equals(id))
+                .findFirst()
+                .get();
+
         if (product == null) {
             throw new NotFoundException("Product with id " + id + " doesn't exist");
         }
-        return product;
+        return productRequest;
     }
 
     @Override
