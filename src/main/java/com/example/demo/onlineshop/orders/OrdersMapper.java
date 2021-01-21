@@ -29,17 +29,17 @@ public interface OrdersMapper {
     Orders findOne(long id);
 
 
-    @Options(useGeneratedKeys = true,
-            keyProperty = "id",
-            keyColumn = "id")
-    @Insert("insert into orders (status_id, user_id) values (#{statusId}, #{userId},)")
-    void insert(Orders orders);
+    @Insert("insert into orders (status_id, user_id) values ( #{statusId}, #{userId})")
+    void insertNewOrder(Long statusId,String userId);
+
+    @Insert("insert into orders_products (order_id, product_id, quantity) values (#{orderId}, #{productId},#{quantity})")
+    void insertInOrdersProducts (Long orderId,Long productId,Integer quantity);
 
     @Update("update orders set status_id = 2 where id = #{id}")
     boolean updateStatus(Long id, Orders order);
 
     @Delete("delete from orders where id = #{id}")
-    boolean deleteById(long id);
+    boolean deleteById(Long id);
 
     @Select("select products.id, products.imageUri, products.name, orders_products.quantity,\n" +
             " products.price from orders_products\n" +
@@ -51,5 +51,4 @@ public interface OrdersMapper {
 
     Orders ordersValidation(List<Integer> categoryIds);
 
-    void insertOrdersCategories(long productId, long categoryId);
 }

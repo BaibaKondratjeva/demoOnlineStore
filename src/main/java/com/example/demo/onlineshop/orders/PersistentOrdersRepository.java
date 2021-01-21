@@ -1,6 +1,6 @@
 package com.example.demo.onlineshop.orders;
 
-import com.example.demo.onlineshop.categories.Categories;
+import com.example.demo.onlineshop.NotFoundException;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +17,7 @@ public class PersistentOrdersRepository implements OrdersRepository {
 
     @Override
 
-    public void updateStatus (Long id, Orders order){
+    public void updateStatus (long id, Orders order){
          mapper.updateStatus(id,order);
     }
 
@@ -25,8 +25,6 @@ public class PersistentOrdersRepository implements OrdersRepository {
     public List<OrdersProductsTable> getOrderedProducts (Long id){
         return mapper.getOrderedProducts(id);
     }
-
-
 
 
     @Override
@@ -40,13 +38,12 @@ public class PersistentOrdersRepository implements OrdersRepository {
     }
 
     @Override
-    public Orders findByName(String name) {
-//        Orders orders = mapper.findByName(name);
-//        if (orders == null) {
-//            throw new NotFoundException("Orders with name " + name + " doesn't exist");
-//        }
-//        return orders;
-        return null;
+    public Orders findByUserId(String userId) {
+        Orders orders = mapper.findByUserId(userId);
+        if (orders == null) {
+           throw new NotFoundException("Orders with name " + userId + " doesn't exist");
+        }
+       return orders;
     }
 
     @Override
@@ -57,27 +54,25 @@ public class PersistentOrdersRepository implements OrdersRepository {
 
     @Override
         public Orders insert(Orders order) {
-//        Orders orders = new Orders(request);
-//        mapper.insert(orders);
-//        return orders;
-        return null;
+        Orders orders = new Orders();
+        //mapper.insert(orders);
+        return orders;
+
     }
 
     @Override
-    public Orders update(long id, Orders order) {
-//        Orders existing = findOne(id);
-//        existing.setName(product.getName());
-//        existing.setDescription(product.getDescription());
-//        existing.setPrice(product.getPrice());
-//        existing.setQuantity(product.getQuantity());
-//        existing.setImageUri(product.getImageUri());
-//        mapper.update(existing);
-//        return existing;
-        return null;
+    public void insertNewOrder(Long statusId, String userId) {
+        mapper.insertNewOrder(statusId,userId);
     }
 
     @Override
-    public void delete(long id) {
+    public void insertInOrdersProducts(Long orderId, Long productId, Integer quantity) {
+        mapper.insertInOrdersProducts(orderId,productId,quantity);
+    }
+
+
+    @Override
+    public void delete(Long id) {
 
         mapper.deleteById(id);
     }

@@ -25,6 +25,8 @@ import static com.example.demo.onlineshop.cookies.Cookies.USER_ID_COOKIE_NAME;
 
 @Controller
 public class UserProductsController {
+
+    private final Long ORDER_SHOPPING_STATUS_ID = 3L;
     @Autowired
     CategoriesRepository categoriesRepository;
 
@@ -76,7 +78,7 @@ public class UserProductsController {
         return "shop/product-details";
     }
 
-    @PostMapping("/products/insert/{id}")
+    @PostMapping("/products/{id}")
     public String addProductToCart(@PathVariable ("id") Long id,
                                    //We can use this annotation before the parameter to tell Spring to
                                    //set the value of this parameter to the value of cookie (if user has a cookie)
@@ -88,11 +90,18 @@ public class UserProductsController {
         Products product = productsRepository.findProduct(id);
 
 
-        if (userId != null){
+        if (userId == null){
             userId = UUID.randomUUID().toString();
             addShoppingCartCookieToResponse(response, userId);
             Orders order = new Orders();
-            ordersRepository.insert(order);
+            ordersRepository.insertNewOrder(ORDER_SHOPPING_STATUS_ID,userId);
+            order = ordersRepository.findByUserId(userId);
+            ordersRepository.insertInOrdersProducts(order.getId(),product.getId(),form.getQuantity());
+        }
+
+        if (userId != null){
+            Orders order = ordersRepository.findByUserId(userId);
+
         }
 
         model.addAttribute("product", product);
