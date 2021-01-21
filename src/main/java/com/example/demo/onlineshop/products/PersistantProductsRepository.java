@@ -35,6 +35,14 @@ public class PersistantProductsRepository implements ProductsRepository {
         return productRequest;
     }
 
+    public Products findProduct (Long id) {
+        Products product = mapper.findProduct(id);
+        if (product == null) {
+            throw new NotFoundException("Product with id " + id + " doesn't exist");
+        }
+        return product;
+    }
+
     @Override
     public ProductRequest findByName(String name) {
         ProductRequest product = mapper.findByName(name);
