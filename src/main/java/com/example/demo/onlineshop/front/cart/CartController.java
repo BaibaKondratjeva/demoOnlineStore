@@ -1,5 +1,6 @@
 package com.example.demo.onlineshop.front.cart;
 
+import com.example.demo.onlineshop.orders.Orders;
 import com.example.demo.onlineshop.orders.OrdersProductsTable;
 import com.example.demo.onlineshop.orders.OrdersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
-import static com.example.demo.cookies.Cookies.USER_ID_COOKIE_NAME;
+/*import static com.example.demo.cookies.Cookies.USER_ID_COOKIE_NAME;*/
+import static com.example.demo.onlineshop.cookies.Cookies.USER_ID_COOKIE_NAME;
+
 
 @Controller
 @RequestMapping
@@ -21,6 +24,8 @@ public class CartController {
     private OrdersRepository ordersRepository;
     private final CartMapper cartMapper;
 
+    private final Long ORDER_SHOPPING_STATUS_ID = 3L;
+
     public CartController(/*OrdersRepository ordersRepository, */CartMapper cartMapper) {
         /*this.ordersRepository = ordersRepository;*/
         this.cartMapper = cartMapper;
@@ -29,15 +34,19 @@ public class CartController {
     @GetMapping("/cart")
     public String cart(@CookieValue(name = USER_ID_COOKIE_NAME, required = false) String userId,
                        Model model) {
-      /* if (ordersRepository.orderStatusValidation(userId).getStatusId().equals(3)) {
-           List<OrdersProductsTable> cartProducts = cartMapper.getCartProducts(userId);
+/*       if (cartMapper.orderStatusValidation(userId).getStatusId().equals(3)) {
 
-           model.addAttribute("cartProducts",cartProducts);
        }*/
+/*        Orders order =ordersRepository.findByUserId(userId);
+        if (ORDER_SHOPPING_STATUS_ID.equals(order.getStatusId())) {
+
+        }*/
+
         List<CartTable> cartProducts = cartMapper.getCartProducts(userId);
+        Integer grandTotal =cartMapper.grandTotal(userId);
 
         model.addAttribute("cartProducts",cartProducts);
-
+        model.addAttribute("grandTotal",grandTotal);
 
         return "shop/cart";
     }

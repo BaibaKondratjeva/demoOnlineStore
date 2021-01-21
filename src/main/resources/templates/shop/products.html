@@ -117,7 +117,7 @@
                                                 <div class="box-img-hover">
                                                     <img th:src="${product.imageUri}" class="img-fluid" alt="Image">
                                                     <div class="mask-icon">
-                                                        <a class="cart" th:href="@{/products/{product.id}}">View details</a>
+                                                        <a class="cart" th:href="@{/products/{id}(id=${product.id})}">View details</a>
                                                     </div>
                                                     <div class="why-text">
                                                         <h4 th:text="${product.name}"></h4>

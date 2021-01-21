@@ -22,8 +22,8 @@ public interface OrdersMapper {
 
 
 
-    @Select("select id, name, imageUri from orders where name like #{name}")
-    Orders findByName(String name);
+    @Select("select id, order_time, status_id, user_id from orders where user_id = #{userId}")
+    Orders findByUserId(String userId);
 
     @Select("select id, order_time, status_id, user_id from orders where id = #{id}")
     Orders findOne(long id);
@@ -32,7 +32,7 @@ public interface OrdersMapper {
     @Options(useGeneratedKeys = true,
             keyProperty = "id",
             keyColumn = "id")
-    @Insert("insert into orders (name, imageUri) values (#{name}, #{imageUri})")
+    @Insert("insert into orders (status_id, user_id) values (#{statusId}, #{userId},)")
     void insert(Orders orders);
 
     @Update("update orders set status_id = 2 where id = #{id}")
