@@ -22,7 +22,7 @@ public class PersistantProductsRepository implements ProductsRepository {
     
     @Override
     public ProductRequest findOne(Long id) {
-        // FIXME its a hack, should fix it in a nice way haha
+        // FIXME its a hack, should fix it in a nice way haha.. sorry girls, don't know how
         List<ProductRequest> product = mapper.findAll();
         ProductRequest productRequest = product.stream()
                 .filter(p -> p.id.equals(id))
