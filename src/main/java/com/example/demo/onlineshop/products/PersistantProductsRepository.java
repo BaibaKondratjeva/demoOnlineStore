@@ -5,6 +5,7 @@ import com.example.demo.onlineshop.categories.Categories;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -22,17 +23,11 @@ public class PersistantProductsRepository implements ProductsRepository {
     
     @Override
     public ProductRequest findOne(Long id) {
-        // FIXME its a hack, should fix it in a nice way haha.. sorry girls, don't know how
-        List<ProductRequest> product = mapper.findAll();
-        ProductRequest productRequest = product.stream()
-                .filter(p -> p.id.equals(id))
-                .findFirst()
-                .get();
-
+        ProductRequest product = mapper.findOne(id);
         if (product == null) {
             throw new NotFoundException("Product with id " + id + " doesn't exist");
         }
-        return productRequest;
+        return product;
     }
 
     public Products findProduct (Long id) {
@@ -63,23 +58,23 @@ public class PersistantProductsRepository implements ProductsRepository {
         return categories;
     }
 
-    @Override
-    public ProductRequest create(ProductRequest product) {
-        mapper.create(product);
-        product.setCategories(mapper.findProductCategories(product.getId()));
-        return product;
-    }
-
-
 //    @Override
 //    public ProductRequest create(ProductRequest product) {
 //        mapper.create(product);
 //        product.setCategories(mapper.findProductCategories(product.getId()));
-//        if (product.getName().equals(null) || product.getQuantity() == 0 || product.getPrice().equals(BigDecimal.ZERO)) {
-//            throw new NullPointerException("There should be written product`s name, quantity and price");
-//        }
 //        return product;
 //    }
+
+
+    @Override
+    public ProductRequest create(ProductRequest product) {
+        mapper.create(product);
+        product.setCategories(mapper.findProductCategories(product.getId()));
+        if (product.getName().equals(null) || product.getQuantity() == 0 || product.getPrice().equals(BigDecimal.ZERO)) {
+            throw new NullPointerException("There should be written product`s name, quantity and price");
+        }
+        return product;
+    }
 
     @Override
     public ProductRequest update(Long id, ProductRequest product) {
