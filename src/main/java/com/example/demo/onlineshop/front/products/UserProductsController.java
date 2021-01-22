@@ -75,7 +75,7 @@ public class UserProductsController {
 
     @GetMapping("/products/{id}")
     public String productDetails(@PathVariable("id") Long id, Model model) {
-        ProductRequest product = productsRepository.findOne(id);
+        Products product = productsRepository.findProduct(id);
         model.addAttribute("product", product);
         return "shop/product-details";
     }
@@ -98,10 +98,8 @@ public class UserProductsController {
             Orders order = new Orders();
             service.insertNewUserOrder(userId,product,form,order);
 
-        }
-
-        if (userId != null){
-            Orders order = ordersRepository.findByUserId(userId);
+        } else if (userId != null){
+            Orders order = ordersRepository.findOneWhereStatusShopping(userId);
             if (order.getStatusId().equals(ORDER_SHOPPING_STATUS_ID)) {
                 ordersRepository.insertInOrdersProducts(order.getId(), product.getId(), form.getQuantity());
             } else {
@@ -111,7 +109,7 @@ public class UserProductsController {
 
         }
 
-        model.addAttribute("product", product);
+//        model.addAttribute("product", product);
 
 
 
@@ -119,10 +117,10 @@ public class UserProductsController {
         System.out.println("add to cart product: " + id + " and quantity " + form);
         System.out.println("Cart cookie ID: " + userId);
 
-        model.addAttribute("productForm", new AddProductToCartForm());
+        model.addAttribute("product", new AddProductToCartForm());
         model.addAttribute("isSuccess", true);
 
-        return "redirect:/products";
+        return "redirect:/products/{id}";
     }
 
 }
