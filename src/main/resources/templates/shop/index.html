@@ -5,135 +5,103 @@
 
 <body>
 
-    <div th:replace="~{shop/homepage-layout/main-top :: main-top}"></div>
+<div th:replace="~{shop/homepage-layout/main-top :: main-top}"></div>
 
-    <div th:replace="~{shop/homepage-layout/main-navigation :: main-navigation}"></div>
+<div th:replace="~{shop/homepage-layout/main-navigation :: main-navigation}"></div>
 
-    <!-- Start Slider -->
-    <div id="slides-shop" class="cover-slides">
-        <ul class="slides-container">
-            <li class="text-right">
-                <img src="https://cdnb.artstation.com/p/assets/images/images/019/672/541/large/karan-dev-m416-skullcollector.jpg?1564526018" alt="">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="m-b-20"><strong>Welcome To <br> CREATIVE GUNS</strong></h1>
-                            <p><a class="btn hvr-hover" href="/products">SHOP</a></p>
-                        </div>
+<!-- Start Slider -->
+<div id="slides-shop" class="cover-slides">
+    <ul class="slides-container">
+        <li class="text-right">
+            <img src="https://cdnb.artstation.com/p/assets/images/images/019/672/541/large/karan-dev-m416-skullcollector.jpg?1564526018"
+                 alt="">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="m-b-20"><strong>Welcome To <br> CREATIVE GUNS</strong></h1>
+                        <p><a class="btn hvr-hover" href="/products">SHOP</a></p>
                     </div>
                 </div>
-            </li>
-            <li class="text-center">
-                <img src="https://wallpaperaccess.com/full/409941.jpg" alt="">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="m-b-20"><strong>LET'S BE as CREATIVE <br> as we can</strong></h1>
-                            <p><a class="btn hvr-hover" href="/products">SHOP</a></p>
-                        </div>
+            </div>
+        </li>
+        <li class="text-center">
+            <img src="https://wallpaperaccess.com/full/409941.jpg" alt="">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="m-b-20"><strong>LET'S BE as CREATIVE <br> as we can</strong></h1>
+                        <p><a class="btn hvr-hover" href="/products">SHOP</a></p>
                     </div>
                 </div>
-            </li>
-            <li class="text-right">
-                <img src="https://www.digiseller.ru/preview/709324/p1_2651348_d02af151.png" alt="">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="m-b-20"><strong>Shop NOW <br> SHOOT later</strong></h1>
-                            <p><a class="btn hvr-hover" href="/products">SHOP</a></p>
-                        </div>
+            </div>
+        </li>
+        <li class="text-right">
+            <img src="https://www.digiseller.ru/preview/709324/p1_2651348_d02af151.png" alt="">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="m-b-20"><strong>Shop NOW <br> SHOOT later</strong></h1>
+                        <p><a class="btn hvr-hover" href="/products">SHOP</a></p>
                     </div>
                 </div>
-            </li>
-        </ul>
-        <div class="slides-navigation">
-            <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-            <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
-        </div>
+            </div>
+        </li>
+    </ul>
+    <div class="slides-navigation">
+        <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+        <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
     </div>
-    <!-- End Slider -->
+</div>
+<!-- End Slider -->
 
-    <!-- Start Categories  -->
-    <div class="categories-shop">
-        <div class="container">
-            <div class="col">
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <div th:each="category : ${allCategories}" class="shop-cat-box">
-                        <img class="img-fluid" th:src="${category.imageUri}" alt="image" />
-                        <a class="btn hvr-hover" th:href="@{/products/{category.name}(category=${category.id})}" th:text="${category.name}"></a>
-                    </div>
-                </div>
-
-                <!--                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">-->
-                <!--                    <div class="shop-cat-box">-->
-                <!--                        <img class="img-fluid" src="/shop/images/t-shirts-img.jpg" alt="" />-->
-                <!--                        <a class="btn hvr-hover" href="#">T-shirts</a>-->
-                <!--                    </div>-->
-                <!--                    <div class="shop-cat-box">-->
-                <!--                        <img class="img-fluid" src="/shop/images/shirt-img.jpg" alt="" />-->
-                <!--                        <a class="btn hvr-hover" href="#">Shirt</a>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-                <!--                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">-->
-                <!--                    <div class="shop-cat-box">-->
-                <!--                        <img class="img-fluid" src="/shop/images/wallet-img.jpg" alt="" />-->
-                <!--                        <a class="btn hvr-hover" href="#">Wallet</a>-->
-                <!--                    </div>-->
-                <!--                    <div class="shop-cat-box">-->
-                <!--                        <img class="img-fluid" src="/shop/images/women-bag-img.jpg" alt="" />-->
-                <!--                        <a class="btn hvr-hover" href="#">Bags</a>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-                <!--                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">-->
-                <!--                    <div class="shop-cat-box">-->
-                <!--                        <img class="img-fluid" src="/shop/images/shoes-img.jpg" alt="" />-->
-                <!--                        <a class="btn hvr-hover" href="#">Shoes</a>-->
-                <!--                    </div>-->
-                <!--                    <div class="shop-cat-box">-->
-                <!--                        <img class="img-fluid" src="/shop/images/women-shoes-img.jpg" alt="" />-->
-                <!--                        <a class="btn hvr-hover" href="#">Women Shoes</a>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-
+<!-- Start Categories  -->
+<div class="categories-shop">
+    <div class="container">
+        <div class="row align-items-start">
+            <div th:each="category : ${allCategories}" class="shop-cat-box col col-6 col-sm-3">
+                <img class="img-fluid" th:src="${category.imageUri}" alt="image"/>
+                <a class="btn hvr-hover" th:href="@{/products/{category.name}(category=${category.id})}"
+                   th:text="${category.name}"></a>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- End Categories -->
+<!-- End Categories -->
 
 
-    <div class="products-box">
-        <div class="container">
-            <div th:replace="~{shop/homepage-layout/new-products :: new-products}"></div>
-        </div>
+<div class="products-box">
+    <div class="container">
+        <div th:replace="~{shop/homepage-layout/new-products :: new-products}"></div>
     </div>
+</div>
 
-    <div th:replace="~{shop/homepage-layout/celebrities :: celebrities}"></div>
+<div th:replace="~{shop/homepage-layout/celebrities :: celebrities}"></div>
 
-    <div th:replace="~{shop/homepage-layout/footer :: footer}"></div>
+<div th:replace="~{shop/homepage-layout/footer :: footer}"></div>
 
-    <div th:replace="~{shop/homepage-layout/copyright :: copyright}"></div>
+<div th:replace="~{shop/homepage-layout/copyright :: copyright}"></div>
 
-    <a href="/" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+<a href="/" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
-    <!-- ALL JS FILES -->
-    <script src="shop/js/jquery-3.2.1.min.js"></script>
-    <script src="shop/js/popper.min.js"></script>
-    <script src="shop/js/bootstrap.min.js"></script>
-    <!-- ALL PLUGINS -->
-    <script src="shop/js/jquery.superslides.min.js"></script>
-    <script src="shop/js/bootstrap-select.js"></script>
-    <script src="shop/js/inewsticker.js"></script>
-    <script src="shop/js/bootsnav.js"></script>
-    <script src="shop/js/images-loded.min.js"></script>
-    <script src="shop/js/isotope.min.js"></script>
-    <script src="shop/js/owl.carousel.min.js"></script>
-    <script src="shop/js/baguetteBox.min.js"></script>
-    <script src="shop/js/form-validator.min.js"></script>
-    <script src="shop/js/contact-form-script.js"></script>
-    <script src="shop/js/custom.js"></script>
+<!-- ALL JS FILES -->
+<script src="shop/js/jquery-3.2.1.min.js"></script>
+<script src="shop/js/popper.min.js"></script>
+<script src="shop/js/bootstrap.min.js"></script>
+<!-- ALL PLUGINS -->
+<script src="shop/js/jquery.superslides.min.js"></script>
+<script src="shop/js/bootstrap-select.js"></script>
+<script src="shop/js/inewsticker.js"></script>
+<script src="shop/js/bootsnav.js"></script>
+<script src="shop/js/images-loded.min.js"></script>
+<script src="shop/js/isotope.min.js"></script>
+<script src="shop/js/owl.carousel.min.js"></script>
+<script src="shop/js/baguetteBox.min.js"></script>
+<script src="shop/js/form-validator.min.js"></script>
+<script src="shop/js/contact-form-script.js"></script>
+<script src="shop/js/custom.js"></script>
 
-    <script src="https://use.fontawesome.com/500bfe943c.js"></script>
+<script src="https://use.fontawesome.com/500bfe943c.js"></script>
 
 </body>
 

@@ -43,7 +43,7 @@
                                 <h3>Categories</h3>
                             </div>
                             <div th:each="category : ${allCategories}" class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
-                                <a href="@{/category/{categoryId}(categoryId=${category.id})}" class="list-group-item list-group-item-action" th:text="${category.name}" ><small class="text-muted"></small></a>
+                                <a th:href="@{/category/{categoryId}(categoryId=${category.id})}" class="list-group-item list-group-item-action" th:text="${category.name}" ><small class="text-muted"></small></a>
                             </div>
                         </div>
 
@@ -61,21 +61,22 @@
                         </div>
                         
 
-<!--                        <div class="filter-brand-left">-->
-<!--                            <div class="title-left">-->
-<!--                                <h3>Brand</h3>-->
-<!--                            </div>-->
-<!--                            <div class="brand-box">-->
-<!--                                <ul>-->
-<!--                                    <li>-->
-<!--                                        <div class="radio radio-danger">-->
-<!--                                            <input name="survey" id="Radios1" value="Yes" type="radio">-->
-<!--                                            <label for="Radios1"> Supreme </label>-->
-<!--                                        </div>-->
-<!--                                    </li>-->
-<!--                                </ul>-->
-<!--                            </div>-->
-<!--                        </div>-->
+                        <div class="filter-brand-left">
+                            <div class="title-left">
+                                <h3>Brand</h3>
+                            </div>
+                            <div class="brand-box">
+                                <ul>
+                                    <li>
+                                        <div class="radio radio-danger">
+                                            <input name="survey" id="Radios1" value="Yes" type="radio">
+                                            <label for="Radios1"> Supreme </label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
 
                     </div>
                 </div>
@@ -110,10 +111,10 @@
 
                         <div class="row product-categorie-box">
                             <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
+                                <div role="tabpanel" class="tab-pane fade show active" id="grid-view" style="margin-left: 15px;">
                                     <div class="row">
-                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                            <div th:each="product : ${allProducts}" class="products-single fix">
+                                        <div class="row align-items-start">
+                                            <div th:each="product : ${allProducts}" class="products-single fix col col-6 col-sm-4">
                                                 <div class="box-img-hover">
                                                     <img th:src="${product.imageUri}" class="img-fluid" alt="Image">
                                                     <div class="mask-icon">
@@ -132,16 +133,10 @@
                                 <div role="tabpanel" class="tab-pane fade" id="list-view">
                                     <div class="list-view-box">
                                         <div class="row">
-                                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                                                <div th:each="product : ${allProducts}" class="products-single fix">
-                                                    <div class="box-img-hover">
-                                                        <img th:src="${product.imageUri}" class="img-fluid" alt="Image">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
-                                                <div th:each="product : ${allProducts}" class="why-text full-width">
-                                                    <h4 th:text="${product.name}"></h4>
+                                            <div th:each="product : ${allProducts}" class="products-single fix">
+                                                <div class="box-img-hover">
+                                                    <img th:src="${product.imageUri}" class="img-fluid" alt="Image">
+                                                    <h3 th:text="${product.name}"></h3>
                                                     <h5 th:text="${product.price} + €"></h5>
                                                     <p th:text="${product.description}"></p>
                                                     <a class="btn hvr-hover" href="/cart">Add to Cart</a>
@@ -149,16 +144,9 @@
                                             </div>
                                         </div>
                                     </div>
-
-
                                 </div>
                             </div>
                         </div>
-
-
-
-
-
                     </div>
                 </div>
             </div>

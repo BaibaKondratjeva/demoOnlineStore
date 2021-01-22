@@ -17,7 +17,7 @@
                                 <h5 th:text="${product.price} + €"></h5>
                             </div>
                             <div class="mask-icon">
-                                <a class="cart" th:href="@{/products/{product.id}}">Show details</a>
+                                <a class="cart" th:href="@{/products/{id}(id=${product.id})}">View details</a>
                             </div>
                         </div>
                     </div>
