@@ -18,8 +18,8 @@ public interface CartMapper {
             "where orders.user_id = #{userId}  group by product_id")
     List<CartTable> getCartProducts(String userId);
 
-    @Select("select status_id from orders where id = 1")
-    Orders orderStatusValidation (String userId);
+    @Select("select status_id from orders where id = #{userId}")
+    Long orderStatusValidation (String userId);
 
     @Select("select SUM(orders_products.quantity * products.price) as grandTotal from orders_products \n" +
             "left join products on products.id = orders_products.product_id \n" +

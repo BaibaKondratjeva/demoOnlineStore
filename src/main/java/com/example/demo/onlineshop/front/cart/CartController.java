@@ -25,6 +25,7 @@ public class CartController {
     private final CartMapper cartMapper;
 
     private final Long ORDER_SHOPPING_STATUS_ID = 3L;
+    private final Long ORDER_APPROVED_STATUS_ID = 2L;
 
     public CartController(/*OrdersRepository ordersRepository, */CartMapper cartMapper) {
         /*this.ordersRepository = ordersRepository;*/
@@ -34,13 +35,17 @@ public class CartController {
     @GetMapping("/cart")
     public String cart(@CookieValue(name = USER_ID_COOKIE_NAME, required = false) String userId,
                        Model model) {
-/*       if (cartMapper.orderStatusValidation(userId).getStatusId().equals(3)) {
+//       if (cartMapper.orderStatusValidation(userId).equals(ORDER_SHOPPING_STATUS_ID)) {
+//           List<CartTable> cartProducts = cartMapper.getCartProducts(userId);
+//           Integer grandTotal =cartMapper.grandTotal(userId);
+//
+//           model.addAttribute("cartProducts",cartProducts);
+//           model.addAttribute("grandTotal",grandTotal);
+//       }
 
-       }*/
-/*        Orders order =ordersRepository.findByUserId(userId);
-        if (ORDER_SHOPPING_STATUS_ID.equals(order.getStatusId())) {
-
-        }*/
+//        if (cartMapper.orderStatusValidation(userId).equals(ORDER_APPROVED_STATUS_ID)){
+//
+//        }
 
         List<CartTable> cartProducts = cartMapper.getCartProducts(userId);
         Integer grandTotal =cartMapper.grandTotal(userId);

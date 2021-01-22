@@ -25,8 +25,11 @@ public interface OrdersMapper {
     @Select("select id, order_time, status_id, user_id from orders where user_id = #{userId}")
     Orders findByUserId(String userId);
 
+    @Select("select id, order_time, status_id, user_id from orders where user_id = #{userId} and status_id = 3")
+    Orders findOneWhereStatusShopping (String userId);
+
     @Select("select id, order_time, status_id, user_id from orders where id = #{id}")
-    Orders findOne(long id);
+    Orders findOne(Long id);
 
 
     @Insert("insert into orders (status_id, user_id) values ( #{statusId}, #{userId})")

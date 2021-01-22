@@ -11,6 +11,8 @@ public interface OrdersRepository  {
 
    Orders findByUserId(String userId);
 
+    Orders findOneWhereStatusShopping (String userId);
+
     List<OrdersTable> findAll();
 
     Orders insert(Orders order);

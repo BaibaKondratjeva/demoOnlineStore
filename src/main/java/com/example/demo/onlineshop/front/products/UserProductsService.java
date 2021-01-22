@@ -20,7 +20,7 @@ public class UserProductsService {
 
     void insertNewUserOrder (String userId, Products product,AddProductToCartForm form, Orders order){
         ordersRepository.insertNewOrder(ORDER_SHOPPING_STATUS_ID,userId);
-        order = ordersRepository.findByUserId(userId);
+        order = ordersRepository.findOneWhereStatusShopping(userId);
         ordersRepository.insertInOrdersProducts(order.getId(),product.getId(),form.getQuantity());
 
     }
