@@ -47,6 +47,11 @@ public class PersistentOrdersRepository implements OrdersRepository {
     }
 
     @Override
+    public Orders findOneWhereStatusShopping(String userId) {
+        return mapper.findOneWhereStatusShopping(userId);
+    }
+
+    @Override
     public List<OrdersTable> findAll() {
         return mapper.findAll();
 
