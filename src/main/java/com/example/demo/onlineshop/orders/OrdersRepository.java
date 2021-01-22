@@ -1,14 +1,11 @@
 package com.example.demo.onlineshop.orders;
 
 
-import com.example.demo.onlineshop.categories.Categories;
-import com.mysql.cj.x.protobuf.MysqlxCrud;
-
 import java.util.List;
 
 public interface OrdersRepository  {
 
-   void updateStatus (Long id,Orders order);
+   void updateStatus (long id,Orders order);
 
    Orders findOne(long id);
 
@@ -18,9 +15,11 @@ public interface OrdersRepository  {
 
     Orders insert(Orders order);
 
-    Orders update(long id, Orders order);
+    void insertNewOrder (Long statusId, String userId);
 
-    void delete(long id);
+    void insertInOrdersProducts (Long orderId, Long productId, Integer quantity);
+
+    void delete(Long id);
 
     List<OrdersProductsTable> getOrderedProducts (Long id);
 

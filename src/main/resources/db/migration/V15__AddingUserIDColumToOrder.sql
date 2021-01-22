@@ -1,0 +1,1 @@
+alter table orders add user_id varchar (100);

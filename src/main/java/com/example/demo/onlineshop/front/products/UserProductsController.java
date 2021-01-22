@@ -25,6 +25,8 @@ import static com.example.demo.onlineshop.cookies.Cookies.USER_ID_COOKIE_NAME;
 
 @Controller
 public class UserProductsController {
+
+    private final Long ORDER_SHOPPING_STATUS_ID = 3L;
     @Autowired
     CategoriesRepository categoriesRepository;
 
@@ -33,6 +35,8 @@ public class UserProductsController {
 
     @Autowired
     ProductsRepository productsRepository;
+    @Autowired
+    UserProductsService service;
 
 /*    @GetMapping({"/products", "/products/{categoryName}"})
     public String products(@PathVariable(required = false) String categoryName,
@@ -76,7 +80,7 @@ public class UserProductsController {
         return "shop/product-details";
     }
 
-    @PostMapping("/products/insert/{id}")
+    @PostMapping("/products/{id}")
     public String addProductToCart(@PathVariable ("id") Long id,
                                    //We can use this annotation before the parameter to tell Spring to
                                    //set the value of this parameter to the value of cookie (if user has a cookie)
@@ -88,11 +92,23 @@ public class UserProductsController {
         Products product = productsRepository.findProduct(id);
 
 
-        if (userId != null){
+        if (userId == null){
             userId = UUID.randomUUID().toString();
-            addShoppingCartCookieToResponse(response, userId);
+            service.addShoppingCartCookieToResponse(response, userId);
             Orders order = new Orders();
-            ordersRepository.insert(order);
+            service.insertNewUserOrder(userId,product,form,order);
+
+        }
+
+        if (userId != null){
+            Orders order = ordersRepository.findByUserId(userId);
+            if (order.getStatusId().equals(ORDER_SHOPPING_STATUS_ID)) {
+                ordersRepository.insertInOrdersProducts(order.getId(), product.getId(), form.getQuantity());
+            } else {
+                Orders newOrder = new Orders();
+                service.insertNewUserOrder(userId,product,form,newOrder);
+            }
+
         }
 
         model.addAttribute("product", product);
@@ -106,15 +122,7 @@ public class UserProductsController {
         model.addAttribute("productForm", new AddProductToCartForm());
         model.addAttribute("isSuccess", true);
 
-        //String userIdentifier = UUID.randomUUID().toString(); // example how we can create unique identifier
-
-        //Example of how we can generate unique ID and set cookie for user
-
         return "redirect:/products";
     }
 
-    private void addShoppingCartCookieToResponse(HttpServletResponse response, String cookieValue) {
-        Cookie cookie = CookieUtils.createCookie(USER_ID_COOKIE_NAME, cookieValue);
-        response.addCookie(cookie);
-    }
 }

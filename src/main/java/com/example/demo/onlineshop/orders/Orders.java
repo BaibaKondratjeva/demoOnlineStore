@@ -1,19 +1,17 @@
 package com.example.demo.onlineshop.orders;
 
-import java.security.Timestamp;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Objects;
 
 public class Orders {
 
-    private long id;
+    private Long id;
     private LocalDateTime orderTime;
-    private long customerId;
-    private long statusId;
+    private Long customerId;
+    private Long statusId;
     private String userId;
 
-    public void setStatusId(long statusId) {
+    public void setStatusId(Long statusId) {
         this.statusId = statusId;
     }
 
@@ -38,12 +36,12 @@ public class Orders {
 
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -51,9 +49,7 @@ public class Orders {
         return statusId;
     }
 
-    public void setStatusId(Integer statusId) {
-        this.statusId = statusId;
-    }
+
 
     public LocalDateTime getOrderTime() {
         return orderTime;
@@ -63,11 +59,11 @@ public class Orders {
         this.orderTime = orderTime;
     }
 
-    public long getCustomerId() {
+    public Long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(long customerId) {
+    public void setCustomerId(Long customerId) {
         this.customerId = customerId;
     }
 
