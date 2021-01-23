@@ -26,7 +26,7 @@ import static com.example.demo.onlineshop.cookies.Cookies.USER_ID_COOKIE_NAME;
 @Controller
 public class UserProductsController {
 
-    private final Long ORDER_SHOPPING_STATUS_ID = 3L;
+
     @Autowired
     CategoriesRepository categoriesRepository;
 
@@ -98,9 +98,10 @@ public class UserProductsController {
             Orders order = new Orders();
             service.insertNewUserOrder(userId,product,form,order);
 
+
         } else if (userId != null){
             Orders order = ordersRepository.findOneWhereStatusShopping(userId);
-            if (order.getStatusId().equals(ORDER_SHOPPING_STATUS_ID)) {
+            if (ordersRepository.findOneWhereStatusShopping(userId) != null){
                 ordersRepository.insertInOrdersProducts(order.getId(), product.getId(), form.getQuantity());
             } else {
                 Orders newOrder = new Orders();

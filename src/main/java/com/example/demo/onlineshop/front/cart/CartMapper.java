@@ -15,15 +15,15 @@ public interface CartMapper {
             "SUM(orders_products.quantity * products.price) as grandTotal from orders_products\n" +
             "left join products on products.id = orders_products.product_id\n" +
             "left join orders on orders.id = orders_products.order_id \n" +
-            "where orders.user_id = #{userId}  group by product_id")
+            "where orders.user_id = #{userId} and status_id = 3 group by product_id")
     List<CartTable> getCartProducts(String userId);
 
-    @Select("select status_id from orders where id = #{userId}")
+    @Select("select id, order_time, status_id, user_id from orders where user_id = #{userId} and status_id = 3")
     Long orderStatusValidation (String userId);
 
     @Select("select SUM(orders_products.quantity * products.price) as grandTotal from orders_products \n" +
             "left join products on products.id = orders_products.product_id \n" +
             "left join orders on orders.id = orders_products.order_id\n" +
-            "where orders.user_id = #{userId}")
+            "where orders.user_id = #{userId} and status_id = 3")
     Integer grandTotal (String orderId);
 }
