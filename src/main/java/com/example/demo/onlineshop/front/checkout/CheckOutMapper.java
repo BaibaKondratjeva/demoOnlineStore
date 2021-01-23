@@ -6,13 +6,10 @@ import com.example.demo.onlineshop.products.ProductRequest;
 import com.example.demo.onlineshop.products.Products;
 import org.apache.ibatis.annotations.*;
 
+import java.util.List;
+
 @Mapper
 public interface CheckOutMapper {
-
-
-//    @Insert("insert into customers (name, surname, e_mail, address, phone) values (#{name}, #{surname}, " +
-//            "#{e_mail}, #{address}, #{phone})")
-//    void insert(CheckOutForm form);
 
     @Options(useGeneratedKeys = true,
             keyProperty = "id",
@@ -35,11 +32,7 @@ public interface CheckOutMapper {
             "left join products on products.id = orders_products.product_id\n" +
             "left join orders on orders.id = orders_products.order_id\n" +
             "where orders_products.order_id = #{orderId};")
-    Products findOrderedProduct (Long orderId);
-
-//        ("select products.id, products.name, products.quantity from orders_products \n" +
-//                "left join products on products.id = orders_products.product_id \n" +
-//                "left join orders on orders.id = orders_products.order_id;")
+    List<Products> findOrderedProduct (Long orderId);
 
     @Update("update products set quantity = (quantity - #{orderedQuantity})\n" +
             "where id = #{productId};")

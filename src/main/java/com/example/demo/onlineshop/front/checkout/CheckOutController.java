@@ -19,18 +19,13 @@ import static com.example.demo.onlineshop.cookies.Cookies.USER_ID_COOKIE_NAME;
 @Controller
 public class CheckOutController {
 
-    private final CheckOutRepository checkOutRepository;
     private final CheckOutService checkOutService;
-    private final OrdersRepository ordersRepository;
     private final CartMapper cartMapper;
 
-    public CheckOutController(CheckOutRepository checkOutRepository, CheckOutService checkOutService, OrdersRepository ordersRepository, CartMapper cartMapper) {
-        this.checkOutRepository = checkOutRepository;
+    public CheckOutController(CheckOutService checkOutService, CartMapper cartMapper) {
         this.checkOutService = checkOutService;
-        this.ordersRepository = ordersRepository;
         this.cartMapper = cartMapper;
     }
-
 
     @GetMapping("/checkout")
     public String checkout(Model model,
@@ -48,7 +43,6 @@ public class CheckOutController {
                                      Model model,
                                      CheckOutForm form) {
         checkOutService.checkout(form, userId);
-
         return "shop/checkout/checkout-success";
     }
 

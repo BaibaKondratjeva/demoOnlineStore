@@ -24,14 +24,10 @@ public class CheckOutService implements CheckOutRepository {
 
     private final CheckOutMapper checkOutMapper;
     private final PersistentOrdersRepository ordersRepository;
-    private final PersistantProductsRepository productsRepository;
-    private final CartMapper cartMapper;
 
-    public CheckOutService(CheckOutMapper checkOutMapper, PersistentOrdersRepository ordersRepository, PersistantProductsRepository productsRepository, CartMapper cartMapper) {
+    public CheckOutService(CheckOutMapper checkOutMapper, PersistentOrdersRepository ordersRepository) {
         this.checkOutMapper = checkOutMapper;
         this.ordersRepository = ordersRepository;
-        this.productsRepository = productsRepository;
-        this.cartMapper = cartMapper;
     }
 
     public void checkout (CheckOutForm form, String userCookieId) {
@@ -57,17 +53,12 @@ public class CheckOutService implements CheckOutRepository {
         Customer customer = createCustomer(form);
         checkOutMapper.insertCustomer(customer);
         addCustomerIdInOrders(order.getId(), customer.getId());
-//        checkOutMapper.updateOrderStatus(order.getId());
-
-        Products product = checkOutMapper.findOrderedProduct(order.getId());
-        updateProductsQuantity(product.getId(), product.getQuantity());
         checkOutMapper.updateOrderStatus(order.getId());
 
-
-        //updates order status to PENDING_APPROVAL
-        //and updates product count in stock
-//        orderService.completeOrder(order.getId());
-
+        List<Products> products = checkOutMapper.findOrderedProduct(order.getId());
+        for (Products product : products) {
+            updateProductsQuantity(product.getId(), product.getQuantity());
+        }
     }
 
     @Override
@@ -86,21 +77,7 @@ public class CheckOutService implements CheckOutRepository {
         checkOutMapper.createOrder(orderId, customerId);
     }
 
-//    public void completeOrder (Long orderId) {
-//        checkOutMapper.updateOrderStatus(orderId);
-//
-//    }
-
     public void updateProductsQuantity (Long productId, int orderedQuantity) {
         checkOutMapper.updateProductQuantity(productId, orderedQuantity);
     }
-
-
-
-    //    public boolean verifyProductCount (Long id) {
-//
-//        Products product =
-//
-//    }
-
 }

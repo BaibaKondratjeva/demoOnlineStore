@@ -7,13 +7,10 @@ public interface CheckOutRepository {
 
     Customer createCustomer (CheckOutForm form);
 
-//    Orders createOrder (Long customerId);
-
     void checkout (CheckOutForm form, String userCookieId);
 
     void addCustomerIdInOrders (Long orderId, Long customerId);
 
     void updateProductsQuantity (Long productId, int orderedQuantity);
-
 
 }

@@ -1,6 +1,5 @@
 package com.example.demo.onlineshop.front.checkout;
 
-import java.math.BigDecimal;
 
 public class CheckOutForm {
 
