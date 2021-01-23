@@ -45,14 +45,19 @@
                         <h4>Description:</h4>
                         <p th:text="${product.description}"></p>
 
-                        <form method="POST" th:object="${product}">
+                        <form method="POST" th:object="${addProductToCartForm}">
                                                             <ul>
                                                                 <li>
-                                                                    <div class="form-group quantity-box">
-                                                                        <label class="control-label">Quantity</label>
-                                                                        <input th:field="${product.quantity}"
-                                                                               th:value="${product.quantity}"
-                                                                                class="form-control" value="0" min="0" max="20" type="number">
+                                                                    <div class="form-group quantity-box" style="margin-bottom: 0.7rem;">
+                                                                        <label class="control-label"
+                                                                               th:classappend="${#fields.hasErrors('quantity')} ? text-danger : ''">Quantity</label>
+                                                                        <input th:field="${addProductToCartForm.quantity}"
+                                                                               th:value="${addProductToCartForm.quantity}"
+                                                                               class="form-control" min="1" type="number"
+                                                                               th:classappend="${#fields.hasErrors('quantity')} ? is-invalid : ''">
+                                                                        <div th:if="${#fields.hasErrors('quantity')}"
+                                                                             th:errors="*{quantity}"
+                                                                             th:classappend="${#fields.hasErrors('quantity')} ? text-danger : ''"></div>
                                                                     </div>
                                                                 </li>
                                                             </ul>

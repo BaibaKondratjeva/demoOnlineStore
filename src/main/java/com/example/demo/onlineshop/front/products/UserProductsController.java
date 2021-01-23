@@ -2,7 +2,6 @@ package com.example.demo.onlineshop.front.products;
 
 import com.example.demo.onlineshop.categories.Categories;
 import com.example.demo.onlineshop.categories.CategoriesRepository;
-import com.example.demo.onlineshop.cookies.CookieUtils;
 import com.example.demo.onlineshop.orders.Orders;
 import com.example.demo.onlineshop.orders.OrdersRepository;
 import com.example.demo.onlineshop.products.ProductRequest;
@@ -11,13 +10,14 @@ import com.example.demo.onlineshop.products.ProductsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -38,21 +38,6 @@ public class UserProductsController {
     @Autowired
     UserProductsService service;
 
-/*    @GetMapping({"/products", "/products/{categoryName}"})
-    public String products(@PathVariable(required = false) String categoryName,
-                           @RequestParam(required = false) String sortBy) {
-        System.out.println("Category: " + categoryName);
-        return "shop/products";
-    }
-
-    @GetMapping("/product/{productId}")
-    public String productDetails(@PathVariable Long productId,
-                                 Model model) {
-        //TODO load product details from database by product ID and
-        //put them in model
-        model.addAttribute("productForm", new AddProductToCartForm());
-        return "shop/product-details";
-    }*/
 
     @GetMapping(path = {"/products", "/categories/{categoryId}"})
     public String products(@PathVariable(required = false) Long categoryId, Model model) {
@@ -77,20 +62,23 @@ public class UserProductsController {
     public String productDetails(@PathVariable("id") Long id, Model model) {
         Products product = productsRepository.findProduct(id);
         model.addAttribute("product", product);
+        model.addAttribute("addProductToCartForm", new AddProductToCartForm());
+
         return "shop/product-details";
     }
 
-    @PostMapping("/products/{id}")
-    public String addProductToCart(@PathVariable ("id") Long id,
-                                   //We can use this annotation before the parameter to tell Spring to
-                                   //set the value of this parameter to the value of cookie (if user has a cookie)
+    @PostMapping("/products/{productId}")
+    public String addProductToCart(@PathVariable ("productId") Long productId,
                                    @CookieValue(name = USER_ID_COOKIE_NAME, required = false) String userId,
-                                   AddProductToCartForm form,
-                                   HttpServletResponse response,
-                                   Model model) {
-
-        Products product = productsRepository.findProduct(id);
-
+                                   Model model,
+                                   @Valid AddProductToCartForm form,
+                                   BindingResult bindingResult,
+                                   HttpServletResponse response) {
+        Products product = productsRepository.findProduct(productId);
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("product", product);
+            return "shop/product-details";
+        }
 
         if (userId == null){
             userId = UUID.randomUUID().toString();
@@ -99,29 +87,23 @@ public class UserProductsController {
             service.insertNewUserOrder(userId,product,form,order);
 
 
+
         } else if (userId != null){
             Orders order = ordersRepository.findOneWhereStatusShopping(userId);
             if (ordersRepository.findOneWhereStatusShopping(userId) != null){
                 ordersRepository.insertInOrdersProducts(order.getId(), product.getId(), form.getQuantity());
+
             } else {
                 Orders newOrder = new Orders();
                 service.insertNewUserOrder(userId,product,form,newOrder);
+
             }
 
         }
-
-//        model.addAttribute("product", product);
-
-
-
-
-        System.out.println("add to cart product: " + id + " and quantity " + form);
-        System.out.println("Cart cookie ID: " + userId);
-
-        model.addAttribute("product", new AddProductToCartForm());
         model.addAttribute("isSuccess", true);
 
-        return "redirect:/products/{id}";
+
+        return "redirect:/products/{productId}";
     }
 
 }

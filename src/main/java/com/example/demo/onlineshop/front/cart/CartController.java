@@ -26,8 +26,7 @@ public class CartController {
 
 
 
-    public CartController(/*OrdersRepository ordersRepository, */CartMapper cartMapper) {
-        /*this.ordersRepository = ordersRepository;*/
+    public CartController(CartMapper cartMapper) {
         this.cartMapper = cartMapper;
     }
 
@@ -36,30 +35,14 @@ public class CartController {
                        Model model) {
        if (cartMapper.orderStatusValidation(userId) != null) {
            List<CartTable> cartProducts = cartMapper.getCartProducts(userId);
-           Integer grandTotal =cartMapper.grandTotal(userId);
-
            model.addAttribute("cartProducts",cartProducts);
-           model.addAttribute("grandTotal",grandTotal);
+
        } else {
            userId = null;
            List<CartTable> cartProducts = cartMapper.getCartProducts(userId);
-           Integer grandTotal =cartMapper.grandTotal(userId);
-
            model.addAttribute("cartProducts",cartProducts);
-           model.addAttribute("grandTotal",grandTotal);
 
        }
-
-//        if (cartMapper.orderStatusValidation(userId).equals(ORDER_APPROVED_STATUS_ID)){
-//
-//        }
-
-        List<CartTable> cartProducts = cartMapper.getCartProducts(userId);
-        Integer grandTotal =cartMapper.grandTotal(userId);
-
-
-        model.addAttribute("cartProducts",cartProducts);
-        model.addAttribute("grandTotal",grandTotal);
 
         return "shop/cart";
     }

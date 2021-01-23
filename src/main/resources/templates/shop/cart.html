@@ -150,7 +150,7 @@
                         <hr>
                         <div  class="d-flex gr-total">
                             <h5>Grand Total</h5>
-                            <div class="ml-auto h5"th:text="${grandTotal +'€'}" ></div>
+                            <div class="ml-auto h5"th:text="${#aggregates.sum(cartProducts.![totalSum])}" ></div>
                         </div>
                         <hr> </div>
                 </div>

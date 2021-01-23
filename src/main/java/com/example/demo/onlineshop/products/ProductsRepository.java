@@ -11,6 +11,8 @@ public interface ProductsRepository {
 
     Products findProduct (Long id);
 
+    Boolean isProductAvailableInStock (Long id , Integer quantity);
+
     ProductRequest findByName(String name);
 
     List<ProductRequest> findAll();
