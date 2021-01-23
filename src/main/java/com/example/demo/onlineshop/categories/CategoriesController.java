@@ -48,6 +48,15 @@ public class CategoriesController {
 
     @PostMapping ("/admin/categories/new")
     public String createCategory (Categories category){
+
+        List <Categories> allCategories = categoriesRepository.findAll();
+
+        for ( Categories existingCategory : allCategories ) {
+            if (existingCategory.getName().equals(category.getName())){
+
+                ;
+            }
+        }
         categoriesRepository.create(category);
         return "redirect:/admin/categories";
     }

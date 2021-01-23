@@ -41,6 +41,15 @@ public class PersistentCategoriesRepository implements CategoriesRepository{
 
     @Override
     public Categories create(Categories category) {
+        List <Categories> allCategories = categoriesMapper.findAll();
+
+        for ( Categories existingCategory : allCategories ) {
+            if (existingCategory.getName().equals(category.getName())){
+
+                return null;
+            }
+        }
+
         categoriesMapper.create(category);
         return category;
     }

@@ -39,6 +39,15 @@ public class PersistantProductsRepository implements ProductsRepository {
     }
 
     @Override
+    public Boolean isProductAvailableInStock(Long id, Integer quantity) {
+        Products product = mapper.findProduct(id);
+        if (product != null && product.getQuantity()>= quantity){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public ProductRequest findByName(String name) {
         ProductRequest product = mapper.findByName(name);
         if (product == null) {
