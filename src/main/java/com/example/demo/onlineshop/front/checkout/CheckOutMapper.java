@@ -1,7 +1,7 @@
 package com.example.demo.onlineshop.front.checkout;
 
 import com.example.demo.onlineshop.Customer;
-import com.example.demo.onlineshop.Orders;
+import com.example.demo.onlineshop.orders.Orders;
 import com.example.demo.onlineshop.products.ProductRequest;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -13,7 +13,7 @@ public interface CheckOutMapper {
 
     @Insert("insert into customers (name, surname, e_mail, address, phone) values (#{name}, #{surname}, " +
             "#{e_mail}, #{address}, #{phone})")
-    void createCustomer(CheckOutForm form);
+    void insert(CheckOutForm form);
 
     @Select("select id, name, surname, e_mail, address, phone from customers where id = #{id}")
     Customer findOne(Long id);

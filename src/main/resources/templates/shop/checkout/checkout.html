@@ -91,26 +91,20 @@
                                     <h3>Shopping cart</h3>
                                 </div>
                                 <div class="rounded p-2 bg-light">
-                                    <div class="media mb-2 border-bottom">
-                                        <div class="media-body"> <a href="detail.html"> Lorem ipsum dolor sit amet</a>
-                                            <div class="small text-muted">Price: $80.00 <span class="mx-2">|</span> Qty: 1 <span class="mx-2">|</span> Subtotal: $80.00</div>
-                                        </div>
-                                    </div>
-                                    <div class="media mb-2 border-bottom">
-                                        <div class="media-body"> <a href="detail.html"> Lorem ipsum dolor sit amet</a>
-                                            <div class="small text-muted">Price: $60.00 <span class="mx-2">|</span> Qty: 1 <span class="mx-2">|</span> Subtotal: $60.00</div>
-                                        </div>
-                                    </div>
-                                    <div class="media mb-2">
-                                        <div class="media-body"> <a href="detail.html"> Lorem ipsum dolor sit amet</a>
-                                            <div class="small text-muted">Price: $40.00 <span class="mx-2">|</span> Qty: 1 <span class="mx-2">|</span> Subtotal: $40.00</div>
+                                    <div th:each="orderedProduct : ${orderedProducts}" class="media mb-2 border-bottom">
+                                        <div class="media-body"> <a th:text="${orderedProduct.name}" href="detail.html"></a>
+                                            <div class="small text-muted">
+                                                Price: $<span th:text="${orderedProduct.price}"></span>
+                                                <span class="mx-2">|</span> Qty: <span th:text="${orderedProduct.quantity}"></span> <span class="mx-2">|</span>
+                                                Subtotal: $<span th:text="${orderedProduct.price * orderedProduct.quantity}"></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12 col-lg-12">
-                            <div class="order-box">
+                            <div th:each="orderedProduct : ${orderedProducts}" class="order-box">
                                 <div class="title-left">
                                     <h3>Your order</h3>
                                 </div>
@@ -126,7 +120,7 @@
                                 <hr>
                                 <div class="d-flex gr-total">
                                     <h5>Total</h5>
-                                    <div class="ml-auto h5"> $ 388 </div>
+                                    <div class="ml-auto h5"><span th:text="${orderedProduct.price * orderedProduct.quantity}"></span> $ </div>
                                 </div>
                                 <hr> </div>
                         </div>
