@@ -123,4 +123,5 @@ public class PersistantProductsRepository implements ProductsRepository {
         return mapper.categoriesValidation(categoryIds);
     }
 
+
 }

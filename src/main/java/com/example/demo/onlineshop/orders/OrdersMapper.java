@@ -1,6 +1,7 @@
 package com.example.demo.onlineshop.orders;
 
 import com.example.demo.onlineshop.categories.Categories;
+import com.example.demo.onlineshop.front.cart.CartTable;
 import com.example.demo.onlineshop.products.ProductRequest;
 import org.apache.ibatis.annotations.*;
 
@@ -28,7 +29,7 @@ public interface OrdersMapper {
     @Select("select id, order_time, status_id, user_id from orders where user_id = #{userId} and status_id = 3")
     Orders findOneWhereStatusShopping (String userId);
 
-    @Select("select id, order_time, status_id, user_id from orders where id = #{id}")
+    @Select("select id, order_time, status_id, customer_id from orders where id = #{id}")
     Orders findOne(Long id);
 
 
@@ -50,6 +51,10 @@ public interface OrdersMapper {
             "left join orders on orders.id = orders_products.order_id\n" +
             "where orders_products.order_id = #{id}")
     List<OrdersProductsTable> getOrderedProducts (Long id);
+
+    @Select("select id, order_time, customer_id, status_id, user_id from orders where status_id = 3 and user_id = #{userId}")
+    Orders getUserOrder(@Param("userId") String userId);
+
 
 
     Orders ordersValidation(List<Integer> categoryIds);

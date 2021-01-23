@@ -26,6 +26,10 @@ public class PersistentOrdersRepository implements OrdersRepository {
         return mapper.getOrderedProducts(id);
     }
 
+    @Override
+    public Orders getUserOrder(String userId) {
+        return mapper.getUserOrder(userId);
+    }
 
     @Override
     public Orders findOne(long id) {

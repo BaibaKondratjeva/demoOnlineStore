@@ -1,6 +1,8 @@
 package com.example.demo.onlineshop.front.checkout;
 
 import com.example.demo.onlineshop.Customer;
+import com.example.demo.onlineshop.front.cart.CartMapper;
+import com.example.demo.onlineshop.front.cart.CartTable;
 import com.example.demo.onlineshop.front.checkout.CheckOutMapper;
 import com.example.demo.onlineshop.front.checkout.CheckOutRepository;
 import com.example.demo.onlineshop.orders.Orders;
@@ -15,36 +17,35 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Service
 public class CheckOutService implements CheckOutRepository {
 
     private final CheckOutMapper checkOutMapper;
     private final PersistentOrdersRepository ordersRepository;
     private final PersistantProductsRepository productsRepository;
+    private final CartMapper cartMapper;
 
-    public CheckOutService(CheckOutMapper checkOutMapper, PersistentOrdersRepository ordersRepository, PersistantProductsRepository productsRepository) {
+    public CheckOutService(CheckOutMapper checkOutMapper, PersistentOrdersRepository ordersRepository, PersistantProductsRepository productsRepository, CartMapper cartMapper) {
         this.checkOutMapper = checkOutMapper;
         this.ordersRepository = ordersRepository;
         this.productsRepository = productsRepository;
+        this.cartMapper = cartMapper;
     }
 
-    public void checkout (CheckOutForm form, Long userCookieId) {
-
-        checkOutMapper.insert(form);
+    public void checkout (CheckOutForm form, String userCookieId) {
 
         if (userCookieId == null) {
-            //user hasn't added any product in his cart
             return;
         }
 
+        Orders order = ordersRepository.getUserOrder(userCookieId);
 
-//        Orders order = ordersRepository.findOrderByUserIdAndStatusName(userCookieId, userCookieId);
+        if (order == null) {
+            return;
+        }
 
-//        Orders order = orderService.findOrderByUserIdAndStatusName(userCookieId, IN_PROGRESS.name());
-//        if (order == null) {
-//            //user had cookie, but there is no such order in database
-//            return;
-//        }
         //returns true if we have enough products in stock
         //compare ordered product quantity with product stock quantity
         //for each product in this particular order
@@ -52,11 +53,17 @@ public class CheckOutService implements CheckOutRepository {
 //            // we can't continue, because one of the products are missing
 //            return;
 //        }
+
         Customer customer = createCustomer(form);
-        checkOutMapper.insert(form);
-//        customerRepository.insert(customer);
-        //updates order entry in database (sets customerId)
-//        orderService.updateOrderCustomerId(order.getId(), customer.getId());
+        checkOutMapper.insertCustomer(customer);
+        addCustomerIdInOrders(order.getId(), customer.getId());
+//        checkOutMapper.updateOrderStatus(order.getId());
+
+        Products product = checkOutMapper.findOrderedProduct(order.getId());
+        updateProductsQuantity(product.getId(), product.getQuantity());
+        checkOutMapper.updateOrderStatus(order.getId());
+
+
         //updates order status to PENDING_APPROVAL
         //and updates product count in stock
 //        orderService.completeOrder(order.getId());
@@ -75,13 +82,22 @@ public class CheckOutService implements CheckOutRepository {
     }
 
     @Override
-    public Orders createOrder(Long customerId, Orders order) {
-        Customer customer = checkOutMapper.findOne(customerId);
-        checkOutMapper.createOrder(customer.getId(), order);
-        return order;
+    public void addCustomerIdInOrders (Long orderId, Long customerId) {
+        checkOutMapper.createOrder(orderId, customerId);
     }
 
-//    public boolean verifyProductCount (Long id) {
+//    public void completeOrder (Long orderId) {
+//        checkOutMapper.updateOrderStatus(orderId);
+//
+//    }
+
+    public void updateProductsQuantity (Long productId, int orderedQuantity) {
+        checkOutMapper.updateProductQuantity(productId, orderedQuantity);
+    }
+
+
+
+    //    public boolean verifyProductCount (Long id) {
 //
 //        Products product =
 //

@@ -25,7 +25,9 @@ public interface OrdersRepository  {
 
     List<OrdersProductsTable> getOrderedProducts (Long id);
 
+    Orders getUserOrder (String userId);
 
+//    Orders findOrderByUserIdAndStatusName (Long userCookieId, Long statusId);
 
 
 }

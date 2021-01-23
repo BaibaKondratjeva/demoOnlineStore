@@ -31,17 +31,6 @@ public class CheckOutController {
         this.cartMapper = cartMapper;
     }
 
-    //    public CheckOutController(CheckOutRepository checkOutRepository) {
-//        this.checkOutRepository = checkOutRepository;
-//    }
-
-//    @GetMapping("/checkout")
-//    public String checkoutForm (Model model,
-//                                @CookieValue(name = USER_ID_COOKIE_NAME, required = false) String userId) {
-//        model.addAttribute("customer", new Customer());
-//        model.addAttribute("order", new Orders());
-//        return "shop/checkout/checkout";
-//    }
 
     @GetMapping("/checkout")
     public String checkout(Model model,
@@ -58,8 +47,7 @@ public class CheckOutController {
     public String submitCheckoutForm (@CookieValue(name = USER_ID_COOKIE_NAME, required = false) String userId,
                                      Model model,
                                      CheckOutForm form) {
-//        checkOutService.checkout(form, userId);
-//        checkOutRepository.createOrder(customer.getId(), order);
+        checkOutService.checkout(form, userId);
 
         return "shop/checkout/checkout-success";
     }

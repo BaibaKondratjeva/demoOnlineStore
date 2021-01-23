@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Customer {
 
-    private long id;
+    private Long id;
     private String name;
     private String surname;
     private String e_mail;
