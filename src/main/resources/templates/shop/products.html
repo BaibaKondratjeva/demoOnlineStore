@@ -43,7 +43,7 @@
                                 <h3>Categories</h3>
                             </div>
                             <div th:each="category : ${allCategories}" class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
-                                <a th:href="@{/category/{categoryId}(categoryId=${category.id})}" class="list-group-item list-group-item-action" th:text="${category.name}" ><small class="text-muted"></small></a>
+                                <a th:href="@{/categories/{categoryId}(categoryId=${category.id})}" class="list-group-item list-group-item-action" th:text="${category.name}" ><small class="text-muted"></small></a>
                             </div>
                         </div>
 
@@ -112,7 +112,7 @@
                         <div class="row product-categorie-box">
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade show active" id="grid-view" style="margin-left: 15px;">
-                                    <div class="row">
+                                    <div class="row" style="width: 100%;">
                                         <div class="row align-items-start">
                                             <div th:each="product : ${allProducts}" class="products-single fix col col-6 col-sm-4">
                                                 <div class="box-img-hover">

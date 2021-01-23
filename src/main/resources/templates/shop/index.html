@@ -60,7 +60,7 @@
         <div class="row align-items-start">
             <div th:each="category : ${allCategories}" class="shop-cat-box col col-6 col-sm-3">
                 <img class="img-fluid" th:src="${category.imageUri}" alt="image"/>
-                <a class="btn hvr-hover" th:href="@{/products/{category.name}(category=${category.id})}"
+                <a class="btn hvr-hover" th:href="@{/categories/{categoryId}(categoryId=${category.id})}"
                    th:text="${category.name}"></a>
             </div>
         </div>
