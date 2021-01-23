@@ -57,6 +57,7 @@ public class CartController {
         List<CartTable> cartProducts = cartMapper.getCartProducts(userId);
         Integer grandTotal =cartMapper.grandTotal(userId);
 
+
         model.addAttribute("cartProducts",cartProducts);
         model.addAttribute("grandTotal",grandTotal);
 
