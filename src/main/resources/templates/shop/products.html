@@ -117,29 +117,40 @@
                                             <div th:each="product : ${allProducts}" class="products-single fix col col-6 col-sm-4">
                                                 <div class="box-img-hover">
                                                     <img th:src="${product.imageUri}" class="img-fluid" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <a class="cart" th:href="@{/products/{id}(id=${product.id})}">View details</a>
-                                                    </div>
                                                     <div class="why-text">
                                                         <h4 th:text="${product.name}"></h4>
                                                         <h5 th:text="${product.price} + €"></h5>
+                                                    </div>
+                                                    <div class="mask-icon">
+                                                        <form method="POST" th:object="${addProductToCartFrom}">
+                                                            <input name="quantity" type="hidden" value="1"/>
+                                                            <input name="productId" type="hidden" th:value="${product.id}"/>
+                                                            <a class="btn hvr-hover" th:href="@{/products/{id}(id=${product.id})}">View details</a>
+                                                            <button class="btn hvr-hover" type="submit">Add to Cart</button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                                 
-                                <div role="tabpanel" class="tab-pane fade" id="list-view">
+                                <div role="tabpanel" class="tab-pane fade" id="list-view" style="margin-left: 15px;">
                                     <div class="list-view-box">
-                                        <div class="row">
+                                        <div class="row" style="width: 100%;">
                                             <div th:each="product : ${allProducts}" class="products-single fix">
                                                 <div class="box-img-hover">
-                                                    <img th:src="${product.imageUri}" class="img-fluid" alt="Image">
+                                                    <img th:src="${product.imageUri}" width="400" class="img-fluid" alt="Image">
                                                     <h3 th:text="${product.name}"></h3>
                                                     <h5 th:text="${product.price} + €"></h5>
                                                     <p th:text="${product.description}"></p>
-                                                    <a class="btn hvr-hover" href="/cart">Add to Cart</a>
+                                                    <form method="POST" th:object="${addProductToCartFrom}">
+                                                        <input name="quantity" type="hidden" value="1"/>
+                                                        <input name="productId" type="hidden" th:value="${product.id}"/>
+                                                        <a class="btn hvr-hover" th:href="@{/products/{id}(id=${product.id})}">View details</a>
+                                                        <button class="btn hvr-hover" type="submit">Add to Cart</button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
