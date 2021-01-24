@@ -93,6 +93,7 @@ public class UserProductsController {
                 service.insertNewUserOrder(userId,product,form,newOrder);
             }
         } return "redirect:/categories/{categoryId}";
+
     }
 
     @GetMapping("/products/{productId}")
