@@ -26,7 +26,6 @@ import static com.example.demo.onlineshop.cookies.Cookies.USER_ID_COOKIE_NAME;
 @Controller
 public class UserProductsController {
 
-
     @Autowired
     CategoriesRepository categoriesRepository;
 
@@ -35,6 +34,7 @@ public class UserProductsController {
 
     @Autowired
     ProductsRepository productsRepository;
+
     @Autowired
     UserProductsService service;
 
@@ -83,31 +83,22 @@ public class UserProductsController {
             model.addAttribute("product", product);
             return "shop/product-details";
         }
-
         if (userId == null){
             userId = UUID.randomUUID().toString();
             service.addShoppingCartCookieToResponse(response, userId);
             Orders order = new Orders();
             service.insertNewUserOrder(userId,product,form,order);
 //            model.addAttribute("isSuccess", true);
-
         } else if (userId != null){
             Orders order = ordersRepository.findOneWhereStatusShopping(userId);
             if (ordersRepository.findOneWhereStatusShopping(userId) != null){
                 ordersRepository.insertInOrdersProducts(order.getId(), product.getId(), form.getQuantity());
-
             } else {
                 Orders newOrder = new Orders();
                 service.insertNewUserOrder(userId,product,form,newOrder);
-
             }
 //            model.addAttribute("isSuccess", true);
-
-        }
-
-
-
-        return "redirect:/products/{productId}";
+        } return "redirect:/products/{productId}";
     }
 
     @PostMapping("/products")
@@ -130,7 +121,6 @@ public class UserProductsController {
             service.addShoppingCartCookieToResponse(response, userId);
             Orders order = new Orders();
             service.insertNewUserOrder(userId,product,form,order);
-
         } else if (userId != null){
             Orders order = ordersRepository.findOneWhereStatusShopping(userId);
             if (ordersRepository.findOneWhereStatusShopping(userId) != null){
@@ -139,8 +129,7 @@ public class UserProductsController {
                 Orders newOrder = new Orders();
                 service.insertNewUserOrder(userId,product,form,newOrder);
             }
-        }
-        return "redirect:/cart";
+        } return "redirect:/products";
     }
 
 }
