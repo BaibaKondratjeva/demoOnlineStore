@@ -63,6 +63,38 @@ public class UserProductsController {
         }
     }
 
+    @PostMapping(path = {"/products", "/categories/{categoryId}"})
+    public String addProductToCartCategoryViewFrom(@PathVariable(value = "productId", required = false) Long productId,
+                                                   @PathVariable (value = "categoryId",required = false) Long categoryId,
+                                                   @CookieValue(name = USER_ID_COOKIE_NAME, required = false) String userId,
+                                                   Model model,
+                                                   @Valid AddProductToCartForm form,
+                                                   BindingResult bindingResult,
+                                                   HttpServletResponse response) {
+        if (productId == null) {
+            productId = form.getProductId();
+        }
+        Products product = productsRepository.findProduct(productId);
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("product", product);
+            return "shop/products";
+        }
+        if (userId == null){
+            userId = UUID.randomUUID().toString();
+            service.addShoppingCartCookieToResponse(response, userId);
+            Orders order = new Orders();
+            service.insertNewUserOrder(userId,product,form,order);
+        } else if (userId != null){
+            Orders order = ordersRepository.findOneWhereStatusShopping(userId);
+            if (ordersRepository.findOneWhereStatusShopping(userId) != null){
+                ordersRepository.insertInOrdersProducts(order.getId(), product.getId(), form.getQuantity());
+            } else {
+                Orders newOrder = new Orders();
+                service.insertNewUserOrder(userId,product,form,newOrder);
+            }
+        } return "redirect:/categories/{categoryId}";
+    }
+
     @GetMapping("/products/{productId}")
     public String productDetails(@PathVariable("productId") Long id, Model model) {
         Products product = productsRepository.findProduct(id);
