@@ -6,10 +6,8 @@
 <body>
 
 <div th:replace="~{shop/homepage-layout/main-top :: main-top}"></div>
-
 <div th:replace="~{shop/homepage-layout/main-navigation :: main-navigation}"></div>
 
-<!-- Start Slider -->
 <div id="slides-shop" class="cover-slides">
     <ul class="slides-container">
         <li class="text-right">
@@ -52,9 +50,7 @@
         <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
     </div>
 </div>
-<!-- End Slider -->
 
-<!-- Start Categories  -->
 <div class="categories-shop">
     <div class="container">
         <div class="row align-items-start">
@@ -67,9 +63,6 @@
     </div>
 </div>
 
-<!-- End Categories -->
-
-
 <div class="products-box">
     <div class="container">
         <div th:replace="~{shop/homepage-layout/new-products :: new-products}"></div>
@@ -77,9 +70,7 @@
 </div>
 
 <div th:replace="~{shop/homepage-layout/celebrities :: celebrities}"></div>
-
 <div th:replace="~{shop/homepage-layout/footer :: footer}"></div>
-
 <div th:replace="~{shop/homepage-layout/copyright :: copyright}"></div>
 
 <a href="/" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>

@@ -46,26 +46,25 @@
                         <p th:text="${product.description}"></p>
 
                         <form method="POST" th:object="${addProductToCartForm}">
-                                                            <ul>
-                                                                <li>
-                                                                    <div class="form-group quantity-box" style="margin-bottom: 0.7rem;">
-                                                                        <label class="control-label"
-                                                                               th:classappend="${#fields.hasErrors('quantity')} ? text-danger : ''">Quantity</label>
-                                                                        <input th:field="${addProductToCartForm.quantity}"
-                                                                               th:value="${addProductToCartForm.quantity}"
-                                                                               class="form-control" min="1" type="number"
-                                                                               th:classappend="${#fields.hasErrors('quantity')} ? is-invalid : ''">
-                                                                        <div th:if="${#fields.hasErrors('quantity')}"
-                                                                             th:errors="*{quantity}"
-                                                                             th:classappend="${#fields.hasErrors('quantity')} ? text-danger : ''"></div>
-                                                                    </div>
-                                                                </li>
-                                                            </ul>
+                            <ul>
+                                <li>
+                                    <div class="form-group quantity-box" style="margin-bottom: 0.7rem;">
+                                        <label class="control-label"
+                                               th:classappend="${#fields.hasErrors('quantity')} ? text-danger : ''">Quantity</label>
+                                        <input th:field="${addProductToCartForm.quantity}"
+                                               th:value="${addProductToCartForm.quantity}"
+                                               class="form-control" min="1" type="number"
+                                               th:classappend="${#fields.hasErrors('quantity')} ? is-invalid : ''">
+                                        <div th:if="${#fields.hasErrors('quantity')}"
+                                             th:errors="*{quantity}"
+                                             th:classappend="${#fields.hasErrors('quantity')} ? text-danger : ''"></div>
+                                    </div>
+                                </li>
+                            </ul>
 
                             <div class="price-box-bar">
                                 <div class="cart-and-bay-btn">
-                                    <button class="btn hvr-hover" data-fancybox-close="" type="submit"
-                                        >Add to cart</button>
+                                    <button class="btn hvr-hover" data-fancybox-close="" type="submit">Add to cart</button>
                                 </div>
                             </div>
                         </form>

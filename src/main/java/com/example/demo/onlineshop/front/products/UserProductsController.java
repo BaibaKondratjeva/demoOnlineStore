@@ -110,4 +110,37 @@ public class UserProductsController {
         return "redirect:/products/{productId}";
     }
 
+    @PostMapping("/products")
+    public String addProductToCartProductsViewFrom(@PathVariable(value = "productId", required = false) Long productId,
+                                                   @CookieValue(name = USER_ID_COOKIE_NAME, required = false) String userId,
+                                                   Model model,
+                                                   @Valid AddProductToCartForm form,
+                                                   BindingResult bindingResult,
+                                                   HttpServletResponse response) {
+        if (productId == null) {
+            productId = form.getProductId();
+        }
+        Products product = productsRepository.findProduct(productId);
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("product", product);
+            return "shop/products";
+        }
+        if (userId == null){
+            userId = UUID.randomUUID().toString();
+            service.addShoppingCartCookieToResponse(response, userId);
+            Orders order = new Orders();
+            service.insertNewUserOrder(userId,product,form,order);
+
+        } else if (userId != null){
+            Orders order = ordersRepository.findOneWhereStatusShopping(userId);
+            if (ordersRepository.findOneWhereStatusShopping(userId) != null){
+                ordersRepository.insertInOrdersProducts(order.getId(), product.getId(), form.getQuantity());
+            } else {
+                Orders newOrder = new Orders();
+                service.insertNewUserOrder(userId,product,form,newOrder);
+            }
+        }
+        return "redirect:/cart";
+    }
+
 }
