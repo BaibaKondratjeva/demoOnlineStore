@@ -11,6 +11,8 @@ public interface CategoriesRepository {
 
     Categories findByName(String name);
 
+    Boolean canCreateCategory (Categories category);
+
     List<Categories> findAll();
 
     Categories create(Categories category);
