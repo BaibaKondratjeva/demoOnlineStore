@@ -66,6 +66,13 @@ public interface ProductsMapper {
     @Delete("delete from products where id = #{id}")
     boolean deleteById(Long id);
 
-    @Select("")
-    Products isProductAvailableInStock(Long id, Integer quantity);
+    @Select("select products.id, products.name, description, price, quantity, products.imageUri, categories.name from products\n" +
+            "left join products_categories\n" +
+            "on products.id = products_categories.product_id\n" +
+            "left join categories\n" +
+            "on products_categories.category_id = categories.id\n" +
+            "where categories.id = #{categoryId}")
+    List<ProductRequest> productsByCategoryId(Long categoryId);
+
+
 }

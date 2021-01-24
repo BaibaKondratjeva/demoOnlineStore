@@ -48,22 +48,26 @@ public class UserProductsController {
             model.addAttribute("allProducts", allProducts);
             return "shop/products";
         } else {
+            List<ProductRequest> productsByCategories = productsRepository.productsByCategoryId(categoryId);
+            model.addAttribute("allProducts", productsByCategories);
             List<Categories> allCategories = categoriesRepository.findAll();
             model.addAttribute("allCategories", allCategories);
-            Categories category = categoriesRepository.findOne(categoryId);
-            model.addAttribute("category", category);
-            List<ProductRequest> allProducts = productsRepository.findAll();
-            model.addAttribute("allProducts", allProducts);
+
+//            List<Categories> allCategories = categoriesRepository.findAll();
+//            model.addAttribute("allCategories", allCategories);
+//            Categories category = categoriesRepository.findOne(categoryId);
+//            model.addAttribute("category", category);
+//            List<ProductRequest> allProducts = productsRepository.findAll();
+//            model.addAttribute("allProducts", allProducts);
             return "shop/products";
         }
     }
 
-    @GetMapping("/products/{id}")
-    public String productDetails(@PathVariable("id") Long id, Model model) {
+    @GetMapping("/products/{productId}")
+    public String productDetails(@PathVariable("productId") Long id, Model model) {
         Products product = productsRepository.findProduct(id);
         model.addAttribute("product", product);
         model.addAttribute("addProductToCartForm", new AddProductToCartForm());
-
         return "shop/product-details";
     }
 
@@ -85,8 +89,7 @@ public class UserProductsController {
             service.addShoppingCartCookieToResponse(response, userId);
             Orders order = new Orders();
             service.insertNewUserOrder(userId,product,form,order);
-
-
+//            model.addAttribute("isSuccess", true);
 
         } else if (userId != null){
             Orders order = ordersRepository.findOneWhereStatusShopping(userId);
@@ -98,9 +101,10 @@ public class UserProductsController {
                 service.insertNewUserOrder(userId,product,form,newOrder);
 
             }
+//            model.addAttribute("isSuccess", true);
 
         }
-        model.addAttribute("isSuccess", true);
+
 
 
         return "redirect:/products/{productId}";

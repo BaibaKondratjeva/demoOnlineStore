@@ -105,6 +105,14 @@ public class PersistantProductsRepository implements ProductsRepository {
     }
 
     @Override
+    public List<ProductRequest> productsByCategoryId(Long categoryId) {
+        if (categoryId == null){
+            throw new NotFoundException("Such id not found");
+        }
+        return mapper.productsByCategoryId(categoryId);
+    }
+
+    @Override
     public void delete(Long id) {
         mapper.deleteById(id);
     }
