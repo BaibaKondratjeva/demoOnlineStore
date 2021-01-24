@@ -2,8 +2,11 @@ package com.example.demo.onlineshop.categories;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -47,16 +50,15 @@ public class CategoriesController {
     }
 
     @PostMapping ("/admin/categories/new")
-    public String createCategory (Categories category){
+    public String createCategory (Model model, @Valid Categories category,
+                                  BindingResult bindingResult,
+                                  HttpServletResponse response){
 
-        List <Categories> allCategories = categoriesRepository.findAll();
-
-        for ( Categories existingCategory : allCategories ) {
-            if (existingCategory.getName().equals(category.getName())){
-
-                ;
-            }
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("category", category);
+            return "cms/categories/create-category.html";
         }
+
         categoriesRepository.create(category);
         return "redirect:/admin/categories";
     }

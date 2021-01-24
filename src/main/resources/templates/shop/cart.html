@@ -39,7 +39,7 @@
                                     <th>Price</th>
                                     <th>Quantity</th>
                                     <th>Total</th>
-                                  <!--  <th>Remove</th>-->
+                                    <th>Remove</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -59,11 +59,12 @@
                                     </td>
                                     <td class="quantity-box" th:text="${product.quantity}"></td>
                                     <td class="total-pr" th:text="${product.totalSum} + '€'"></td>
-                                    <!--<td class="remove-pr">
-                                        <a href="#">
+                                    <td class="remove-pr">
+                                        <a href="@{/cart/delete/{orderId}{productId}
+                                        (orderId=${orderId})(productId=${category.id})}">
 									<i class="fas fa-times"></i>
 								</a>
-                                    </td>-->
+                                    </td>
                                 </tr>
                                 <!--<tr>
                                     <td class="thumbnail-img">
