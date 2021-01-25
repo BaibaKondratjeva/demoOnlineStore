@@ -1,12 +1,33 @@
 package com.example.demo.onlineshop.front.checkout;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import static com.example.demo.onlineshop.regex.RegexConstants.EMAIL_PATTERN;
+
 
 public class CheckOutForm {
 
+    @Size(min = 2, max = 20)
+    @NotBlank
     private String name;
+
+    @Size(min = 2, max = 20)
+    @NotBlank
     private String surname;
-    private String e_mail;
+
+    @Size(min = 5, max = 30)
+    @NotBlank
+    @Pattern(regexp = EMAIL_PATTERN, message = "Incorrect format")
+    private String email;
+
+    @NotBlank
+    @Size(min = 4, max = 100)
     private String address;
+
+    @Size(min = 5, max = 12)
+    @NotBlank
     private String phone;
 
     public String getName() {
@@ -25,12 +46,12 @@ public class CheckOutForm {
         this.surname = surname;
     }
 
-    public String getE_mail() {
-        return e_mail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setE_mail(String e_mail) {
-        this.e_mail = e_mail;
+    public void setEmail(String e_mail) {
+        this.email = e_mail;
     }
 
     public String getAddress() {
@@ -54,7 +75,7 @@ public class CheckOutForm {
         return "CheckoutForm{" +
                 "firstName='" + name + '\'' +
                 ", lastName='" + surname + '\'' +
-                ", E-mail='" + e_mail + '\'' +
+                ", Email='" + email + '\'' +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
                 '}';

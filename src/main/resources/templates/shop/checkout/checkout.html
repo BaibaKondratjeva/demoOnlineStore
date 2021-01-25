@@ -30,7 +30,11 @@
 <div class="cart-box-main">
     <div class="container">
         <form method="POST" th:object="${checkoutForm}" class="row">
-
+            <style>
+                    .invalid-feedback {
+                        display: block !important;
+                    }
+            </style>
                 <div class="col-sm-6 col-lg-6 mb-3">
                     <div class="checkout-address">
                         <div class="title-left">
@@ -43,36 +47,46 @@
                                     <input th:field="${checkoutForm.name}"
                                            th:value="${checkoutForm.name}"
                                            type="text" class="form-control" id="name" placeholder="" value="" required>
-                                    <div class="invalid-feedback"> Valid first name is required. </div>
+                                    <div th:if="${#fields.hasErrors('name')}"
+                                         th:errors="*{name}"
+                                         class="invalid-feedback"></div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="surname">Last name *</label>
                                     <input th:field="${checkoutForm.surname}"
                                            th:value="${checkoutForm.surname}" type="text" class="form-control"
                                            id="surname" placeholder="" value="" required>
-                                    <div class="invalid-feedback"> Valid last name is required. </div>
+                                    <div th:if="${#fields.hasErrors('surname')}"
+                                         th:errors="*{surname}"
+                                         class="invalid-feedback"></div>
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="e_mail">Email Address *</label>
-                                <input th:field="${checkoutForm.e_mail}"
-                                       th:value="${checkoutForm.e_mail}"
-                                       type="text" class="form-control" id="e_mail" placeholder="">
-                                <div class="invalid-feedback"> Please enter a valid email address for shipping updates. </div>
+                                <label for="email">Email Address *</label>
+                                <input th:field="${checkoutForm.email}"
+                                       th:value="${checkoutForm.email}"
+                                       type="text" class="form-control" id="email" placeholder="" value="" required>
+                                <div th:if="${#fields.hasErrors('email')}"
+                                     th:errors="*{email}"
+                                     ></div>
                             </div>
                             <div class="mb-3">
                                 <label for="phone">Phone number *</label>
                                 <input th:field="${checkoutForm.phone}"
                                        th:value="${checkoutForm.phone}"
-                                       type="text" class="form-control" id="phone" placeholder="">
-                                <div class="invalid-feedback"> Please enter a valid email address for shipping updates. </div>
+                                       type="text" class="form-control" id="phone" placeholder="" value="" required>
+                                <div th:if="${#fields.hasErrors('phone')}"
+                                     th:errors="*{phone}"
+                                     class="invalid-feedback"></div>
                             </div>
                             <div class="mb-3">
                                 <label for="address">Address *</label>
                                 <input th:field="${checkoutForm.address}"
                                        th:value="${checkoutForm.address}"
-                                       type="text" class="form-control" id="address" placeholder="" required>
-                                <div class="invalid-feedback"> Please enter your shipping address. </div>
+                                       type="text" class="form-control" id="address" placeholder="" value="" required>
+                                <div th:if="${#fields.hasErrors('address')}"
+                                     th:errors="*{address}"
+                                     class="invalid-feedback"></div>
                             </div>
                             <hr class="mb-4">
                          </div>

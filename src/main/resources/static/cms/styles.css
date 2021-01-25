@@ -9,3 +9,7 @@ body {
 .container .table {
     margin-top: 1rem;
 }
+
+.invalid-feedback {
+    display: block !important;
+}
