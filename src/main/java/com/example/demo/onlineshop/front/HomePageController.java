@@ -12,13 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import java.util.List;
-
 import static com.example.demo.onlineshop.cookies.Cookies.USER_ID_COOKIE_NAME;
-
 
 @Controller
 @RequestMapping
@@ -30,12 +26,10 @@ public class HomePageController {
     private CartMapper cartMapper;
     @Autowired
     private OrdersRepository ordersRepository;
-
     @Autowired
     public HomePageController(CategoriesRepository categoriesRepository, ProductsRepository repository /*OrdersRepository ordersRepository*/) {
         this.categoriesRepository = categoriesRepository;
         this.repository = repository;
-
     }
 
     @GetMapping(path = {"/"})
@@ -47,28 +41,16 @@ public class HomePageController {
         model.addAttribute("allProducts", allProducts);
         List<CartTable> cartProducts = cartMapper.getCartProducts(userId);
         model.addAttribute("cartProducts",cartProducts);
-
         return "shop/index";
     }
 
     @GetMapping("/about")
-    public String about() {
+    public String about(@CookieValue(name = USER_ID_COOKIE_NAME, required = false) String userId,
+                        Model model) {
+        List<CartTable> cartProducts = cartMapper.getCartProducts(userId);
+        model.addAttribute("cartProducts",cartProducts);
         return "shop/about";
     }
-
-
-
-    @GetMapping("/contactus")
-    public String contactUs() {
-        return "shop/contact-us";
-    }
-
-    @GetMapping("/myaccount")
-    public String myAccount() {
-        return "shop/my-account";
-    }
-
-
 }
 
 
