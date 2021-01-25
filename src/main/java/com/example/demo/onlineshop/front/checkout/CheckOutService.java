@@ -42,14 +42,6 @@ public class CheckOutService implements CheckOutRepository {
             return;
         }
 
-        //returns true if we have enough products in stock
-        //compare ordered product quantity with product stock quantity
-        //for each product in this particular order
-//        if (verifyProductCount(order.getId())) {
-//            // we can't continue, because one of the products are missing
-//            return;
-//        }
-
         Customer customer = createCustomer(form);
         checkOutMapper.insertCustomer(customer);
         addCustomerIdInOrders(order.getId(), customer.getId());
@@ -65,7 +57,7 @@ public class CheckOutService implements CheckOutRepository {
     public Customer createCustomer(CheckOutForm form) {
         Customer customer = new Customer();
         customer.setAddress(form.getAddress());
-        customer.setE_mail(form.getE_mail());
+        customer.setE_mail(form.getEmail());
         customer.setName(form.getName());
         customer.setSurname(form.getSurname());
         customer.setPhone(form.getPhone());

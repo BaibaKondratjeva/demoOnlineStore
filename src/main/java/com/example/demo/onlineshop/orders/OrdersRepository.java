@@ -27,7 +27,4 @@ public interface OrdersRepository  {
 
     Orders getUserOrder (String userId);
 
-//    Orders findOrderByUserIdAndStatusName (Long userCookieId, Long statusId);
-
-
 }
