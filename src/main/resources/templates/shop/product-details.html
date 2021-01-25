@@ -6,7 +6,6 @@
 <body>
 
 <div th:replace="~{shop/homepage-layout/main-top :: main-top}"></div>
-
 <div th:replace="~{shop/homepage-layout/main-navigation :: main-navigation}"></div>
 
 <!-- Start All Title Box -->
@@ -23,10 +22,8 @@
         </div>
     </div>
 </div>
-<!-- End All Title Box -->
 
 <!-- Start Shop Detail  -->
-
     <div class="shop-detail-box-main">
         <div class="container">
             <div th:if="${isSuccess}" class="row alert alert-success">
@@ -76,9 +73,7 @@
     <!-- End Cart -->
 
     <div th:replace="~{shop/homepage-layout/celebrities :: celebrities}"></div>
-
     <div th:replace="~{shop/homepage-layout/footer :: footer}"></div>
-
     <div th:replace="~{shop/homepage-layout/copyright :: copyright}"></div>
 
     <a href="/" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
