@@ -53,13 +53,11 @@
                                     <td class="quantity-box" th:text="${product.quantity}"></td>
                                     <td class="total-pr" th:text="${product.totalSum} + '€'"></td>
 
-<!--                                    <td class="remove-pr">-->
-<!--                                        <form method="GET" action="" th:object="">-->
-<!--                                            <input name="productId" type="hidden" th:value="${product.id}"/>-->
-<!--                                            <input name="orderId" type="hidden" th:value="${order.id}}"/>-->
-<!--                                            <button class="btn hvr-hover" type="submit">Delete</button>-->
-<!--                                        </form>-->
-<!--                                    </td>-->
+                                    <td class="remove-pr">
+                                        <a th:href="'/cart/delete?orderId=' + ${orderId} + '&productId=' + ${product.id}">
+                                            <i class="fas fa-times"></i>
+                                        </a>
+                                    </td>
 
                                 </tr>
                             </tbody>

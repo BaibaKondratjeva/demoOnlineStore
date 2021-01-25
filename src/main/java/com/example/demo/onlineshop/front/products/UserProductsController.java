@@ -145,7 +145,7 @@ public class UserProductsController {
         } return "redirect:/products/{productId}";
     }
 
-    @PostMapping("/products")
+    @PostMapping("/products/add/{productsId}")
     public String addProductToCartProductsViewFrom(@PathVariable(value = "productId", required = false) Long productId,
                                                    @CookieValue(name = USER_ID_COOKIE_NAME, required = false) String userId,
                                                    Model model,

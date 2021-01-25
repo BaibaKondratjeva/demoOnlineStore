@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper
 public interface CartMapper {
 
-    @Select("select products.imageUri, products.name, products.price, SUM(orders_products.quantity) as quantity, \n" +
+    @Select("select products.id, products.imageUri, products.name, products.price, SUM(orders_products.quantity) as quantity, \n" +
             "(sum(orders_products.quantity) * products.price) as totalSum from orders_products \n" +
             "left join products on products.id = orders_products.product_id \n" +
             "left join orders on orders.id = orders_products.order_id where orders.user_id = #{userId} and status_id = 3 group by product_id;")
