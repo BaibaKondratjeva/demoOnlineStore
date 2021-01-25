@@ -8,7 +8,7 @@ public class Products {
     String name;
     String description;
     BigDecimal price;
-    int quantity;
+    Integer quantity;
     String imageUri;
 
     public Long getId() {
@@ -43,11 +43,11 @@ public class Products {
         this.price = price;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 

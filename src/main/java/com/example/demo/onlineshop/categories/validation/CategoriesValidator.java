@@ -22,7 +22,7 @@ public class CategoriesValidator implements ConstraintValidator<ValidCategories,
     @Override
     public boolean isValid(Categories categories, ConstraintValidatorContext context) {
         if (!categoriesRepository.canCreateCategory(categories)) {
-            addError("name", "Category already exists", context);
+            addError("name", "Category already exists or field is empty", context);
             return false;
         }
 

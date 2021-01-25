@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = CategoriesValidator.class)
 @Documented
 public @interface ValidCategories {
-    String message () default "Category already exists";
+    String message () default "Category already exists or field is empty";
 
     Class<?>[] groups () default {};
 

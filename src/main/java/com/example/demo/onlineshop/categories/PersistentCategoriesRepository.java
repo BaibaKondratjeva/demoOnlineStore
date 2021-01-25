@@ -58,7 +58,7 @@ public class PersistentCategoriesRepository implements CategoriesRepository{
         List<Categories> allCategories = categoriesMapper.findAll();
 
         for (Categories existingCategory : allCategories) {
-            if (existingCategory.getName().equals(category.getName())) {
+            if (existingCategory.getName().equals(category.getName()) || category.getName().equals("")) {
 
                 return false;
             }

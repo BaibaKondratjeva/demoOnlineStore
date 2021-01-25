@@ -2,6 +2,8 @@ package com.example.demo.onlineshop.front.products;
 
 import com.example.demo.onlineshop.categories.Categories;
 import com.example.demo.onlineshop.categories.CategoriesRepository;
+import com.example.demo.onlineshop.front.cart.CartMapper;
+import com.example.demo.onlineshop.front.cart.CartTable;
 import com.example.demo.onlineshop.orders.Orders;
 import com.example.demo.onlineshop.orders.OrdersRepository;
 import com.example.demo.onlineshop.products.ProductRequest;
@@ -27,6 +29,9 @@ import static com.example.demo.onlineshop.cookies.Cookies.USER_ID_COOKIE_NAME;
 public class UserProductsController {
 
     @Autowired
+    CartMapper cartMapper;
+
+    @Autowired
     CategoriesRepository categoriesRepository;
 
     @Autowired
@@ -40,18 +45,24 @@ public class UserProductsController {
 
 
     @GetMapping(path = {"/products", "/categories/{categoryId}"})
-    public String products(@PathVariable(required = false) Long categoryId, Model model) {
+    public String products(@PathVariable(required = false) Long categoryId,
+                           @CookieValue(name = USER_ID_COOKIE_NAME, required = false) String userId,
+                           Model model) {
         if (categoryId == null) {
             List<Categories> allCategories = categoriesRepository.findAll();
             model.addAttribute("allCategories", allCategories);
             List<ProductRequest> allProducts = productsRepository.findAll();
             model.addAttribute("allProducts", allProducts);
+            List<CartTable> cartProducts = cartMapper.getCartProducts(userId);
+            model.addAttribute("cartProducts",cartProducts);
             return "shop/products";
         } else {
             List<ProductRequest> productsByCategories = productsRepository.productsByCategoryId(categoryId);
             model.addAttribute("allProducts", productsByCategories);
             List<Categories> allCategories = categoriesRepository.findAll();
             model.addAttribute("allCategories", allCategories);
+            List<CartTable> cartProducts = cartMapper.getCartProducts(userId);
+            model.addAttribute("cartProducts",cartProducts);
 
 //            List<Categories> allCategories = categoriesRepository.findAll();
 //            model.addAttribute("allCategories", allCategories);

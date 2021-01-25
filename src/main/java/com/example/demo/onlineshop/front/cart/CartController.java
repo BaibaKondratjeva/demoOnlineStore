@@ -54,6 +54,7 @@ public class CartController {
     @GetMapping(value ="cart/delete", params = {"orderId","productId"})
     public String deleteProductFromCart(@PathVariable("orderId") Long orderId ,
                                         @PathVariable("productId") Long productId) {
+
         cartMapper.deleteProductFromCart(orderId, productId);
         return "shop/cart";
     }

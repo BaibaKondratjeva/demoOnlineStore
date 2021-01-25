@@ -35,6 +35,9 @@ public class CheckOutController {
 
         model.addAttribute("checkoutForm", new CheckOutForm());
         model.addAttribute("orderedProducts", orderedProducts);
+
+        List<CartTable> cartProducts = cartMapper.getCartProducts(userId);
+        model.addAttribute("cartProducts",cartProducts);
         return "shop/checkout/checkout";
     }
 
