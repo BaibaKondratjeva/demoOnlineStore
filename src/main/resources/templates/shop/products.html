@@ -6,10 +6,8 @@
 <body>
 
     <div th:replace="~{shop/homepage-layout/main-top :: main-top}"></div>
-
     <div th:replace="~{shop/homepage-layout/main-navigation :: main-navigation}"></div>
 
-    <!-- Start All Title Box -->
     <div class="all-title-box">
         <div class="container">
             <div class="row">
@@ -23,7 +21,6 @@
             </div>
         </div>
     </div>
-    <!-- End All Title Box -->
 
     <!-- Start Shop Page  -->
     <div class="shop-box-inner">
@@ -59,25 +56,6 @@
                                 </p>
                             </div>
                         </div>
-                        
-
-                        <div class="filter-brand-left">
-                            <div class="title-left">
-                                <h3>Brand</h3>
-                            </div>
-                            <div class="brand-box">
-                                <ul>
-                                    <li>
-                                        <div class="radio radio-danger">
-                                            <input name="survey" id="Radios1" value="Yes" type="radio">
-                                            <label for="Radios1"> Supreme </label>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-
                     </div>
                 </div>
                 <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
@@ -117,29 +95,40 @@
                                             <div th:each="product : ${allProducts}" class="products-single fix col col-6 col-sm-4">
                                                 <div class="box-img-hover">
                                                     <img th:src="${product.imageUri}" class="img-fluid" alt="Image">
-                                                    <div class="mask-icon">
-                                                        <a class="cart" th:href="@{/products/{id}(id=${product.id})}">View details</a>
-                                                    </div>
                                                     <div class="why-text">
                                                         <h4 th:text="${product.name}"></h4>
                                                         <h5 th:text="${product.price} + €"></h5>
+                                                    </div>
+                                                    <div class="mask-icon">
+                                                        <form method="POST" th:object="${addProductToCartFrom}">
+                                                            <input name="quantity" type="hidden" value="1"/>
+                                                            <input name="productId" type="hidden" th:value="${product.id}"/>
+                                                            <a class="btn hvr-hover" style="color: white;" th:href="@{/products/{id}(id=${product.id})}">View details</a>
+                                                            <button class="btn hvr-hover" type="submit" style="color: white;">Add to Cart</button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                                 
-                                <div role="tabpanel" class="tab-pane fade" id="list-view">
+                                <div role="tabpanel" class="tab-pane fade" id="list-view" style="margin-left: 15px;">
                                     <div class="list-view-box">
-                                        <div class="row">
+                                        <div class="row" style="width: 100%;">
                                             <div th:each="product : ${allProducts}" class="products-single fix">
                                                 <div class="box-img-hover">
-                                                    <img th:src="${product.imageUri}" class="img-fluid" alt="Image">
+                                                    <img th:src="${product.imageUri}" width="400" class="img-fluid" alt="Image">
                                                     <h3 th:text="${product.name}"></h3>
                                                     <h5 th:text="${product.price} + €"></h5>
                                                     <p th:text="${product.description}"></p>
-                                                    <a class="btn hvr-hover" href="/cart">Add to Cart</a>
+                                                    <form method="POST" th:object="${addProductToCartFrom}">
+                                                        <input name="quantity" type="hidden" value="1"/>
+                                                        <input name="productId" type="hidden" th:value="${product.id}"/>
+                                                        <a class="btn hvr-hover" style="color: white;" th:href="@{/products/{id}(id=${product.id})}">View details</a>
+                                                        <button class="btn hvr-hover" type="submit" style="color: white;">Add to Cart</button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -155,9 +144,7 @@
     <!-- End Shop Page -->
 
     <div th:replace="~{shop/homepage-layout/celebrities :: celebrities}"></div>
-
     <div th:replace="~{shop/homepage-layout/footer :: footer}"></div>
-
     <div th:replace="~{shop/homepage-layout/copyright :: copyright}"></div>
 
     <a href="/" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>

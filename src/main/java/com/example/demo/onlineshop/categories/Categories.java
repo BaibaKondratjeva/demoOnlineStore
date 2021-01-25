@@ -1,7 +1,9 @@
 package com.example.demo.onlineshop.categories;
 
-import java.util.Objects;
+import com.example.demo.onlineshop.categories.validation.ValidCategories;
 
+import java.util.Objects;
+@ValidCategories
 public class Categories {
 
     private Long id;

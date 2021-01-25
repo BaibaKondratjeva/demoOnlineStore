@@ -5,11 +5,9 @@
 
 <body>
 
-    <div th:replace="~{shop/homepage-layout/main-top :: main-top}"></div>
+<div th:replace="~{shop/homepage-layout/main-top :: main-top}"></div>
+<div th:replace="~{shop/homepage-layout/main-navigation :: main-navigation}"></div>
 
-    <div th:replace="~{shop/homepage-layout/main-navigation :: main-navigation}"></div>
-
-    <!-- Start All Title Box -->
     <div class="all-title-box">
         <div class="container">
             <div class="row">
@@ -23,7 +21,6 @@
             </div>
         </div>
     </div>
-    <!-- End All Title Box -->
 
     <!-- Start Cart  -->
     <div class="cart-box-main">
@@ -39,80 +36,30 @@
                                     <th>Price</th>
                                     <th>Quantity</th>
                                     <th>Total</th>
-                                  <!--  <th>Remove</th>-->
+                                    <th>Remove</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr th:each = "product : ${cartProducts}">
                                     <td class="thumbnail-img">
-                                        <a href="#">
-									<img class="img-fluid" th:src="${product.imageUri}"  alt="" />
-								</a>
+                                        <a><img class="img-fluid" th:src="${product.imageUri}" alt=""/></a>
                                     </td>
                                     <td class="name-pr">
-                                        <a th:text="${product.name}">
-
-								</a>
+                                        <a th:text="${product.name}"></a>
                                     </td>
                                     <td class="price-pr">
                                         <p th:text="${product.price + '€'}"></p>
                                     </td>
                                     <td class="quantity-box" th:text="${product.quantity}"></td>
                                     <td class="total-pr" th:text="${product.totalSum} + '€'"></td>
-                                    <!--<td class="remove-pr">
-                                        <a href="#">
-									<i class="fas fa-times"></i>
-								</a>
-                                    </td>-->
-                                </tr>
-                                <!--<tr>
-                                    <td class="thumbnail-img">
-                                        <a href="#">
-									<img class="img-fluid" src="/shop/images/img-pro-02.jpg" alt="" />
-								</a>
-                                    </td>
-                                    <td class="name-pr">
-                                        <a href="#">
-									Lorem ipsum dolor sit amet
-								</a>
-                                    </td>
-                                    <td class="price-pr">
-                                        <p>$ 60.0</p>
-                                    </td>
-                                    <td class="quantity-box"><input type="number" size="4" value="1" min="0" step="1" class="c-input-text qty text"></td>
-                                    <td class="total-pr">
-                                        <p>$ 80.0</p>
-                                    </td>
+
                                     <td class="remove-pr">
-                                        <a href="#">
-									<i class="fas fa-times"></i>
-								</a>
+                                        <a th:href="'/cart/delete?orderId=' + ${orderId} + '&productId=' + ${product.id}">
+                                            <i class="fas fa-times"></i>
+                                        </a>
                                     </td>
+
                                 </tr>
-                                <tr>
-                                    <td class="thumbnail-img">
-                                        <a href="#">
-									<img class="img-fluid" src="/shop/images/img-pro-03.jpg" alt="" />
-								</a>
-                                    </td>
-                                    <td class="name-pr">
-                                        <a href="#">
-									Lorem ipsum dolor sit amet
-								</a>
-                                    </td>
-                                    <td class="price-pr">
-                                        <p>$ 30.0</p>
-                                    </td>
-                                    <td class="quantity-box"><input type="number" size="4" value="1" min="0" step="1" class="c-input-text qty text"></td>
-                                    <td class="total-pr">
-                                        <p>$ 80.0</p>
-                                    </td>
-                                    <td class="remove-pr">
-                                        <a href="#">
-									<i class="fas fa-times"></i>
-								</a>
-                                    </td>
-                                </tr>-->
                             </tbody>
                         </table>
                     </div>
@@ -120,49 +67,23 @@
             </div>
 
             <div class="row my-5">
-                <div class="col-lg-6 col-sm-6">
-<!--                    kaut kas te ir jaamaina!-->
-                </div>
-                <!--<div class="col-lg-6 col-sm-6">
-                    <div class="update-box">
-                        <input value="Update Cart" type="submit">
-                    </div>
-                </div>-->
-            </div>
-
-            <div class="row my-5">
                 <div class="col-lg-8 col-sm-12"></div>
                 <div class="col-lg-4 col-sm-12">
                     <div class="order-box">
-                        <!--<h3>Order summary</h3>-->
-<!--                        <div class="d-flex">
-                            <h4>Sub Total</h4>
-                            <div class="ml-auto font-weight-bold"> $ 130 </div>
-                        </div>
-                        <div class="d-flex">
-                            <h4>Tax</h4>
-                            <div class="ml-auto font-weight-bold"> $ 2 </div>
-                        </div>
-                        <div class="d-flex">
-                            <h4>Shipping Cost</h4>
-                            <div class="ml-auto font-weight-bold"> Free </div>
-                        </div>-->
                         <hr>
-                        <div  class="d-flex gr-total">
-                            <h5>Grand Total</h5>
-                            <div class="ml-auto h5"th:text="${#aggregates.sum(cartProducts.![totalSum])}" ></div>
-                        </div>
-                        <hr> </div>
+                            <div class="d-flex gr-total">
+                                <h5>Grand Total</h5>
+                                <div class="ml-auto h5" th:text="${#aggregates.sum(cartProducts.![totalSum])} + '€'" ></div>
+                            </div>
+                        <hr>
+                    </div>
                 </div>
-                <div class="col-12 d-flex shopping-box"><a th:href="@{/checkout}" class="ml-auto btn hvr-hover">Checkout</a> </div>
+                <div class="col-12 d-flex shopping-box"><a th:href="@{/checkout}" class="ml-auto btn hvr-hover">Checkout</a></div>
             </div>
-
         </div>
     </div>
-    <!-- End Cart -->
 
     <div th:replace="~{shop/homepage-layout/footer :: footer}"></div>
-
     <div th:replace="~{shop/homepage-layout/copyright :: copyright}"></div>
 
     <a href="/" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>

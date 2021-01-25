@@ -31,4 +31,6 @@ public interface ProductsRepository {
 
     void updateProductCategories (Long productId, Set<Long> categoryId);
 
+    List<ProductRequest> productsByCategoryId(Long categoryId);
+
 }
