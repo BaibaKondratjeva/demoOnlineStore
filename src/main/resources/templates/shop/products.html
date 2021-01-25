@@ -66,13 +66,11 @@
                                     <span>Sort by </span>
                                     <select id="basic" class="selectpicker show-tick form-control" data-placeholder="€ EUR">
 									<option data-display="Select">All</option>
-									<option value="1">Popularity</option>
 									<option value="2">High Price → High Price</option>
 									<option value="3">Low Price → High Price</option>
-									<option value="4">Best Selling</option>
 								</select>
                                 </div>
-                                <p>Showing all 4 results</p>
+                                <p th:text="'Showing all ' + ${#lists.size(allProducts)} + ' results'" style="text-align: right;"></p>
                             </div>
 
                             <div class="col-12 col-sm-4 text-center text-sm-right">

@@ -63,20 +63,13 @@ public class UserProductsController {
             model.addAttribute("allCategories", allCategories);
             List<CartTable> cartProducts = cartMapper.getCartProducts(userId);
             model.addAttribute("cartProducts",cartProducts);
-
-//            List<Categories> allCategories = categoriesRepository.findAll();
-//            model.addAttribute("allCategories", allCategories);
-//            Categories category = categoriesRepository.findOne(categoryId);
-//            model.addAttribute("category", category);
-//            List<ProductRequest> allProducts = productsRepository.findAll();
-//            model.addAttribute("allProducts", allProducts);
             return "shop/products";
         }
     }
 
-    @PostMapping(path = {"/products", "/categories/{categoryId}"})
+    @PostMapping(path = {"/categories/{categoryId}"})
     public String addProductToCartCategoryViewFrom(@PathVariable(value = "productId", required = false) Long productId,
-                                                   @PathVariable (value = "categoryId",required = false) Long categoryId,
+                                                   @PathVariable (value = "categoryId") Long categoryId,
                                                    @CookieValue(name = USER_ID_COOKIE_NAME, required = false) String userId,
                                                    Model model,
                                                    @Valid AddProductToCartForm form,
@@ -104,7 +97,6 @@ public class UserProductsController {
                 service.insertNewUserOrder(userId,product,form,newOrder);
             }
         } return "redirect:/categories/{categoryId}";
-
     }
 
     @GetMapping("/products/{productId}")
@@ -145,7 +137,7 @@ public class UserProductsController {
         } return "redirect:/products/{productId}";
     }
 
-    @PostMapping("/products/add/{productsId}")
+    @PostMapping(path = {"/products"})
     public String addProductToCartProductsViewFrom(@PathVariable(value = "productId", required = false) Long productId,
                                                    @CookieValue(name = USER_ID_COOKIE_NAME, required = false) String userId,
                                                    Model model,
@@ -175,5 +167,5 @@ public class UserProductsController {
             }
         } return "redirect:/products";
     }
-
+    
 }
