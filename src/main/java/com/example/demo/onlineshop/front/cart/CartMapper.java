@@ -29,7 +29,7 @@ public interface CartMapper {
     @Delete("delete from orders_products where order_id = #{orderId} and product_id = #{productId}")
     boolean deleteProductFromCart (Long orderId, Long productId);
 
-    @Select("select id from orders where user_id = #{userId}")
+    @Select("select id from orders where user_id = #{userId} and status_id = 3")
     Long getOrderIdFromCart(String userId);
 }
 
