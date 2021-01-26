@@ -28,19 +28,12 @@ public class CategoriesController {
         model.addAttribute("allCategories",allCategories);
         return "cms/categories/categories";
     }
-/*    public List<Categories> getCategories(){
-        return categoriesRepository.findAll();
-    }*/
+
 
     @GetMapping
     public Categories findOne(@PathVariable Long id){
         return categoriesRepository.findOne(id);
     }
-
-/*    @GetMapping("/admin/categories/{name}")
-    public String findByName (@PathVariable String name) {
-        return "categoriesRepository.findByName(name)";
-    }*/
 
 
 

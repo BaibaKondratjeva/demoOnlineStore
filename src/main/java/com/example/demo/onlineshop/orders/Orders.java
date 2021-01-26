@@ -68,15 +68,6 @@ public class Orders {
     }
 
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        com.example.demo.onlineshop.Orders orders = (com.example.demo.onlineshop.Orders) o;
-//        return id == orders.id &&
-//                customerId == orders.customer_id &&
-//                Objects.equals(orderTime, orders.time);
-//    }
 
     @Override
     public int hashCode() {

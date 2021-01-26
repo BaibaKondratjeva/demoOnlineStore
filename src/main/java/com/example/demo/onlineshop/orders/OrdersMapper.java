@@ -57,6 +57,4 @@ public interface OrdersMapper {
 
 
 
-    Orders ordersValidation(List<Integer> categoryIds);
-
 }

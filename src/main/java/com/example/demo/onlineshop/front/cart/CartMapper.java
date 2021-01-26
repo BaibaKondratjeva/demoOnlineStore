@@ -1,7 +1,6 @@
 package com.example.demo.onlineshop.front.cart;
 
-import com.example.demo.onlineshop.orders.Orders;
-import com.example.demo.onlineshop.orders.OrdersProductsTable;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;

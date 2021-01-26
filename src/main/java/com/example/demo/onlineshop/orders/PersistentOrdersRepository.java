@@ -33,11 +33,6 @@ public class PersistentOrdersRepository implements OrdersRepository {
 
     @Override
     public Orders findOne(long id) {
-//       Orders orders = mapper.findOne(id);
-//        if (orders == null) {
-//            throw new NotFoundException("Orders with id " + id + " doesn't exist");
-//        }
-//        return orders;
         return mapper.findOne(id);
     }
 
@@ -64,7 +59,6 @@ public class PersistentOrdersRepository implements OrdersRepository {
     @Override
         public Orders insert(Orders order) {
         Orders orders = new Orders();
-        //mapper.insert(orders);
         return orders;
 
     }

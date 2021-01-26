@@ -1,7 +1,6 @@
 package com.example.demo.onlineshop.front.cart;
 
-import com.example.demo.onlineshop.orders.Orders;
-import com.example.demo.onlineshop.orders.OrdersProductsTable;
+
 import com.example.demo.onlineshop.orders.OrdersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/*import static com.example.demo.cookies.Cookies.USER_ID_COOKIE_NAME;*/
+
 import static com.example.demo.onlineshop.cookies.Cookies.USER_ID_COOKIE_NAME;
 
 
