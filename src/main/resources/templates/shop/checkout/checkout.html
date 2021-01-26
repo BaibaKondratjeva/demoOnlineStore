@@ -5,11 +5,9 @@
 
 <body>
 
-<div th:replace="~{shop/homepage-layout/main-top :: main-top}"></div>
-
+<div th:replace="~{shop/homepage-layout/main-top2 :: main-top2}"></div>
 <div th:replace="~{shop/homepage-layout/main-navigation :: main-navigation}"></div>
 
-    <!-- Start All Title Box -->
 <div class="all-title-box">
     <div class="container">
         <div class="row">
@@ -23,9 +21,6 @@
         </div>
     </div>
 </div>
-    <!-- End All Title Box -->
-
-    <!-- Start Cart  -->
 
 <div class="cart-box-main">
     <div class="container">
@@ -138,15 +133,10 @@
     </div>
 </div>
 
-    <!-- End Cart -->
-
-    <div th:replace="~{shop/homepage-layout/celebrities :: celebrities}"></div>
-
-    <div th:replace="~{shop/homepage-layout/footer :: footer}"></div>
-
-    <div th:replace="~{shop/homepage-layout/copyright :: copyright}"></div>
-
-    <a href="/" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+<div th:replace="~{shop/homepage-layout/celebrities :: celebrities}"></div>
+<div th:replace="~{shop/homepage-layout/footer :: footer}"></div>
+<div th:replace="~{shop/homepage-layout/copyright :: copyright}"></div>
+<a href="/" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
     <!-- ALL JS FILES -->
     <script src="/shop/js/jquery-3.2.1.min.js"></script>
