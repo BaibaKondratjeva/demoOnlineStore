@@ -8,7 +8,6 @@
 <div th:replace="~{shop/homepage-layout/main-top :: main-top}"></div>
 <div th:replace="~{shop/homepage-layout/main-navigation :: main-navigation}"></div>
 
-<!-- Start All Title Box -->
 <div class="all-title-box">
     <div class="container">
         <div class="row">
@@ -23,7 +22,6 @@
     </div>
 </div>
 
-<!-- Start Shop Detail  -->
     <div class="shop-detail-box-main">
         <div class="container">
             <div th:if="${isSuccess}" class="row alert alert-success">
@@ -37,7 +35,7 @@
                     <div class="single-product-details">
                         <h2 th:text="${product.name}"></h2>
                         <h5 th:text="${product.price} + €"></h5>
-                        <p class="available-stock"><span> More than 20 available / <a href="#">8 sold </a></span>
+                        <p th:text="'Available in stock: ' + ${product.quantity}" class="available-stock">
                         <p>
                         <h4>Description:</h4>
                         <p th:text="${product.description}"></p>
@@ -61,7 +59,7 @@
 
                             <div class="price-box-bar">
                                 <div class="cart-and-bay-btn">
-                                    <button class="btn hvr-hover" data-fancybox-close="" type="submit">Add to cart</button>
+                                    <button class="btn hvr-hover" data-fancybox-close="" type="submit" style="color: white;">Add to cart</button>
                                 </div>
                             </div>
                         </form>
@@ -70,12 +68,10 @@
             </div>
         </div>
     </div>
-    <!-- End Cart -->
 
     <div th:replace="~{shop/homepage-layout/celebrities :: celebrities}"></div>
     <div th:replace="~{shop/homepage-layout/footer :: footer}"></div>
     <div th:replace="~{shop/homepage-layout/copyright :: copyright}"></div>
-
     <a href="/" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
     <!-- ALL JS FILES -->

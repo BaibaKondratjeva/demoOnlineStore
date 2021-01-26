@@ -10,7 +10,6 @@
                     <a class="navbar-brand" href="/"><img src="https://live.staticflickr.com/65535/50809320323_d3f9c2d7e9_w.jpg" height="80" class="logo" alt="CREATIVE GUNS"></a>
                 </div>
 
-                <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
                         <li th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}">
@@ -24,25 +23,17 @@
                     </ul>
                 </div>
 
-                <!-- Start Atribute Navigation -->
                 <div class="attr-nav">
                     <ul>
                         <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
                         <li class="side-menu"><a href="#">
                             <i class="fa fa-shopping-bag"></i>
                             <span class="badge"></span>
-
-                            
-
-
-
                         </a></li>
                     </ul>
                 </div>
-                <!-- End Atribute Navigation -->
             </div>
 
-            <!-- Start Side Menu -->
             <div class="side">
                 <a href="" class="close-side"><i class="fa fa-times"></i></a>
                 <li class="cart-box">
@@ -59,11 +50,9 @@
                     </ul>
                 </li>
             </div>
-            <!-- End Side Menu -->
         </nav>
     </header>
 
-    <!-- Start Top Search -->
     <div class="top-search">
         <div class="container">
             <div class="input-group">
@@ -73,6 +62,6 @@
             </div>
         </div>
     </div>
-    <!-- End Top Search -->
+
 </th:block>
 </html>
